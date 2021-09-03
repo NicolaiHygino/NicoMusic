@@ -1,5 +1,5 @@
-import Login from 'views/Login';
-import Dashboard from 'views/Dashboard';
+import Login from 'components/Login';
+import Dashboard from 'components/Dashboad';
 import { GlobalStyle } from 'globalStyles';
 
 const code = new URLSearchParams(

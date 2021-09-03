@@ -1,0 +1,54 @@
+import { useState, useEffect } from 'react';
+import styled from "styled-components"
+import SearchListItem from './SearchListItem';
+import { spotifySearch } from 'services/spotifyApi/spotifySearch';
+
+const Container = styled.section`
+  padding: 10px;
+`;
+
+const InputField = styled.input`
+  width: 500px;
+  color: black;
+  border: 0;
+  border-radius: 30px;
+  padding: .8em 1em;
+`;
+
+const SearchList = styled.ul`
+  padding: 10px;
+`
+
+const Search = ({ accessToken }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [trackList, setTrackList] = useState([]);
+
+  useEffect(() => {
+    if (searchTerm) {
+      spotifySearch(searchTerm, accessToken)
+        .then(res => {
+          setTrackList(res.data.tracks.items);
+        });
+    } else {
+      setTrackList([]);
+    }
+  }, [searchTerm]);
+
+  return (
+    <Container>
+      <InputField
+        type="text"
+        placeholder="Search your favorite track"
+        value={searchTerm}
+        onChange={e => setSearchTerm(e.target.value)}
+      ></InputField>
+
+      <SearchList>
+        {trackList.map(track => 
+          <SearchListItem key={track.id} track={track} />)}   
+      </SearchList>
+    </Container>
+  );
+};
+
+export default Search;
