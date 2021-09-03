@@ -5,6 +5,7 @@ export const ListItem = styled.li`
   align-items: center;
   padding: .3em;
   border-radius: 5px;
+  cursor: pointer;
 
   &:hover {
     background-color: var(--bg-hover);

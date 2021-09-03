@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import styled from "styled-components"
+import styled from "styled-components";
 import SearchListItem from './SearchListItem';
 import { spotifySearch } from 'services/spotifyApi/spotifySearch';
 
@@ -17,9 +17,9 @@ const InputField = styled.input`
 
 const SearchList = styled.ul`
   padding: 10px;
-`
+`;
 
-const Search = ({ accessToken }) => {
+const Search = ({ accessToken, onClick }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [trackList, setTrackList] = useState([]);
 
@@ -45,7 +45,12 @@ const Search = ({ accessToken }) => {
 
       <SearchList>
         {trackList.map(track => 
-          <SearchListItem key={track.id} track={track} />)}   
+          <SearchListItem 
+            key={track.id} 
+            track={track} 
+            onClick={onClick} 
+          />
+        )}
       </SearchList>
     </Container>
   );

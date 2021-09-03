@@ -12,13 +12,13 @@ const msToMinsAndSecs = ms => {
   const secs = ((ms % 60000) / 1000).toFixed(0);
 
   return `${mins}:${(secs < 10 ? '0' : '')}${secs}`;
-}
+};
 
-const SearchListItem = ({ track }) => {
+const SearchListItem = ({ track, onClick }) => {
   const duration = msToMinsAndSecs(track.duration_ms);
-  
+
   return (
-    <ListItem>
+    <ListItem onClick={() => onClick(track.uri)}>
       <ImgWrapper>
         <img src={track.album.images[2].url} alt="" />
       </ImgWrapper>
@@ -33,6 +33,6 @@ const SearchListItem = ({ track }) => {
       </Wrapper>
     </ListItem>
   );
-}
+};
 
 export default SearchListItem;

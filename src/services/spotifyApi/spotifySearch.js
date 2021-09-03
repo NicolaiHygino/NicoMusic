@@ -14,6 +14,6 @@ export const spotifySearch = async (searchTerm, accessToken) => {
 
   const url = `https://api.spotify.com/v1/search?${params}` 
   
-  const res = await axios.get(url, headers)
+  const res = await axios.get(url, headers);
   return res;
 };

@@ -1,6 +1,6 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   :root {
     --main-red: #EA2027;
     --bg-color: #141414;
@@ -28,5 +28,9 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 `
-
-export { GlobalStyle };
+export const CenterWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+`;
