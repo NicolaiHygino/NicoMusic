@@ -19,13 +19,13 @@ const SearchList = styled.ul`
   padding: 10px;
 `;
 
-const Search = ({ accessToken, onClick }) => {
+const Search = ({ token, onClick }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [trackList, setTrackList] = useState([]);
 
   useEffect(() => {
     if (searchTerm) {
-      spotifySearch(searchTerm, accessToken)
+      spotifySearch(searchTerm, token)
         .then(res => {
           setTrackList(res.data.tracks.items);
         });

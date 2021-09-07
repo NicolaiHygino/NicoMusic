@@ -18,7 +18,7 @@ const SearchListItem = ({ track, onClick }) => {
   const duration = msToMinsAndSecs(track.duration_ms);
 
   return (
-    <ListItem onClick={() => onClick(track.uri)}>
+    <ListItem role="button" onClick={() => onClick(track.uri)}>
       <ImgWrapper>
         <img src={track.album.images[2].url} alt="" />
       </ImgWrapper>

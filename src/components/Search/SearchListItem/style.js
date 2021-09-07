@@ -20,9 +20,12 @@ export const TitleWrapper = styled(Wrapper)`
   flex: 2;
 `;
 
-export const ImgWrapper = styled(Wrapper)`
+export const ImgWrapper = styled.button`
   display: flex;
   align-items: center;
+  margin: 0 .5em;
+  border: 0;
+  padding: 0;   
 
   & img {
     width: 40px;

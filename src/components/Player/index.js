@@ -20,7 +20,7 @@ const playerStyle = {
   sliderTrackColor: '#272727',
 };
 
-const Player = ({ uris, accessToken }) => {
+const Player = ({ uris, token }) => {
   const [play, setPlay] = useState(false);
   
   useEffect(() => {
@@ -30,7 +30,7 @@ const Player = ({ uris, accessToken }) => {
   return (
     <PlayerContainer>
       <SpotifyWebPlayer
-        token={accessToken}
+        token={token}
         initialVolume={0.5}
         styles={playerStyle}
         callback={state =>

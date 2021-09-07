@@ -1,25 +1,25 @@
-import { AUTH_URL } from "services/spotifyApi/spotifyAuthentication";
-import styled from 'styled-components';
+import React, { useEffect } from 'react';
+import { 
+  AUTH_URL,
+  getSpotifyTokens
+} from "services/spotifyApi/spotifyAuthentication";
+import { LoginButton, CenteredContainer } from './style';
 
-const CenteredContainer = styled.section`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-`;
+const code = new URLSearchParams(
+  window.location.search
+).get('code');
 
-const LoginButton = styled.button`
-  color: #fff;
-  font-size: 16px;
-  font-weight: 500;
-  background-color: var(--main-red);
-  border: 0;
-  border-radius: 3px;
-  padding: .9em 2em;
-  cursor: pointer;
-`;
+const Login = ({ setToken }) => {  
+  useEffect(() => {
+    if (code) {
+      getSpotifyTokens(code)
+        .then(res => {
+          setToken(res.data.accessToken);
+          window.history.pushState({}, '', '/');
+        });
+    }
+  }, []);
 
-const Login = () => {
   return (
     <div>
       <CenteredContainer>

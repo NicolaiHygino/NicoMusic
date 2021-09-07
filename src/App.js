@@ -1,18 +1,23 @@
+import React from 'react';
+import { GlobalStyle } from 'globalStyles';
 import Login from 'components/Login';
 import Dashboard from 'components/Dashboad';
-import { GlobalStyle } from 'globalStyles';
-
-const code = new URLSearchParams(
-  window.location.search
-).get('code');
+import useToken from './hooks/useToken';
 
 function App() {
-  return (
-    <>
+  const [token, setToken] = useToken();
+
+  if (!token) {
+    return (<>
       <GlobalStyle />
-      { code ? <Dashboard code={code} /> : <Login /> }
-    </>
-  );
+      <Login setToken={setToken}/>
+    </>);
+  };
+
+  return (<>
+    <GlobalStyle />
+    <Dashboard token={token} />  
+  </>);
 }
 
 export default App;
