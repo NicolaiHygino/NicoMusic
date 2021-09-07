@@ -22,9 +22,6 @@ const Dashboard = ({ token }) => {
               onUriChange={handleUriChange}
             />
           </Route>
-          <Route path="/library">
-            <h1>Library</h1>
-          </Route>
           <Route path="/">
             <h1>Home</h1>
           </Route>

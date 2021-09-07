@@ -10,22 +10,19 @@ import {
 import logo from 'assets/images/white-logo.png';
 import HomeIcon from 'assets/Icons/HomeIcon';
 import SearchIcon from 'assets/Icons/SearchIcon';
-import LibraryIcon from 'assets/Icons/LibraryIcon';
 
-const NavItem = ({Icon, to, text}) => {
-  return (
-    <StyledNavItem>
-      <StyledLink to={to}>
-        <NavItemWrapper>
-          <Icon />
-        </NavItemWrapper>
-        <NavItemWrapper>
-          <p>{text}</p>
-        </NavItemWrapper>
-      </StyledLink>
-    </StyledNavItem>
-  );
-};
+const NavItem = ({Icon, to, text}) => (
+  <StyledNavItem>
+    <StyledLink to={to}>
+      <NavItemWrapper>
+        <Icon />
+      </NavItemWrapper>
+      <NavItemWrapper>
+        <p>{text}</p>
+      </NavItemWrapper>
+    </StyledLink>
+  </StyledNavItem>
+);
 
 const Sidebar = () => {
   return (
@@ -36,10 +33,9 @@ const Sidebar = () => {
       <Nav>
         <NavItem Icon={HomeIcon} to="/" text="Home" />
         <NavItem Icon={SearchIcon} to="/search" text="Search" />
-        <NavItem Icon={LibraryIcon} to="/library" text="Library" />
       </Nav>
     </StyledSidebar>
-  ); 
+  );
 };
 
 export default Sidebar;
