@@ -14,11 +14,11 @@ const msToMinsAndSecs = ms => {
   return `${mins}:${(secs < 10 ? '0' : '')}${secs}`;
 };
 
-const SearchListItem = ({ track, onClick }) => {
+const SearchListItem = ({ track, onUriChange }) => {
   const duration = msToMinsAndSecs(track.duration_ms);
 
   return (
-    <ListItem role="button" onClick={() => onClick(track.uri)}>
+    <ListItem role="button" onClick={() => onUriChange(track.uri)}>
       <ImgWrapper>
         <img src={track.album.images[2].url} alt="" />
       </ImgWrapper>

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { 
   AUTH_URL,
-  getSpotifyTokens
-} from "services/spotifyApi/spotifyAuthentication";
+  getSpotifyTokens 
+} from "services/spotifyApi/Authentication";
 import { LoginButton, CenteredContainer } from './style';
 
 const code = new URLSearchParams(
@@ -11,7 +11,7 @@ const code = new URLSearchParams(
 
 const Login = ({ setToken }) => {  
   useEffect(() => {
-    if (code) {
+    if (code) {    
       getSpotifyTokens(code)
         .then(res => {
           setToken(res.data.accessToken);

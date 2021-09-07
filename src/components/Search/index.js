@@ -5,6 +5,8 @@ import { spotifySearch } from 'services/spotifyApi/spotifySearch';
 
 const Container = styled.section`
   padding: 10px;
+  height: calc(100vh - 52px);
+  overflow: auto;
 `;
 
 const InputField = styled.input`
@@ -19,7 +21,7 @@ const SearchList = styled.ul`
   padding: 10px;
 `;
 
-const Search = ({ token, onClick }) => {
+const Search = ({ token, onUriChange }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [trackList, setTrackList] = useState([]);
 
@@ -48,7 +50,7 @@ const Search = ({ token, onClick }) => {
           <SearchListItem 
             key={track.id} 
             track={track} 
-            onClick={onClick} 
+            onUriChange={onUriChange} 
           />
         )}
       </SearchList>

@@ -18,6 +18,6 @@ function App() {
     <GlobalStyle />
     <Dashboard token={token} />  
   </>);
-}
+};
 
 export default App;
