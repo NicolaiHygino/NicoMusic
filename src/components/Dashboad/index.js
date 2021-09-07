@@ -1,20 +1,9 @@
 import React, { useState } from 'react';
+import Sidebar from 'components/Sidebar';
 import Search from 'components/Search';
 import Player from 'components/Player';
-import logo from 'assets/images/white-logo.png';
-import HomeIcon from 'assets/Icons/HomeIcon';
-import SearchIcon from 'assets/Icons/SearchIcon';
-import LibraryIcon from 'assets/Icons/LibraryIcon';
-import {
-  DashboardDiv,
-  Nav,
-  NavUl,
-  NavItem,
-  NavItemWrapper,
-  StyledLink,
-  Content,
-  LogoWrapper,
-} from './style';
+import { Switch, Route } from 'react-router-dom'; 
+import { DashboardDiv, Content } from './style';
 
 const Dashboard = ({ token }) => {
   const [trackUri, setTrackUri] = useState([]);
@@ -24,48 +13,22 @@ const Dashboard = ({ token }) => {
 
   return (<>
     <DashboardDiv>
-      <Nav>
-        <LogoWrapper>
-          <img src={logo} alt="Nico Music Logo" />
-        </LogoWrapper>
-        <NavUl>
-          <NavItem>
-            <StyledLink to="/">
-              <NavItemWrapper>
-                <HomeIcon />
-              </NavItemWrapper>
-              <NavItemWrapper>
-                <p>Home</p>
-              </NavItemWrapper>
-            </StyledLink>
-          </NavItem>
-          <NavItem>
-            <StyledLink to="/search">
-              <NavItemWrapper>
-                <SearchIcon />
-              </NavItemWrapper>
-              <NavItemWrapper>
-                <p>Search</p>
-              </NavItemWrapper>
-            </StyledLink>
-          </NavItem>
-          <NavItem>
-            <StyledLink to="/library">
-              <NavItemWrapper>
-                <LibraryIcon />
-              </NavItemWrapper>
-              <NavItemWrapper>
-                <p>Library</p>
-              </NavItemWrapper>
-            </StyledLink>
-          </NavItem>
-        </NavUl>
-      </Nav>
+      <Sidebar />
       <Content>
-        <Search 
-          token={token} 
-          onUriChange={handleUriChange}
-        />
+        <Switch>
+          <Route path='/search'>
+            <Search 
+              token={token} 
+              onUriChange={handleUriChange}
+            />
+          </Route>
+          <Route path="/library">
+            <h1>Library</h1>
+          </Route>
+          <Route path="/">
+            <h1>Home</h1>
+          </Route>
+        </Switch>
       </Content>
     </DashboardDiv>
     <Player token={token} uris={trackUri}/>

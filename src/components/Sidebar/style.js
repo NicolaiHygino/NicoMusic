@@ -1,11 +1,6 @@
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
 
-export const DashboardDiv = styled.div`
-  display: flex;
-  height: calc(100vh - 52px);
-`;
-
 export const StyledSidebar = styled.nav`
   width: 200px;
   background-color: black;
@@ -28,7 +23,7 @@ export const Nav = styled.ul`
   margin: 20px 0;
 `;
 
-export const NavItem = styled.li`
+export const StyledNavItem = styled.li`
   border-radius: 5px;
 
   &:hover {
@@ -52,10 +47,4 @@ export const NavItemWrapper = styled.div`
     font-size: .87em;
     font-weight: 600;
   }
-`;
-
-export const Content = styled.section`
-  width: 100%;
-  height: 100%;
-  padding: 10px;
 `;
