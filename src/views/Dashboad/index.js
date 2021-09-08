@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from 'components/Sidebar';
+import Home from 'components/Home';
 import Search from 'components/Search';
 import Player from 'components/Player';
 import { Switch, Route } from 'react-router-dom'; 
@@ -23,7 +24,7 @@ const Dashboard = ({ token }) => {
             />
           </Route>
           <Route path="/">
-            <h1>Home</h1>
+            <Home token={token} />
           </Route>
         </Switch>
       </Content>

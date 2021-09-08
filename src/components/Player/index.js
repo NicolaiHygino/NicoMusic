@@ -31,6 +31,7 @@ const Player = ({ uris, token }) => {
     <PlayerContainer>
       <SpotifyWebPlayer
         token={token}
+        name="Nico Music"
         initialVolume={0.5}
         styles={playerStyle}
         callback={state =>

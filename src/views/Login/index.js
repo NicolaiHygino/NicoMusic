@@ -2,20 +2,23 @@ import React, { useEffect } from 'react';
 import { 
   AUTH_URL,
   getSpotifyTokens 
-} from "services/spotifyApi/Authentication";
+} from "services/spotifyApi/authentication";
 import { LoginButton, CenteredContainer } from './style';
+import { useHistory } from 'react-router-dom';
 
 const code = new URLSearchParams(
   window.location.search
 ).get('code');
 
-const Login = ({ setToken }) => {  
+const Login = ({ setToken }) => {
+  const history = useHistory();
+
   useEffect(() => {
     if (code) {    
       getSpotifyTokens(code)
         .then(res => {
           setToken(res.data.accessToken);
-          window.history.pushState({}, '', '/');
+          history.push('/');
         });
     }
   }, []);
