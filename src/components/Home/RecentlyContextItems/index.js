@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getRecentPlayedContexts } from 'services/spotifyApi/endpoints';
+import { getRecentPlayedContexts } from 'services/spotifyapi/endpoints';
 import {
   RecentlyContextsItems,
   StyledContextItem,
