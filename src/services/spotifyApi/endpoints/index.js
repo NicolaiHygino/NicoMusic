@@ -67,7 +67,7 @@ const contextFilter = items => {
  */
 export const getRecentPlayedContexts = async (token) => {
   const recentlyTracks = await getRecentlyTracks(token, 50);
-  console.log(recentlyTracks.data.items)
+  
   const recentlyContextIds = contextFilter(
     recentlyTracks.data.items
   );

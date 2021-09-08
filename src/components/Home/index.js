@@ -1,10 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import RecentlyContextItems from './RecentlyContextItems';
-
-const SectionWrapper = styled.div`
-  padding: 0 20px;
-`;
+import { SectionWrapper } from 'globalStyles';
 
 const Home = ({ token }) => {
   return (<>

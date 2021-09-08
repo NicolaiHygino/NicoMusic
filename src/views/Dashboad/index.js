@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Sidebar from 'components/Sidebar';
 import Home from 'components/Home';
+import Album from 'components/Album';
 import Search from 'components/Search';
 import Player from 'components/Player';
 import { Switch, Route } from 'react-router-dom'; 
@@ -22,6 +23,9 @@ const Dashboard = ({ token }) => {
               token={token} 
               onUriChange={handleUriChange}
             />
+          </Route>
+          <Route path="/album/:id">
+            <Album token={token} />
           </Route>
           <Route path="/">
             <Home token={token} />

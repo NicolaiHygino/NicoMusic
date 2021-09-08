@@ -11,7 +11,7 @@ const ContextItem = ({ item }) => {
   return (
     <StyledContextItem>
       <ImageWrapper>
-        <img src={item.images[0].url}></img>
+        <img src={item.images[0].url} alt={item.name}/>
       </ImageWrapper>
       <TitleWrapper>
         <p>{item.name}</p>
@@ -25,7 +25,7 @@ const RecentlyContextItems = ({ token }) => {
     recentlyPlayedContexts,
     setRecentlyPlayedContexts
   ] = useState([]);
-  // console.log(recentlyPlayedContexts)
+  
   useEffect(() => {
     getRecentPlayedContexts(token)
       .then(res => {

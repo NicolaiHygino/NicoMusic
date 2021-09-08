@@ -26,10 +26,13 @@ export const GlobalStyle = createGlobalStyle`
     background-color: var(--bg-color);
   }
 
+  ul, h1, h2, h3, h4, h5, h6, p, div {
+    padding: 0;
+    margin: 0
+  }
+
   ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
   }
 `
 export const CenterWrapper = styled.div`
@@ -37,4 +40,8 @@ export const CenterWrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+`;
+
+export const SectionWrapper = styled.div`
+  padding: 0 32px;
 `;
