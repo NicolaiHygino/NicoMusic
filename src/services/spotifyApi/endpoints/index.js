@@ -40,23 +40,35 @@ export const getPlaylist = async (token, playlistId) => {
   return res;
 };
 
-const recentlyContextFilter = items => {
-  let idsList = [];
+/**
+ * Receive an user's receltly played tracks and filter the
+ * context 
+ * @param {Object[]} items - Array with recently played tracks objects
+ * @returns {Object[]} - Array of filtered objects with id and type
+ */
+const contextFilter = items => {
+  let contextList = [];
   items
     .filter(item => item?.context)
     .forEach(item => {
       const id = item.context.uri.split(':')[2];
       const type = item.context.type;
-      if (idsList.every(item => item.id !== id)) {
-        idsList = [ ...idsList, {id, type}]
+      if (contextList.every(item => item.id !== id)) {
+        contextList = [ ...contextList, {id, type}]
       }
     });
-  return idsList;
+  return contextList;
 };
 
+/**
+ * Fetch user's recently played contexts
+ * @param {String} token - Spotify acesss token 
+ * @returns {Object[]} - Recently played contexts
+ */
 export const getRecentPlayedContexts = async (token) => {
   const recentlyTracks = await getRecentlyTracks(token, 50);
-  const recentlyContextIds = recentlyContextFilter(
+  console.log(recentlyTracks.data.items)
+  const recentlyContextIds = contextFilter(
     recentlyTracks.data.items
   );
   const recentlyContextData = await Promise.all(
