@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from "styled-components";
 import SearchListItem from './SearchListItem';
-import { spotifySearch } from 'services/spotifyapi/endpoints';
+import { spotifySearch } from 'services/spotifyApi/endpoints';
 
 const Container = styled.section`
   padding: 10px;
