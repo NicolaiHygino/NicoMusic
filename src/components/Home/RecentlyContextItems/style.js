@@ -6,6 +6,10 @@ export const RecentlyContextsItems = styled.div`
   gap: 24px;
   row-gap: 16px;
   flex-wrap: wrap;
+
+  @media screen and (max-width: 700px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 export const StyledContextItem = styled.div`
