@@ -6,14 +6,15 @@ import {
 import { LoginButton, CenteredContainer } from './style';
 import { useHistory } from 'react-router-dom';
 
-const code = new URLSearchParams(
-  window.location.search
-).get('code');
 
 const Login = ({ setToken }) => {
   const history = useHistory();
 
   useEffect(() => {
+    const code = new URLSearchParams(
+      window.location.search
+    ).get('code');
+    
     if (code) {    
       getSpotifyTokens(code)
         .then(res => {
