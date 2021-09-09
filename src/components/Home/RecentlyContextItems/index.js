@@ -31,7 +31,7 @@ const RecentlyContextItems = ({ token }) => {
       .then(res => {
         setRecentlyPlayedContexts(res.slice(0, 6))
       })
-  }, []);
+  }, [token]);
   
   return (<>
     <h2>Bom Dia</h2>

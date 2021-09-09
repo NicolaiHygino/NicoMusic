@@ -78,7 +78,7 @@ export const getRecentPlayedContexts = async (token) => {
         case 'playlist':
           res = await getPlaylist(token, item.id);
           break;
-        case 'album':
+        default:
           res = await getAlbum(token, item.id);
           break;
       }

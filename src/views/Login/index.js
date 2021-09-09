@@ -6,10 +6,9 @@ import {
 import { LoginButton, CenteredContainer } from './style';
 import { useHistory } from 'react-router-dom';
 
-
 const Login = ({ setToken }) => {
   const history = useHistory();
-
+  
   useEffect(() => {
     const code = new URLSearchParams(
       window.location.search
@@ -23,7 +22,7 @@ const Login = ({ setToken }) => {
         })
         .catch(console.log);
     }
-  }, []);
+  }, [history, setToken]);
 
   return (
     <div>

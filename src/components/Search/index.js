@@ -31,9 +31,9 @@ const Search = ({ token, onUriChange }) => {
           setTrackList(res.data.tracks.items);
         });
     } else {
-      setTrackList([]);
+      setTrackList([token]);
     }
-  }, [searchTerm]);
+  }, [searchTerm, token]);
 
   return (
     <Container>

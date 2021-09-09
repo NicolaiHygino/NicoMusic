@@ -11,7 +11,7 @@ const Album = ({ token }) => {
   useEffect(() => {
     getAlbum(token, id)
       .then(res => setAlbum(res.data))
-  }, []);
+  }, [token, id]);
 
   if (!album) {
     return <p>Loading</p>
