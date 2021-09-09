@@ -3,7 +3,7 @@ import Sidebar from 'components/Sidebar';
 import Home from 'components/Home';
 import Album from 'components/Album';
 import Search from 'components/Search';
-import Player from 'components/Player';
+import NewPlayer from 'components/NewPlayer';
 import { Switch, Route } from 'react-router-dom'; 
 import { DashboardDiv, Content } from './style';
 
@@ -33,7 +33,7 @@ const Dashboard = ({ token }) => {
         </Switch>
       </Content>
     </DashboardDiv>
-    <Player token={token} uris={trackUri}/>
+    <NewPlayer token={token}/>
   </>);
 };
 

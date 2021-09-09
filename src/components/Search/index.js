@@ -3,6 +3,7 @@ import styled from "styled-components";
 import SearchListItem from './SearchListItem';
 import { spotifySearch } from 'services/spotifyApi/endpoints';
 
+
 const Container = styled.section`
   padding: 10px;
   height: calc(100vh - 52px);
