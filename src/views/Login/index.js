@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   AUTH_URL,
   getSpotifyTokens 
@@ -7,8 +7,9 @@ import { LoginButton, CenteredContainer } from './style';
 import { useHistory } from 'react-router-dom';
 
 const Login = ({ setToken }) => {
+  const [error, setError] = useState(false);
   const history = useHistory();
-  
+
   useEffect(() => {
     const code = new URLSearchParams(
       window.location.search
@@ -20,9 +21,27 @@ const Login = ({ setToken }) => {
           setToken(res.data.accessToken);
           history.push('/');
         })
-        .catch(console.log);
+        .catch(() => {
+          setError(true)
+          history.push('/');
+        });
     }
   }, [history, setToken]);
+
+  const onTryAgainClick = () => {
+    setError(false)
+    history.push('/');
+  }
+
+  if(error) {
+    return ( 
+      <CenteredContainer>
+        <p>Something went wrong during the authorization, 
+        try again later.</p>
+        <LoginButton onClick={() => onTryAgainClick()}>Try Again</LoginButton>
+      </CenteredContainer>
+    );
+  }
 
   return (
     <div>

@@ -19,6 +19,10 @@ const params = objectToURLParam({
 export const AUTH_URL = `https://accounts.spotify.com/authorize?${params}`;
 
 export const getSpotifyTokens = async (code) => {
-  const result = await axios.post(SERVER_URL, {code});
-  return result;
+  try {
+    const result = await axios.post(SERVER_URL, {code});
+    return result;
+  } catch {
+    return Promise.reject();
+  }
 };

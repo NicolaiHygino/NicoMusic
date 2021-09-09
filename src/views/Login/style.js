@@ -2,9 +2,14 @@ import styled from 'styled-components';
 
 export const CenteredContainer = styled.section`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
+
+  & p {
+    margin-bottom: 30px;
+  }
 `;
 
 export const LoginButton = styled.button`
