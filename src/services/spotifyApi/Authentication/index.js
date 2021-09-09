@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { objectToURLParam } from 'services/spotifyApi/objectToUrlParam';
+import { objectToURLParam } from 'services/spotifyapi/objectToUrlParam';
 
 const REDIRECT_URI = process.env.NODE_ENV === 'development' 
   ? 'http://localhost:3000/'

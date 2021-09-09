@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { objectToURLParam } from 'services/spotifyApi/objectToUrlParam';
+import { objectToURLParam } from 'services/spotifyapi/objectToUrlParam';
 
 const headers = token => ({
   headers: {
