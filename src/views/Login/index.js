@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { 
   AUTH_URL,
   getSpotifyTokens 
-} from 'services/spotifyapi/authentication';
+} from 'services/spotifyApi/authentication';
 import { LoginButton, CenteredContainer } from './style';
 import { useHistory } from 'react-router-dom';
 

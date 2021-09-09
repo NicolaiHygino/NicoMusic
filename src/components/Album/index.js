@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getAlbum } from 'services/spotifyapi/endpoints';
+import { getAlbum } from 'services/spotifyApi/endpoints';
 import AlbumHeader from './AlbumHeader';
 import AlbumTrackList from './AlbumTacksList';
 

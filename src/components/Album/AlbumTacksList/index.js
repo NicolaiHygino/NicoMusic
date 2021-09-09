@@ -1,6 +1,6 @@
 import React from 'react';
 import { SectionWrapper } from 'globalStyles';
-import ClockIcon from 'assets/Icons/ClickIcon';
+import ClockIcon from 'assets/Icons/clockicon';
 import { 
   TopGuide,
   TrackNumber,
