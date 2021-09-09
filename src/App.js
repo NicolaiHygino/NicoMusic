@@ -1,6 +1,6 @@
 import React from 'react';
 import { GlobalStyle } from 'globalStyles';
-import Login from 'views/login';
+import Login from 'views/Login';
 import Dashboard from 'views/Dashboad';
 import useToken from './hooks/useToken';
 
