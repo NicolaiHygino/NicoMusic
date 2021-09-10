@@ -88,3 +88,12 @@ export const getRecentPlayedContexts = async (token) => {
   );
   return recentlyContextData;
 }
+
+export const playResume = (token, contextUri) => {
+  const url = 'https://api.spotify.com/v1/me/player/play';
+  const data = {
+    context_uri: contextUri,
+  }
+  axios.put(url, data, headers(token))
+    .catch(console.log)
+}
