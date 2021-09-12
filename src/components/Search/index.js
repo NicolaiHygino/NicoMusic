@@ -20,7 +20,7 @@ const SearchList = styled.ul`
   padding: 10px;
 `;
 
-const Search = ({ token, onUriChange }) => {
+const Search = ({ token, onContextUriChange }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [trackList, setTrackList] = useState([]);
 
@@ -50,7 +50,7 @@ const Search = ({ token, onUriChange }) => {
           <SearchListItem 
             key={track.id} 
             track={track} 
-            onUriChange={onUriChange} 
+            onContextUriChange={onContextUriChange} 
           />
         )}
       </SearchList>

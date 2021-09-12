@@ -8,11 +8,11 @@ import {
 } from "./style";
 import { msToMinsAndSecs } from "utils/msToMinsAndSecs";
 
-const SearchListItem = ({ track, onUriChange }) => {
+const SearchListItem = ({ track, onContextUriChange }) => {
   const duration = msToMinsAndSecs(track.duration_ms);
 
   return (
-    <ListItem role="button" onClick={() => onUriChange(track.uri)}>
+    <ListItem role="button" onClick={() => onContextUriChange(track.uri)}>
       <ImgWrapper>
         <img src={track.album.images[2].url} alt="" />
       </ImgWrapper>
