@@ -49,6 +49,7 @@ const ProgressBar = ({
         min="0"
         max={duration}
         value={position}
+        step={1000}
         onChange={(e) => setPosition(parseInt(e.target.value))}
         onMouseDown={() => setPauseInterval(true)}
         onMouseUp={() => handleMouseUp()}

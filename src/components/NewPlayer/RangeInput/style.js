@@ -92,7 +92,6 @@ export const StyledRangeInput = styled.input`
   }
   /* || End Chrome Styles */
 
-
   /* || Mozilla Styles */
   &::-moz-range-track {
     background: var(--track-bg);
@@ -128,7 +127,7 @@ export const StyledRangeInput = styled.input`
   }
 
   &::-ms-fill-lower {
-    background: var(---lower-bg);
+    background: var(--lower-bg);
     border: 0;
     border-radius: 8px;
   }
@@ -148,7 +147,7 @@ export const StyledRangeInput = styled.input`
   }
 
   &:focus::-ms-fill-lower {
-    background: var(---lower-bg);
+    background: var(--lower-bg);
   }
   /* || End IE Styles */
 `;

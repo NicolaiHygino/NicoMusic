@@ -12,7 +12,7 @@ const PlaylistHeader = ({ playlist }) => {
   return (
     <HeadWrapper>
       <ImageWrapper>
-        <img src={playlist.images[1].url} alt={playlist.name} />
+        <img src={playlist.images[0].url} alt={playlist.name} />
       </ImageWrapper>
       <ContentText>
         <h2>PLAYLIST</h2>

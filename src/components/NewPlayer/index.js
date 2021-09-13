@@ -17,7 +17,7 @@ const NewPlayer = ({ token }) => {
   const [track, setTrack] = useState(null);
   const [isPaused, setIsPaused] = useState(true);
   const [position, setPosition] = useState(0);
-  const [volume, setVolume] = useState(0.5);
+  const [volume, setVolume] = useState(0.1);
 
   useEffect(() => {
     if(!player) return

@@ -12,13 +12,10 @@ const Playlist = ({ token }) => {
     getPlaylist(token, id).then(res => setPlaylist(res.data))
   }, [token, id]);
 
-  console.log(playlist);
-
   if (!playlist) {
     return <p>Loading</p>
   }
 
-  // return <h1>PLAYLIST</h1>;
   return (<>
     <PlaylistHeader playlist={playlist} />
     <PlaylistTrackList trackItems={playlist.tracks.items} />
