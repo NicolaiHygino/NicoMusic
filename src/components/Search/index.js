@@ -21,7 +21,7 @@ const SearchList = styled.ul`
   padding: 10px;
 `;
 
-const Search = ({ token, onUriChange }) => {
+const Search = ({ token, onContextUriChange }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [trackList, setTrackList] = useState([]);
 
@@ -30,6 +30,7 @@ const Search = ({ token, onUriChange }) => {
       spotifySearch(searchTerm, token)
         .then(res => {
           setTrackList(res.data.tracks.items);
+          console.log(res.data.tracks.items);
         });
     } else {
       setTrackList([]);
@@ -50,7 +51,7 @@ const Search = ({ token, onUriChange }) => {
           <SearchListItem 
             key={track.id} 
             track={track} 
-            onUriChange={onUriChange} 
+            onContextUriChange={onContextUriChange} 
           />
         )}
       </SearchList>

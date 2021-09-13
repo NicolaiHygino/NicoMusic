@@ -61,7 +61,8 @@ const contextFilter = items => {
 };
 
 /**
- * Fetch user's recently played contexts
+ * Fetch user's recently played tracks and filter the contexts 
+ * that they had been played
  * @param {String} token - Spotify acesss token 
  * @returns {Object[]} - Recently played contexts
  */
@@ -87,3 +88,37 @@ export const getRecentPlayedContexts = async (token) => {
   );
   return recentlyContextData;
 }
+
+export const transferUserPlayback = (token, deviceId) => {
+  const data = {
+    device_ids: [deviceId],
+    play: false
+  }
+
+  const url = 'https://api.spotify.com/v1/me/player';
+
+  axios.put(url, data, headers(token))
+    .catch(console.log)
+};
+
+export const playResume = (token, contextUri) => {
+  const url = 'https://api.spotify.com/v1/me/player/play';
+  
+  const data = contextUri.split(':')[1] === 'track' 
+    ? { uris: [contextUri] }
+    : { context_uri: contextUri }
+  
+  axios.put(url, data, headers(token))
+    .catch(console.log)
+}
+
+export const seekToPosition = (token, positionMs, deviceId) => {
+  const params = objectToURLParam({
+    position_ms: positionMs,
+    device_ids: deviceId,
+  });
+
+  const url = `https://api.spotify.com/v1/me/player/seek?${params}`;
+
+  axios.put(url, null, headers(token));
+};
