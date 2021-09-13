@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { getRecentPlayedContexts } from 'services/spotifyApi/endpoints';
+import { Link } from 'react-router-dom';
 import {
   RecentlyContextsItems,
   StyledContextItem,
   ImageWrapper,
-  TitleWrapper
+  TitleWrapper,
+  StyledLink
 } from './style';
 
 const ContextItem = ({ item }) => {  
+  const url = item.type;
+  const id = item.uri.split(':')[2];
+
   return (
-    <StyledContextItem>
-      <ImageWrapper>
-        <img src={item.images[0].url} alt={item.name}/>
-      </ImageWrapper>
-      <TitleWrapper>
-        <p>{item.name}</p>
-      </TitleWrapper>
-    </StyledContextItem>
+    <Link to={`${url}/${id}`}>
+      <StyledContextItem>
+        <ImageWrapper>
+          <img src={item.images[0].url} alt={item.name}/>
+        </ImageWrapper>
+        <TitleWrapper>
+          <p>{item.name}</p>
+        </TitleWrapper>
+      </StyledContextItem>
+    </Link>
   );
 };
 
@@ -25,7 +32,7 @@ const RecentlyContextItems = ({ token }) => {
     recentlyPlayedContexts,
     setRecentlyPlayedContexts
   ] = useState([]);
-  
+  console.log(recentlyPlayedContexts)
   useEffect(() => {
     getRecentPlayedContexts(token)
       .then(res => {

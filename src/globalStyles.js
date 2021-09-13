@@ -34,6 +34,11 @@ export const GlobalStyle = createGlobalStyle`
   ul {
     list-style: none;
   }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
 `
 export const CenterWrapper = styled.div`
   display: flex;
