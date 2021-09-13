@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from 'components/Sidebar';
 import Home from 'components/Home';
+import Playlist from 'components/Playlist';
 import Album from 'components/Album';
 import Search from 'components/Search';
 import NewPlayer from 'components/NewPlayer';
@@ -34,6 +35,9 @@ const Dashboard = ({ token }) => {
           </Route>
           <Route path="/album/:id">
             <Album token={token} />
+          </Route>
+          <Route path="/playlist/:id">
+            <Playlist token={token} />
           </Route>
           <Route path="/">
             <Home token={token} />

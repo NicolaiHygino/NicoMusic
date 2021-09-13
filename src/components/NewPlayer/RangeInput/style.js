@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const RangeWrapper = styled.div`
   height: -1px;
+  padding-top: 3px;
   width: 100%;
 
   /* Chrome */

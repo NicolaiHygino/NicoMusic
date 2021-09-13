@@ -1,7 +1,7 @@
 import React from 'react';
 import { SectionWrapper } from 'globalStyles';
 import ClockIcon from 'assets/Icons/ClockIcon';
-import { 
+import {
   TopGuide,
   TrackNumber,
   TrackTitle,
@@ -12,22 +12,22 @@ import {
 import { msToMinsAndSecs } from 'utils/msToMinsAndSecs';
 
 const AlbumTrackItem = ({ track, index }) => {
-  const duration = msToMinsAndSecs(track.duration_ms)
+  const duration = msToMinsAndSecs(track.duration_ms);
   return (
     <StyledTrackItem>
       <TrackNumber>
-        <p>{ index }</p>
+        <p>{index}</p>
       </TrackNumber>
       <TrackTitle>
         <MusicTitle>{track.name}</MusicTitle>
         <p>{track.artists[0].name}</p>
       </TrackTitle>
       <TrackDuration>
-        <p>{ duration }</p>
+        <p>{duration}</p>
       </TrackDuration>
     </StyledTrackItem>
   );
-}
+};
 
 const AlbumTrackList = ({ tracks }) => {
   return (
@@ -44,8 +44,9 @@ const AlbumTrackList = ({ tracks }) => {
         </TrackDuration>
       </TopGuide>
 
-      {tracks.map((track, i) => 
-        <AlbumTrackItem key={track.id} track={track} index={i}/>)}
+      {tracks.map((track, i) => (
+        <AlbumTrackItem key={track.id} track={track} index={i} />
+      ))}
     </SectionWrapper>
   );
 };

@@ -12,7 +12,6 @@ const Search = ({ token, onContextUriChange }) => {
       spotifySearch(searchTerm, token)
         .then(res => {
           setTrackList(res.data.tracks.items);
-          console.log(res.data.tracks.items);
         });
     } else {
       setTrackList([]);

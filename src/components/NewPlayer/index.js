@@ -25,10 +25,8 @@ const NewPlayer = ({ token }) => {
   }, [volume, player]);
 
   useEffect(() => {
-    console.log('useEffect Called.');
     const script = document.createElement('script');
     script.src = 'https://sdk.scdn.co/spotify-player.js';
-
     script.async = true;
     document.body.appendChild(script);
 
@@ -42,7 +40,6 @@ const NewPlayer = ({ token }) => {
       setPlayer(player);
 
       player.addListener('ready', ({ device_id }) => {
-        console.log(device_id);
         transferUserPlayback(token, device_id);
         setDeviceId(device_id);
         player.getVolume().then((vol) => setVolume(vol));
