@@ -6,7 +6,6 @@ import {
   StyledContextItem,
   ImageWrapper,
   TitleWrapper,
-  StyledLink
 } from './style';
 
 const ContextItem = ({ item }) => {  
