@@ -11,8 +11,8 @@ import {
   StyledMainControls,
   PlayPauseButton,
   PlayerButtons,
-  IconButton,
 } from "./style";
+import { IconButton } from "../style";
 
 const MainControls = ({
   token,

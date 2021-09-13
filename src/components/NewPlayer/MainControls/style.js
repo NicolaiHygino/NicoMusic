@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IconButton } from '../style';
 
 export const StyledMainControls = styled.div`
   display: flex;
@@ -11,17 +12,6 @@ export const PlayerButtons = styled.div`
   flex: 1;
   justify-content: center;
   margin-bottom: 12px;
-`;
-
-export const IconButton = styled.button`
-  color: #fff;
-  background-color: rgba(0,0,0,0);
-  border: 0;
-  width: 32px;
-  height: 32px;
-  line-height: 0;
-  margin: 0 4px;
-  cursor: pointer;
 `;
 
 export const PlayPauseButton = styled(IconButton)`

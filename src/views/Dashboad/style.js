@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const DashboardDiv = styled.div`
   display: flex;
-  height: calc(100vh - 52px);
+  height: calc(100vh - 90px);
 `;
 
 export const StyledSidebar = styled.nav`

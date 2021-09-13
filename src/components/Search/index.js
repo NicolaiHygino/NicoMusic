@@ -1,25 +1,7 @@
 import { useState, useEffect } from 'react';
-import styled from "styled-components";
 import SearchListItem from './SearchListItem';
 import { spotifySearch } from 'services/spotifyApi/endpoints';
-
-
-const Container = styled.section`
-  padding: 10px;
-  height: calc(100vh - 52px);
-`;
-
-const InputField = styled.input`
-  width: 500px;
-  color: black;
-  border: 0;
-  border-radius: 30px;
-  padding: .8em 1em;
-`;
-
-const SearchList = styled.ul`
-  padding: 10px;
-`;
+import { Container, InputField, SearchList } from './style';
 
 const Search = ({ token, onContextUriChange }) => {
   const [searchTerm, setSearchTerm] = useState('');

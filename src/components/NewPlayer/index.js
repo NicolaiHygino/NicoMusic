@@ -3,7 +3,13 @@ import { transferUserPlayback } from 'services/spotifyApi/endpoints';
 import TrackInfo from './TrackInfo';
 import MainControls from './MainControls';
 import RangeInput from './RangeInput';
-import * as S from './style';
+import VolumeIcon from 'assets/Icons/VolumeIcon';
+import {
+  StyledPlayer,
+  VolumeWrapper,
+  VolumeControl,
+  IconButton,
+} from './style';
 
 const NewPlayer = ({ token }) => {
   const [player, setPlayer] = useState(null);
@@ -11,37 +17,42 @@ const NewPlayer = ({ token }) => {
   const [track, setTrack] = useState(null);
   const [isPaused, setIsPaused] = useState(true);
   const [position, setPosition] = useState(0);
-  const [count, setCount] = useState(0)
+  const [volume, setVolume] = useState(0.5);
 
   useEffect(() => {
-    console.log("useEffect Called.");
-    const script = document.createElement("script");
-    script.src = "https://sdk.scdn.co/spotify-player.js";
+    if(!player) return
+    player.setVolume(volume);
+  }, [volume, player]);
+
+  useEffect(() => {
+    console.log('useEffect Called.');
+    const script = document.createElement('script');
+    script.src = 'https://sdk.scdn.co/spotify-player.js';
 
     script.async = true;
     document.body.appendChild(script);
 
     window.onSpotifyWebPlaybackSDKReady = () => {
       const player = new window.Spotify.Player({
-
-        name: "New Nico Music",
+        name: 'New Nico Music',
         getOAuthToken: (cb) => cb(token),
         volume: 0.5,
       });
 
       setPlayer(player);
 
-      player.addListener("ready", ({ device_id }) => {
+      player.addListener('ready', ({ device_id }) => {
         console.log(device_id);
         transferUserPlayback(token, device_id);
         setDeviceId(device_id);
+        player.getVolume().then((vol) => setVolume(vol));
       });
 
-      player.addListener("not_ready", ({ device_id }) => {
+      player.addListener('not_ready', ({ device_id }) => {
         console.log(`Device ID has gone offLine ${device_id}`);
       });
 
-      player.addListener("player_state_changed", (state) => {
+      player.addListener('player_state_changed', (state) => {
         if (!state) return;
         setPosition(state.position);
         setTrack(state.track_window.current_track);
@@ -53,10 +64,10 @@ const NewPlayer = ({ token }) => {
   }, [token]);
 
   return (
-    <S.StyledPlayer>
+    <StyledPlayer>
       <TrackInfo track={track} />
 
-      <MainControls 
+      <MainControls
         token={token}
         player={player}
         deviceId={deviceId}
@@ -66,10 +77,21 @@ const NewPlayer = ({ token }) => {
         setPosition={setPosition}
       />
 
-      <S.VolumeWrapper>
-        <RangeInput min="0" max="100" value={count} onChange={e => setCount(e.target.value)}/>
-      </S.VolumeWrapper>
-    </S.StyledPlayer>
+      <VolumeControl>
+        <VolumeWrapper>
+          <IconButton>
+            <VolumeIcon />
+          </IconButton>
+          <RangeInput
+            min="0"
+            max="1"
+            step="0.01"
+            value={volume}
+            onChange={(e) => setVolume(e.target.value)}
+          />
+        </VolumeWrapper>
+      </VolumeControl>
+    </StyledPlayer>
   );
 };
 

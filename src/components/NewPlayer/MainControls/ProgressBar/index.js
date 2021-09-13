@@ -1,13 +1,7 @@
-import React, {useState, useEffect, useRef } from "react";
-import {
-  StyledProgressBar,
-  Duration,
-  BarWrapper,
-  BarInputRange,
-} from "./style";
-import { msToMinsAndSecs } from "utils/msToMinsAndSecs";
-import RangeInput from "components/NewPlayer/RangeInput";
-
+import React, { useState, useEffect, useRef } from 'react';
+import { StyledProgressBar, Duration } from './style';
+import { msToMinsAndSecs } from 'utils/msToMinsAndSecs';
+import RangeInput from 'components/NewPlayer/RangeInput';
 
 const useInterval = (callback, delay) => {
   const savedCallback = useRef();
@@ -36,29 +30,29 @@ const ProgressBar = ({
 
   useInterval(
     () => {
-      if (position < 0) return
+      if (position < 0) return;
       setPosition(position + 1000);
     },
     isPaused === pauseInterval ? 1000 : null
   );
 
   const handleMouseUp = () => {
-    setPauseInterval(false)
-    onMusicPositionChange(position)
-  }
+    setPauseInterval(false);
+    onMusicPositionChange(position);
+  };
 
   return (
     <StyledProgressBar>
       <Duration>{msToMinsAndSecs(position)}</Duration>
-        <RangeInput
-          type="range"
-          min="0"
-          max={duration}
-          value={position}
-          onChange={(e) => setPosition(parseInt(e.target.value))}
-          onMouseDown={() => setPauseInterval(true)}
-          onMouseUp={() => handleMouseUp()}
-        />
+      <RangeInput
+        type="range"
+        min="0"
+        max={duration}
+        value={position}
+        onChange={(e) => setPosition(parseInt(e.target.value))}
+        onMouseDown={() => setPauseInterval(true)}
+        onMouseUp={() => handleMouseUp()}
+      />
       <Duration>{msToMinsAndSecs(duration)}</Duration>
     </StyledProgressBar>
   );
