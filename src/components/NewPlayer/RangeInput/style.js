@@ -13,6 +13,13 @@ export const RangeWrapper = styled.div`
     background: white;
     cursor: pointer;
   }
+  &:hover input[type="range"]::-webkit-slider-runnable-track {
+    background-image: linear-gradient(
+      90deg,
+      #1db954 var(--progressPercent),
+      var(--track-bg) var(--progressPercent)
+    );
+  }
 
   /* Firefox */
   &:hover input[type="range"]::-moz-range-thumb {
@@ -23,6 +30,9 @@ export const RangeWrapper = styled.div`
     background: white;
     cursor: pointer;
   }
+  &:hover input[type="range"]::-moz-range-progress {
+    background-color: #1db954;
+  }
 
   /* IE */
   &:hover input[type="range"]::-ms-thumb {
@@ -32,6 +42,9 @@ export const RangeWrapper = styled.div`
     border-radius: 12px;
     background: white;
     cursor: pointer;
+  }
+  &:hover input[type="range"]::-ms-fill-lower {
+    background: #1db954;
   }
 `;
 
