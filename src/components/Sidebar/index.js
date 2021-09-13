@@ -10,6 +10,7 @@ import {
 import logo from 'assets/images/white-logo.png';
 import HomeIcon from 'assets/Icons/HomeIcon';
 import SearchIcon from 'assets/Icons/SearchIcon';
+import { Link } from 'react-router-dom';
 
 const NavItem = ({Icon, to, text}) => (
   <StyledNavItem>
@@ -28,7 +29,9 @@ const Sidebar = () => {
   return (
     <StyledSidebar>
       <LogoWrapper>
-        <img src={logo} alt="Nico Music Logo" />
+        <Link to="/">
+          <img src={logo} alt="Nico Music Logo" />
+        </Link>
       </LogoWrapper>
       <Nav>
         <NavItem Icon={HomeIcon} to="/" text="Home" />
