@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { SectionWrapper } from 'globalStyles';
 import ClockIcon from 'assets/Icons/ClockIcon';
 import {
@@ -12,18 +12,18 @@ import {
   MusicTitle,
 } from './style';
 import { msToMinsAndSecs } from 'utils/msToMinsAndSecs';
+import { UriContext } from 'context/UriContext';
 
-
-const PlaylistTrackItem = ({ item, index }) => {
+const PlaylistTrackItem = ({ item, index, onItemClick }) => {
   const duration = msToMinsAndSecs(item.track.duration_ms);
   const date = new Date(item.added_at);
 
   const day = date.getDate();
-  const month = date.toLocaleString('en', {month: 'long'});
+  const month = date.toLocaleString('en', { month: 'long' });
   const year = date.getFullYear();
 
   return (
-    <StyledTrackItem>
+    <StyledTrackItem onClick={() => onItemClick(item.track.uri)}>
       <TrackNumber role="cell">
         <p>{index}</p>
       </TrackNumber>
@@ -45,6 +45,9 @@ const PlaylistTrackItem = ({ item, index }) => {
 };
 
 const PlaylistTrackList = ({ trackItems }) => {
+  const { setTrackUri } = useContext(UriContext);
+  const handleItemClick = newUri => setTrackUri(newUri);
+
   return (
     <SectionWrapper>
       <TopGuide>
@@ -66,7 +69,12 @@ const PlaylistTrackList = ({ trackItems }) => {
       </TopGuide>
 
       {trackItems.map((item, i) => (
-        <PlaylistTrackItem key={item.track.id} item={item} index={i} />
+        <PlaylistTrackItem
+          onItemClick={handleItemClick}
+          key={item.track.id}
+          item={item}
+          index={i}
+        />
       ))}
     </SectionWrapper>
   );

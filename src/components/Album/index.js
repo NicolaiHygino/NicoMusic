@@ -6,7 +6,7 @@ import AlbumTrackList from './AlbumTacksList';
 
 const Album = ({ token }) => {
   const [album, setAlbum] = useState();
-  const { id } = useParams();
+  const {id} = useParams();
 
   useEffect(() => {
     getAlbum(token, id)

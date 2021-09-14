@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { SectionWrapper } from 'globalStyles';
 import ClockIcon from 'assets/Icons/ClockIcon';
-import { 
+import {
   TopGuide,
   TrackNumber,
   TrackTitle,
@@ -10,26 +10,30 @@ import {
   MusicTitle,
 } from './style';
 import { msToMinsAndSecs } from 'utils/msToMinsAndSecs';
+import { UriContext } from 'context/UriContext';
 
-const AlbumTrackItem = ({ track, index }) => {
-  const duration = msToMinsAndSecs(track.duration_ms)
+const AlbumTrackItem = ({ track, index, onItemClick }) => {
+  const duration = msToMinsAndSecs(track.duration_ms);
   return (
-    <StyledTrackItem>
+    <StyledTrackItem onClick={() => onItemClick(track.uri)}>
       <TrackNumber>
-        <p>{ index }</p>
+        <p>{index}</p>
       </TrackNumber>
       <TrackTitle>
         <MusicTitle>{track.name}</MusicTitle>
         <p>{track.artists[0].name}</p>
       </TrackTitle>
       <TrackDuration>
-        <p>{ duration }</p>
+        <p>{duration}</p>
       </TrackDuration>
     </StyledTrackItem>
   );
-}
+};
 
 const AlbumTrackList = ({ tracks }) => {
+  const { setTrackUri } = useContext(UriContext);
+  const handleItemClick = newUri => setTrackUri(newUri);
+
   return (
     <SectionWrapper>
       <TopGuide>
@@ -44,8 +48,14 @@ const AlbumTrackList = ({ tracks }) => {
         </TrackDuration>
       </TopGuide>
 
-      {tracks.map((track, i) => 
-        <AlbumTrackItem key={track.id} track={track} index={i}/>)}
+      {tracks.map((track, i) => (
+        <AlbumTrackItem
+          onItemClick={handleItemClick}
+          key={track.id}
+          track={track}
+          index={i}
+        />
+      ))}
     </SectionWrapper>
   );
 };
