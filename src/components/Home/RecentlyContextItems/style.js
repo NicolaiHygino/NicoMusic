@@ -7,7 +7,7 @@ export const RecentlyContextsItems = styled.div`
   row-gap: 16px;
   flex-wrap: wrap;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 860px) {
     grid-template-columns: 1fr 1fr;
   }
 `;
@@ -29,7 +29,7 @@ export const StyledContextItem = styled.div`
 export const ImageWrapper = styled.div`
   box-shadow: 0 8px 24px rgba(0,0,0,.5);
   height: 80px;
-
+  width: 80px;
   & img {
     max-width: 80px;
     max-height: 80px;

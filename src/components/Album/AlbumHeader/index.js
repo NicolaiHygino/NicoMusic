@@ -1,4 +1,5 @@
 import React from 'react';
+import { calcFontSize } from 'utils/calcFontSize';
 import {
   HeadWrapper,
   ImageWrapper,
@@ -6,9 +7,11 @@ import {
   InfoWrapper,
   Artist,
   SpanArtistInfo,
+  Title
 } from './style';
 
 const AlbumHeader = ({ album }) => {
+  const size = calcFontSize(album.name);
   return (
     <HeadWrapper>
       <ImageWrapper>
@@ -16,7 +19,9 @@ const AlbumHeader = ({ album }) => {
       </ImageWrapper>
       <ContentText>
         <h2>ALBUM</h2>
-        <h1>{album.name}</h1>
+        <Title fontSize={size}>
+          {album.name}
+        </Title>
         <InfoWrapper>
           <Artist>
             <p>{album.artists[0].name}</p>

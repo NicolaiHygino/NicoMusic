@@ -7,11 +7,18 @@ export const HeadWrapper = styled.div`
 
 export const ImageWrapper = styled.div`
   margin-right: 24px;
-  height: 232px;
+  min-width: 232px;
   width: 232px;
+  height: 232px;
 
   & img {
     width: 100%;
+  }
+
+  @media screen and (max-width: 768px) {
+    height: 192px;
+    width: 192px;
+    min-width: 192px;
   }
 `;
 
@@ -23,10 +30,11 @@ export const ContentText = styled.div`
   & h2 {
     font-size: .75em;
   }
-  & h1 {
-    font-size: 6em;
-    font-weight: 900;
-  }
+`;
+
+export const Title = styled.h1`
+  font-size: ${props => props.fontSize};
+  font-weight: 900;
 `;
 
 export const InfoWrapper = styled.div`

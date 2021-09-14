@@ -1,4 +1,5 @@
 import React from 'react';
+import { calcFontSize } from 'utils/calcFontSize';
 import {
   HeadWrapper,
   ImageWrapper,
@@ -6,9 +7,12 @@ import {
   InfoWrapper,
   Artist,
   SpanArtistInfo,
+  Title
 } from './style';
 
 const PlaylistHeader = ({ playlist }) => {
+  const size = calcFontSize(playlist.name);
+
   return (
     <HeadWrapper>
       <ImageWrapper>
@@ -16,7 +20,9 @@ const PlaylistHeader = ({ playlist }) => {
       </ImageWrapper>
       <ContentText>
         <h2>PLAYLIST</h2>
-        <h1>{playlist.name}</h1>
+        <Title fontSize={size}>
+          {playlist.name}
+        </Title>
         <InfoWrapper>
           <Artist>
             <p>{playlist.owner.display_name}</p>
