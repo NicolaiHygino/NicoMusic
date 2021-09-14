@@ -4,7 +4,7 @@ import Home from 'components/Home';
 import Playlist from 'components/Playlist';
 import Album from 'components/Album';
 import Search from 'components/Search';
-import NewPlayer from 'components/NewPlayer';
+import Player from 'components/Player';
 import { UriProvider } from 'context/UriContext';
 import { Switch, Route } from 'react-router-dom'; 
 import { DashboardDiv, Content } from './style';
@@ -47,7 +47,7 @@ const Dashboard = ({ token }) => {
         </UriProvider>
       </Content>
     </DashboardDiv>
-    <NewPlayer token={token}/>
+    <Player token={token}/>
   </>);
 };
 
