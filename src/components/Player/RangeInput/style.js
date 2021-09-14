@@ -17,7 +17,7 @@ export const RangeWrapper = styled.div`
   &:hover input[type="range"]::-webkit-slider-runnable-track {
     background-image: linear-gradient(
       90deg,
-      #1db954 var(--progressPercent),
+      var(--main-red) var(--progressPercent),
       var(--track-bg) var(--progressPercent)
     );
   }
@@ -32,7 +32,7 @@ export const RangeWrapper = styled.div`
     cursor: pointer;
   }
   &:hover input[type="range"]::-moz-range-progress {
-    background-color: #1db954;
+    background-color: var(--main-red);
   }
 
   /* IE */
@@ -45,7 +45,7 @@ export const RangeWrapper = styled.div`
     cursor: pointer;
   }
   &:hover input[type="range"]::-ms-fill-lower {
-    background: #1db954;
+    background: var(--main-red);
   }
 `;
 
@@ -85,7 +85,7 @@ export const StyledRangeInput = styled.input`
   &::-webkit-slider-runnable-track {
     background-image: linear-gradient(
       90deg,
-      var(--lower-bg) var(--progressPercent),
+      var(--main-red) var(--progressPercent),
       var(--track-bg) var(--progressPercent)
     );
     border-radius: var(--height);
@@ -109,7 +109,7 @@ export const StyledRangeInput = styled.input`
   }
 
   &::-moz-range-progress {
-    background-color: var(--lower-bg);
+    background-color: var(--main-red);
     border-radius: var(--height);
     height: var(--height);
   }
@@ -127,7 +127,7 @@ export const StyledRangeInput = styled.input`
   }
 
   &::-ms-fill-lower {
-    background: var(--lower-bg);
+    background: var(--main-red);
     border: 0;
     border-radius: 8px;
   }
@@ -147,7 +147,7 @@ export const StyledRangeInput = styled.input`
   }
 
   &:focus::-ms-fill-lower {
-    background: var(--lower-bg);
+    background: var(--main-red);
   }
   /* || End IE Styles */
 `;

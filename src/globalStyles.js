@@ -5,6 +5,8 @@ export const GlobalStyle = createGlobalStyle`
     --main-red: #EA2027;
     --bg-color: #141414;
     --bg-hover: #272727;
+    --track-bg: #535353;
+    --scd-track: #b3b3b3;
   }
 
   * {
@@ -52,4 +54,18 @@ export const CenterWrapper = styled.div`
 
 export const SectionWrapper = styled.div`
   padding: 0 32px;
+`;
+
+export const LoadingSpinner = styled.div`
+  border: 5px solid var(--track-bg);
+  border-top: 5px solid var(--main-red);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 `;

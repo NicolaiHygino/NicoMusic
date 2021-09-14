@@ -5,10 +5,14 @@ import {
 } from 'services/spotifyApi/authentication';
 import { LoginButton, CenteredContainer } from './style';
 import { useHistory } from 'react-router-dom';
+import { LoadingSpinner } from 'globalStyles';
 
 const Login = ({ setToken }) => {
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
+  
+  console.log(loading)
 
   useEffect(() => {
     const code = new URLSearchParams(
@@ -16,14 +20,20 @@ const Login = ({ setToken }) => {
     ).get('code');
     
     if (code) {    
+      setLoading(true)
       getSpotifyTokens(code)
         .then(res => {
           setToken(res.data.accessToken);
           history.push('/');
+          setLoading(false);
         })
         .catch(() => {
           setError(true)
+          setLoading(false);
           history.push('/');
+        })
+        .finally(() => {
+          setLoading(false);
         });
     }
   }, [history, setToken]);
@@ -32,8 +42,15 @@ const Login = ({ setToken }) => {
     setError(false)
     history.push('/');
   }
+  if (loading) {
+    return (
+      <CenteredContainer>
+        <LoadingSpinner></LoadingSpinner>
+      </CenteredContainer>
+    );
+  }
 
-  if(error) {
+  if (error) {
     return ( 
       <CenteredContainer>
         <p>Something went wrong during the authorization, 
