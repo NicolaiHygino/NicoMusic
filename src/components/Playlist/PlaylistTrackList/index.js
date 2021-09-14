@@ -13,6 +13,7 @@ import {
 } from './style';
 import { msToMinsAndSecs } from 'utils/msToMinsAndSecs';
 import { UriContext } from 'context/UriContext';
+import { Link } from 'react-router-dom';
 
 const PlaylistTrackItem = ({ item, index, onItemClick }) => {
   const duration = msToMinsAndSecs(item.track.duration_ms);
@@ -21,6 +22,9 @@ const PlaylistTrackItem = ({ item, index, onItemClick }) => {
   const day = date.getDate();
   const month = date.toLocaleString('en', { month: 'long' });
   const year = date.getFullYear();
+
+  const id = item.track.album.uri.split(':')[2];
+  const url = `/album/${id}`;
 
   return (
     <StyledTrackItem onClick={() => onItemClick(item.track.uri)}>
@@ -32,7 +36,11 @@ const PlaylistTrackItem = ({ item, index, onItemClick }) => {
         <p>{item.track.artists[0].name}</p>
       </TrackTitle>
       <TrackAlbum role="cell">
-        <p>{item.track.album.name}</p>
+        <div onClick={e => e.stopPropagation()}>
+          <Link to={url}>
+            <p>{item.track.album.name}</p>
+          </Link>
+        </div>
       </TrackAlbum>
       <TrackAddedAt role="cell">
         <p>{`${day} ${month} ${year}`}</p>

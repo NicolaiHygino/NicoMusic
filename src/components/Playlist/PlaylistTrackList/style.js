@@ -17,7 +17,6 @@ export const StyledTrackItem = styled(TopGuide)`
   border-radius: 5px;
   height: 56px;
   font-size: .87em;
-  cursor: pointer;
   &:hover {
     background-color: rgba(255,255,255,.1);
   }

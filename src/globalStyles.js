@@ -39,6 +39,9 @@ export const GlobalStyle = createGlobalStyle`
     color: #fff;
     text-decoration: none;
   }
+  a:hover {
+    text-decoration: underline;
+  }
 `
 export const CenterWrapper = styled.div`
   display: flex;
