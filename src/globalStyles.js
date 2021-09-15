@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     --scd-track: #b3b3b3;
   }
 
+  /* || Resets*/
   * {
     box-sizing: border-box;
   }
@@ -44,8 +45,23 @@ export const GlobalStyle = createGlobalStyle`
   a:hover {
     text-decoration: underline;
   }
+  /* || End Resets*/
 
-  /* || Menu Items Logic */
+  /* || ScrollBar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, .3) transparent;
+  }
+  *::-webkit-scrollbar {
+    background-color: transparent;
+    width: 8px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255, .3);
+  }
+  /* || End ScrollBar */
+
+  /* || Menu Icon Logic */
   .active {
     display: none;
   }
@@ -57,8 +73,9 @@ export const GlobalStyle = createGlobalStyle`
   .selected .active {
     display: block;
   }
-  /* || Menu Items Logic */
-`
+  /* || End Menu Icon Logic */
+`;
+
 export const CenterWrapper = styled.div`
   display: flex;
   align-items: center;
