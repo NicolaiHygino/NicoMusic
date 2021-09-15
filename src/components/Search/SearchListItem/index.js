@@ -7,9 +7,11 @@ import {
   Wrapper, 
 } from "./style";
 import { msToMinsAndSecs } from "utils/msToMinsAndSecs";
+import { useMediaQuery } from "hooks/useMediaQuery";
 
 const SearchListItem = ({ track, onItemClick }) => {
-  const duration = msToMinsAndSecs(track.duration_ms);
+  const isMobile = useMediaQuery('(max-width: 550px)');
+  const duration = isMobile ? null : msToMinsAndSecs(track.duration_ms) ;
 
   return (
     <ListItem role="button" onClick={() => onItemClick(track.uri)}>
@@ -21,9 +23,7 @@ const SearchListItem = ({ track, onItemClick }) => {
         <SecondaryText>{track.artists[0].name}</SecondaryText>
       </TitleWrapper>
       <Wrapper>
-        <SecondaryText>
-          {duration}
-        </SecondaryText>
+        {isMobile ? null : <SecondaryText>{duration}</SecondaryText>}
       </Wrapper>
     </ListItem>
   );

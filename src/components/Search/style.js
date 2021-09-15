@@ -5,7 +5,11 @@ export const Container = styled.section`
   padding-top: 50px;
 
   @media screen and (max-width: 650px) {
-    padding-top: 30px;
+    padding: 30px 10px 10px 10px;
+  }
+
+  @media screen and (max-width: 550px) {
+    padding: 30px 0 10px 0;
   }
 `;
 
