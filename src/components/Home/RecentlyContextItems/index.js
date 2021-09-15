@@ -31,7 +31,7 @@ const RecentlyContextItems = ({ token }) => {
     recentlyPlayedContexts,
     setRecentlyPlayedContexts
   ] = useState([]);
-  console.log(recentlyPlayedContexts)
+  
   useEffect(() => {
     getRecentPlayedContexts(token)
       .then(res => {

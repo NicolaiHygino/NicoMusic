@@ -5,6 +5,7 @@ import Home from 'components/Home';
 import Playlist from 'components/Playlist';
 import Album from 'components/Album';
 import Search from 'components/Search';
+import MobilePlayer from 'components/MobilePlayer';
 import Player from 'components/Player';
 import { UriProvider } from 'context/UriContext';
 import { Switch, Route } from 'react-router-dom';
@@ -12,9 +13,7 @@ import { DashboardDiv, Content } from './style';
 import { useMediaQuery } from 'hooks/useMediaQuery';
 
 const Dashboard = ({ token }) => {
-  // const tablet = true;
-  const tablet = useMediaQuery('(min-width: 650px)')
-  // const mobile = false;
+  const tablet = useMediaQuery('(min-width: 650px)');
   const mobile = useMediaQuery('(max-width: 650px)');
   return (
     <>
@@ -41,6 +40,7 @@ const Dashboard = ({ token }) => {
       </DashboardDiv>
       {tablet && <Player token={token} />}
       {mobile && <MobileBar />}
+      {mobile && <MobilePlayer token={token} />}
     </>
   );
 };
