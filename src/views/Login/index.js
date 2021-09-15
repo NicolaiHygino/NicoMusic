@@ -3,9 +3,10 @@ import {
   AUTH_URL,
   getSpotifyTokens 
 } from 'services/spotifyApi/authentication';
-import { LoginButton, CenteredContainer } from './style';
+import { CenteredContainer } from './style';
 import { useHistory } from 'react-router-dom';
 import { LoadingSpinner } from 'globalStyles';
+import { MainButton } from 'globalStyles';
 
 const Login = ({ setToken }) => {
   const [error, setError] = useState(false);
@@ -55,7 +56,7 @@ const Login = ({ setToken }) => {
       <CenteredContainer>
         <p>Something went wrong during the authorization, 
         try again later.</p>
-        <LoginButton onClick={() => onTryAgainClick()}>Try Again</LoginButton>
+        <MainButton onClick={() => onTryAgainClick()}>Try Again</MainButton>
       </CenteredContainer>
     );
   }
@@ -64,9 +65,9 @@ const Login = ({ setToken }) => {
     <div>
       <CenteredContainer>
         <a href={AUTH_URL}>
-          <LoginButton>
+          <MainButton>
             Login With Spotify
-          </LoginButton>
+          </MainButton>
         </a>
       </CenteredContainer>
     </div>

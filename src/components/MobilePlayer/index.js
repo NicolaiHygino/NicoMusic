@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { transferUserPlayback } from 'services/spotifyApi/endpoints';
+import PopUp from './PopUp';
 import MobileTrackInfo from './MobileTrackInfo';
 import MobileMainControls from './MobileMainControls';
 import { StyledMobilePlayer } from './style';
@@ -8,6 +9,7 @@ const MobilePlayer = ({ token }) => {
   const [player, setPlayer] = useState(null);
   const [track, setTrack] = useState(null);
   const [isPaused, setIsPaused] = useState(true);
+  const [deviceID, setDeviceID] = useState(null);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -25,7 +27,7 @@ const MobilePlayer = ({ token }) => {
       setPlayer(player);
 
       player.addListener('ready', ({ device_id }) => {
-        transferUserPlayback(token, device_id);
+        setDeviceID(device_id);
       });
 
       player.addListener('not_ready', ({ device_id }) => {
@@ -44,6 +46,7 @@ const MobilePlayer = ({ token }) => {
 
   return (
     <StyledMobilePlayer>
+      {deviceID && <PopUp token={token} deviceId={deviceID}/>}
       <MobileTrackInfo track={track} />
 
       <MobileMainControls player={player} isPaused={isPaused} />
