@@ -122,3 +122,9 @@ export const seekToPosition = (token, positionMs, deviceId) => {
 
   axios.put(url, null, headers(token));
 };
+
+export const getUserPlaylists = (token) => {
+  const url = 'https://api.spotify.com/v1/me/playlists';
+
+  axios.get(url, null, headers(token));
+};
