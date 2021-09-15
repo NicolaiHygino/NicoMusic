@@ -1,4 +1,5 @@
 import React from 'react';
+import MobileBar from 'components/MobileBar';
 import Sidebar from 'components/Sidebar';
 import Home from 'components/Home';
 import Playlist from 'components/Playlist';
@@ -8,12 +9,15 @@ import Player from 'components/Player';
 import { UriProvider } from 'context/UriContext';
 import { Switch, Route } from 'react-router-dom';
 import { DashboardDiv, Content } from './style';
+import { useMediaQuery } from 'hooks/useMediaQuery';
 
 const Dashboard = ({ token }) => {
+  const tablet = useMediaQuery('(min-width: 768px)')
+  const mobile = useMediaQuery('(max-width: 414px)');
   return (
     <>
       <DashboardDiv>
-        <Sidebar />
+        {tablet && <Sidebar />}
         <Content>
           <UriProvider token={token}>
             <Switch>
@@ -33,7 +37,8 @@ const Dashboard = ({ token }) => {
           </UriProvider>
         </Content>
       </DashboardDiv>
-      <Player token={token} />
+      {tablet && <Player token={token} />}
+      {mobile && <MobileBar />}
     </>
   );
 };

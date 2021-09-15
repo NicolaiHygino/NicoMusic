@@ -44,6 +44,20 @@ export const GlobalStyle = createGlobalStyle`
   a:hover {
     text-decoration: underline;
   }
+
+  /* || Menu Items Logic */
+  .active {
+    display: none;
+  }
+
+  .selected .normal {
+    display: none;
+  }
+
+  .selected .active {
+    display: block;
+  }
+  /* || Menu Items Logic */
 `
 export const CenterWrapper = styled.div`
   display: flex;
