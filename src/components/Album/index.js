@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { getAlbum } from 'services/spotifyApi/endpoints';
 import AlbumHeader from './AlbumHeader';
 import AlbumTrackList from './AlbumTacksList';
+import Loading from 'components/Loading';
+import { useParams } from 'react-router-dom';
+import { getAlbum } from 'services/spotifyApi/endpoints';
 
 const Album = ({ token }) => {
   const [album, setAlbum] = useState();
@@ -13,9 +14,7 @@ const Album = ({ token }) => {
       .then(res => setAlbum(res.data))
   }, [token, id]);
 
-  if (!album) {
-    return <p>Loading</p>
-  }
+  if (!album) return <Loading />;
 
   return (<>
     <AlbumHeader album={album} />

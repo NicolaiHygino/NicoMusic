@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { getPlaylist } from 'services/spotifyApi/endpoints';
+import Loading from 'components/Loading';
 import PlaylistHeader from './PlaylistHeader';
 import PlaylistTrackList from './PlaylistTrackList';
+import { useParams } from 'react-router-dom';
+import { getPlaylist } from 'services/spotifyApi/endpoints';
 
 const Playlist = ({ token }) => {
   const [playlist, setPlaylist] = useState(null);
@@ -12,9 +13,7 @@ const Playlist = ({ token }) => {
     getPlaylist(token, id).then(res => setPlaylist(res.data))
   }, [token, id]);
 
-  if (!playlist) {
-    return <p>Loading</p>
-  }
+  if (!playlist) return <Loading />;
 
   return (<>
     <PlaylistHeader playlist={playlist} />
