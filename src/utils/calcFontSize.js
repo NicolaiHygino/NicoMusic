@@ -1,10 +1,10 @@
 export const calcFontSize = (string) => {
   const length = string.length;
   if (length <= 15) {
-    return '6em';
+    return '4em';
   } else if (length <= 20) {
-    return '4.5em';
+    return '3.5em';
   } else {
-    return '3em';
+    return '2.5em';
   }
 };
