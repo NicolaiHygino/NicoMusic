@@ -109,7 +109,7 @@ export const playResume = (token, contextUri) => {
     : { context_uri: contextUri }
   
   axios.put(url, data, headers(token))
-    .catch(console.log)
+    .catch(err => console.log(err));
 }
 
 export const seekToPosition = (token, positionMs, deviceId) => {
