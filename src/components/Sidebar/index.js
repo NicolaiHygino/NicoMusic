@@ -1,4 +1,8 @@
 import React from 'react';
+import logo from 'assets/images/white-logo.png';
+import HomeIcon from 'assets/Icons/HomeIcon';
+import SearchIcon from 'assets/Icons/SearchIcon';
+import { Link } from 'react-router-dom';
 import {
   StyledSidebar,
   Nav,
@@ -7,10 +11,6 @@ import {
   StyledLink,
   LogoWrapper,
 } from './style';
-import logo from 'assets/images/white-logo.png';
-import HomeIcon from 'assets/Icons/HomeIcon';
-import SearchIcon from 'assets/Icons/SearchIcon';
-import { Link } from 'react-router-dom';
 
 const NavItem = ({Icon, to, text}) => (
   <StyledNavItem>
