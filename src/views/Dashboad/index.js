@@ -12,8 +12,10 @@ import { DashboardDiv, Content } from './style';
 import { useMediaQuery } from 'hooks/useMediaQuery';
 
 const Dashboard = ({ token }) => {
-  const tablet = useMediaQuery('(min-width: 768px)')
-  const mobile = useMediaQuery('(max-width: 414px)');
+  // const tablet = true;
+  const tablet = useMediaQuery('(min-width: 650px)')
+  // const mobile = false;
+  const mobile = useMediaQuery('(max-width: 650px)');
   return (
     <>
       <DashboardDiv>
