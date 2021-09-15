@@ -6,13 +6,16 @@ export const HeadWrapper = styled.div`
 `;
 
 export const ImageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
   margin-right: 24px;
   min-width: 232px;
   width: 232px;
   height: 232px;
+  overflow: hidden;
 
   & img {
-    width: 100%;
+    height: 100%;
   }
 
   @media screen and (max-width: 768px) {
