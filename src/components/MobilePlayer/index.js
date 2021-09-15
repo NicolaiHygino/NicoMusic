@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { transferUserPlayback } from 'services/spotifyApi/endpoints';
 import PopUp from './PopUp';
 import MobileTrackInfo from './MobileTrackInfo';
 import MobileMainControls from './MobileMainControls';
