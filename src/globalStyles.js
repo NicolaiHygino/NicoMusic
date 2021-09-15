@@ -68,6 +68,10 @@ export const CenterWrapper = styled.div`
 
 export const SectionWrapper = styled.div`
   padding: 0 32px;
+
+  @media screen and (max-width: 500px) {
+    padding: 0;
+  }
 `;
 
 export const LoadingSpinner = styled.div`
