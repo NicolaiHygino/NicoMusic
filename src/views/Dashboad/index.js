@@ -18,7 +18,7 @@ const Dashboard = ({ token }) => {
   return (
     <>
       <DashboardDiv>
-        {tablet && <Sidebar />}
+        {tablet && <Sidebar token={token} />}
         <Content>
           <UriProvider token={token}>
             <Switch>

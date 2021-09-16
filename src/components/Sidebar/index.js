@@ -1,4 +1,5 @@
 import React from 'react';
+import UserPlaylists from './UserPlaylists';
 import logo from 'assets/images/white-logo.png';
 import HomeIcon from 'assets/Icons/HomeIcon';
 import SearchIcon from 'assets/Icons/SearchIcon';
@@ -10,6 +11,7 @@ import {
   NavItemWrapper,
   StyledLink,
   LogoWrapper,
+  UserPlaylistsWrapper
 } from './style';
 
 const NavItem = ({Icon, to, text}) => (
@@ -25,7 +27,7 @@ const NavItem = ({Icon, to, text}) => (
   </StyledNavItem>
 );
 
-const Sidebar = () => {
+const Sidebar = ({ token }) => {
   return (
     <StyledSidebar>
       <LogoWrapper>
@@ -37,6 +39,9 @@ const Sidebar = () => {
         <NavItem Icon={HomeIcon} to="/" text="Home" />
         <NavItem Icon={SearchIcon} to="/search" text="Search" />
       </Nav>
+      <UserPlaylistsWrapper>
+        <UserPlaylists token={token} />
+      </UserPlaylistsWrapper>
     </StyledSidebar>
   );
 };
