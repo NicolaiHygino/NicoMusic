@@ -15,7 +15,7 @@ const AlbumHeader = ({ album }) => {
   return (
     <HeadWrapper>
       <ImageWrapper>
-        <img src={album.images[1].url} alt={album.name} />
+        <img src={album.images[1]?.url} alt={album.name} />
       </ImageWrapper>
       <ContentText>
         <h2>ALBUM</h2>
