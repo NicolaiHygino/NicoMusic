@@ -6,7 +6,7 @@ import {
   ContentText,
   InfoWrapper,
   Artist,
-  SpanArtistInfo,
+  StyledSpan,
   Title
 } from './style';
 
@@ -24,11 +24,9 @@ const PlaylistHeader = ({ playlist }) => {
           {playlist.name}
         </Title>
         <InfoWrapper>
-          <Artist>
-            <p>{playlist.owner.display_name}</p>
-          </Artist>
-          <SpanArtistInfo>{playlist.followers.total} followers</SpanArtistInfo>
-          <SpanArtistInfo>{playlist.tracks.total} musics, 1h 21min</SpanArtistInfo>
+          <Artist>{playlist.owner.display_name}</Artist>
+          <StyledSpan>{playlist.followers.total} followers</StyledSpan>
+          <StyledSpan>{playlist.tracks.total} musics, 1h 21min</StyledSpan>
         </InfoWrapper>
       </ContentText>
     </HeadWrapper>

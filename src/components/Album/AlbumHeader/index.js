@@ -6,7 +6,7 @@ import {
   ContentText,
   InfoWrapper,
   Artist,
-  SpanArtistInfo,
+  StyledSpan,
   Title
 } from './style';
 
@@ -23,11 +23,9 @@ const AlbumHeader = ({ album }) => {
           {album.name}
         </Title>
         <InfoWrapper>
-          <Artist>
-            <p>{album.artists[0].name}</p>
-          </Artist>
-          <SpanArtistInfo>2021</SpanArtistInfo>
-          <SpanArtistInfo>{album.total_tracks} musics, 1h 21min</SpanArtistInfo>
+          <Artist>{album.artists[0].name}</Artist>
+          <StyledSpan>2021</StyledSpan>
+          <StyledSpan>{album.total_tracks} musics, 1h 21min</StyledSpan>
         </InfoWrapper>
       </ContentText>
     </HeadWrapper>

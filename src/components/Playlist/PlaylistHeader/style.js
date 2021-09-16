@@ -18,7 +18,7 @@ export const ImageWrapper = styled.div`
     height: 100%;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 900px) {
     height: 192px;
     width: 192px;
     min-width: 192px;
@@ -41,18 +41,13 @@ export const Title = styled.h1`
 `;
 
 export const InfoWrapper = styled.div`
-  display: flex;
-  align-items: center;
+
 `;
 
-export const Artist = styled.div`
-  display: flex;
-  align-items: center;
-
-  & p {
-    font-size: .87em;
-    font-weight: 700;
-  }
+export const Artist = styled.p`
+  display: inline;
+  font-size: .87em;
+  font-weight: 700;
 `;
 
 export const ArtistImg = styled.div`
@@ -65,7 +60,7 @@ export const ArtistImg = styled.div`
   }
 `;
 
-export const SpanArtistInfo = styled.span`
+export const StyledSpan = styled.span`
   font-size: .87em;
   color: rgba(255,255,255,.7);
 
