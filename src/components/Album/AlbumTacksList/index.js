@@ -17,24 +17,28 @@ const AlbumTrackItem = ({ track, index, onItemClick, isMobile }) => {
   const duration = msToMinsAndSecs(track.duration_ms);
   return (
     <StyledTrackItem onClick={() => onItemClick(track.uri)}>
-      {!isMobile && <TrackNumber>
-        <p>{index + 1}</p>
-      </TrackNumber>}
+      {!isMobile && (
+        <TrackNumber>
+          <p>{index + 1}</p>
+        </TrackNumber>
+      )}
       <TrackTitle>
         <MusicTitle>{track.name}</MusicTitle>
         <p>{track.artists[0].name}</p>
       </TrackTitle>
-      {!isMobile && <TrackDuration>
-        <p>{duration}</p>
-      </TrackDuration>}
+      {!isMobile && (
+        <TrackDuration>
+          <p>{duration}</p>
+        </TrackDuration>
+      )}
     </StyledTrackItem>
   );
 };
 
 const AlbumTrackList = ({ tracks }) => {
   const { setTrackUri } = useContext(UriContext);
-  const handleItemClick = newUri => setTrackUri(newUri);
-  
+  const handleItemClick = (newUri) => setTrackUri(newUri);
+
   const isMobile = useMediaQuery('(max-width: 600px)');
 
   return (
