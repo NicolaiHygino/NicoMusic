@@ -4,3 +4,10 @@ export const msToMinsAndSecs = ms => {
 
   return `${mins}:${(secs < 10 ? '0' : '')}${secs}`;
 };
+
+export const msToHoursAndMins = ms => {
+  const hours = Math.floor((ms / (1000 * 60 * 60)) % 24);
+  const mins = Math.floor((ms / (1000 * 60)) % 60);
+
+  return `${hours}h ${mins}min`
+}

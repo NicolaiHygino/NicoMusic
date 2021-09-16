@@ -1,5 +1,6 @@
 import React from 'react';
 import { calcFontSize } from 'utils/calcFontSize';
+import { msToHoursAndMins } from 'utils/msConverter';
 import {
   HeadWrapper,
   ImageWrapper,
@@ -12,6 +13,13 @@ import {
 
 const AlbumHeader = ({ album }) => {
   const size = calcFontSize(album.name);
+  
+  const albumDuration = msToHoursAndMins(
+    album.tracks.items
+      .map((item) => item.duration_ms)
+      .reduce((previous, current) => previous + current)
+  );
+  
   return (
     <HeadWrapper>
       <ImageWrapper>
@@ -25,7 +33,7 @@ const AlbumHeader = ({ album }) => {
         <InfoWrapper>
           <Artist>{album.artists[0].name}</Artist>
           <StyledSpan>2021</StyledSpan>
-          <StyledSpan>{album.total_tracks} musics, 1h 21min</StyledSpan>
+          <StyledSpan>{album.total_tracks} musics, {albumDuration}</StyledSpan>
         </InfoWrapper>
       </ContentText>
     </HeadWrapper>

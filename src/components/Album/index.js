@@ -7,19 +7,20 @@ import { getAlbum } from 'services/spotifyApi/endpoints';
 
 const Album = ({ token }) => {
   const [album, setAlbum] = useState();
-  const {id} = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
-    getAlbum(token, id)
-      .then(res => setAlbum(res.data))
+    getAlbum(token, id).then((res) => setAlbum(res.data));
   }, [token, id]);
 
   if (!album) return <Loading />;
 
-  return (<>
-    <AlbumHeader album={album} />
-    <AlbumTrackList tracks={album.tracks.items} />
-  </>);
+  return (
+    <>
+      <AlbumHeader album={album} />
+      <AlbumTrackList tracks={album.tracks.items} />
+    </>
+  );
 };
 
 export default Album;
