@@ -25,6 +25,7 @@ export const InputField = styled.input`
   @media screen and (max-width: 650px) {
     top: 0;
     left: 0;
+    font-size: 1em;
     border-radius: 0;
     width: 100vw;
     color: white;
