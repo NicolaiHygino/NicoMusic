@@ -11,21 +11,22 @@ import {
 } from './style';
 import { msToMinsAndSecs } from 'utils/msConverter';
 import { UriContext } from 'context/UriContext';
+import { useMediaQuery } from 'hooks/useMediaQuery';
 
-const AlbumTrackItem = ({ track, index, onItemClick }) => {
+const AlbumTrackItem = ({ track, index, onItemClick, isMobile }) => {
   const duration = msToMinsAndSecs(track.duration_ms);
   return (
     <StyledTrackItem onClick={() => onItemClick(track.uri)}>
-      <TrackNumber>
+      {!isMobile && <TrackNumber>
         <p>{index + 1}</p>
-      </TrackNumber>
+      </TrackNumber>}
       <TrackTitle>
         <MusicTitle>{track.name}</MusicTitle>
         <p>{track.artists[0].name}</p>
       </TrackTitle>
-      <TrackDuration>
+      {!isMobile && <TrackDuration>
         <p>{duration}</p>
-      </TrackDuration>
+      </TrackDuration>}
     </StyledTrackItem>
   );
 };
@@ -33,20 +34,24 @@ const AlbumTrackItem = ({ track, index, onItemClick }) => {
 const AlbumTrackList = ({ tracks }) => {
   const { setTrackUri } = useContext(UriContext);
   const handleItemClick = newUri => setTrackUri(newUri);
+  
+  const isMobile = useMediaQuery('(max-width: 600px)');
 
   return (
     <SectionWrapper>
-      <TopGuide>
-        <TrackNumber>
-          <p>#</p>
-        </TrackNumber>
-        <TrackTitle>
-          <p>TÍTULO</p>
-        </TrackTitle>
-        <TrackDuration>
-          <ClockIcon />
-        </TrackDuration>
-      </TopGuide>
+      {!isMobile && (
+        <TopGuide>
+          <TrackNumber>
+            <p>#</p>
+          </TrackNumber>
+          <TrackTitle>
+            <p>TÍTULO</p>
+          </TrackTitle>
+          <TrackDuration>
+            <ClockIcon />
+          </TrackDuration>
+        </TopGuide>
+      )}
 
       {tracks.map((track, i) => (
         <AlbumTrackItem
@@ -54,6 +59,7 @@ const AlbumTrackList = ({ tracks }) => {
           key={track.id}
           track={track}
           index={i}
+          isMobile={isMobile}
         />
       ))}
     </SectionWrapper>

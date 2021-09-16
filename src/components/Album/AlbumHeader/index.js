@@ -1,6 +1,7 @@
 import React from 'react';
 import { calcFontSize } from 'utils/calcFontSize';
 import { msToHoursAndMins } from 'utils/msConverter';
+import { useMediaQuery } from 'hooks/useMediaQuery';
 import {
   HeadWrapper,
   ImageWrapper,
@@ -13,6 +14,7 @@ import {
 
 const AlbumHeader = ({ album }) => {
   const size = calcFontSize(album.name);
+  const isMobile = useMediaQuery('(max-width: 600px)')
   
   const albumDuration = msToHoursAndMins(
     album.tracks.items
@@ -26,15 +28,18 @@ const AlbumHeader = ({ album }) => {
         <img src={album.images[1]?.url} alt={album.name} />
       </ImageWrapper>
       <ContentText>
-        <h2>ALBUM</h2>
+       {!isMobile && <h2>ALBUM</h2>}
         <Title fontSize={size}>
           {album.name}
         </Title>
-        <InfoWrapper>
-          <Artist>{album.artists[0].name}</Artist>
-          <StyledSpan>2021</StyledSpan>
-          <StyledSpan>{album.total_tracks} musics, {albumDuration}</StyledSpan>
-        </InfoWrapper>
+        {isMobile && <Artist>{album.artists[0].name}</Artist>}
+        {!isMobile ? (
+          <InfoWrapper>
+            <Artist>{album.artists[0].name}</Artist>
+            <StyledSpan>2021</StyledSpan>
+            <StyledSpan>{album.total_tracks} musics, {albumDuration}</StyledSpan>
+          </InfoWrapper>
+        ) : null }
       </ContentText>
     </HeadWrapper>
   );
