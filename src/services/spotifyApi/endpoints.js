@@ -21,9 +21,9 @@ export const spotifySearch = async (searchTerm, token) => {
 
 export const getRecentlyTracks = async (token, limit) => {
   const params = objectToURLParam({ limit });
-
+  
   const url = `https://api.spotify.com/v1/me/player/recently-played?${params}`;
-
+  
   const res = await axios.get(url, headers(token));
   return res;
 };
@@ -38,6 +38,13 @@ export const getPlaylist = async (token, playlistId) => {
   const url = `https://api.spotify.com/v1/playlists/${playlistId}`
   const res = await axios.get(url, headers(token));
   return res;
+};
+
+export const getUserPlaylists = async (token) => {
+  const url = 'https://api.spotify.com/v1/me/playlists';
+
+  const data = await axios.get(url, null, headers(token));
+  return data;
 };
 
 /**
@@ -121,11 +128,4 @@ export const seekToPosition = (token, positionMs, deviceId) => {
   const url = `https://api.spotify.com/v1/me/player/seek?${params}`;
 
   axios.put(url, null, headers(token));
-};
-
-export const getUserPlaylists = async (token) => {
-  const url = 'https://api.spotify.com/v1/me/playlists';
-
-  const data = await axios.get(url, null, headers(token));
-  return data;
 };
