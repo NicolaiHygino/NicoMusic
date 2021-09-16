@@ -17,7 +17,7 @@ const AlbumTrackItem = ({ track, index, onItemClick }) => {
   return (
     <StyledTrackItem onClick={() => onItemClick(track.uri)}>
       <TrackNumber>
-        <p>{index}</p>
+        <p>{index + 1}</p>
       </TrackNumber>
       <TrackTitle>
         <MusicTitle>{track.name}</MusicTitle>
