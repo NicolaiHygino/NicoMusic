@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledUl = styled.ul`
-  width: 130px;
+  width: 100%;
   overflow: hidden;
   
   & p {
@@ -25,6 +25,7 @@ const StyledUl = styled.ul`
   
   & li {
     height: 32px;
+    padding: 0 10px;
   }
 
 `;
