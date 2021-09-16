@@ -32,7 +32,7 @@ const PlaylistTrackItem = ({ item, index, onItemClick, hideAddedAt}) => {
   return (
     <StyledTrackItem onClick={() => onItemClick(track.uri)}>
       <TrackNumber role="cell">
-        <p>{index}</p>
+        <p>{index + 1}</p>
       </TrackNumber>
       <TrackInfo role="cell">
         <ImageWrapper>
