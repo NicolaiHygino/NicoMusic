@@ -4,18 +4,7 @@ import {
   TitleWrapper
 } from './style';
 
-const MobileTrackInfo = ({ track, errorMessage }) => {
-  
-  if (errorMessage) {
-    return (
-      <MusicInfo>
-      <TitleWrapper>
-        {<p>{errorMessage}</p>}
-      </TitleWrapper>
-    </MusicInfo>
-    );
-  }
-  
+const MobileTrackInfo = ({ track }) => {
   if (!track) return <MusicInfo></MusicInfo>
   return (
     <MusicInfo>

@@ -35,20 +35,23 @@ const MobilePlayer = ({ token }) => {
       })
 
       player.on('initialization_error', ({ message }) => {
-        setErrorMessage(message + ' (unsuported device)');
+        setErrorMessage(`${message} (unsuported device)`);
       })
       
       player.connect()
     };
   }, [token]);
 
+  if (errorMessage) return (
+    <StyledMobilePlayer>
+      {errorMessage}
+    </StyledMobilePlayer>
+  );
+
   return (
     <StyledMobilePlayer>
       <MobileTrackInfo errorMessage={errorMessage} track={track} />
-
-      { (!errorMessage) 
-        ? <MobileMainControls player={player} isPaused={isPaused} />
-        : null }
+      <MobileMainControls player={player} isPaused={isPaused} />
     </StyledMobilePlayer>
   );
 };
