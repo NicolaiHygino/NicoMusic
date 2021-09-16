@@ -14,38 +14,39 @@ import {
   AlbumWrapper
 } from '../style';
 
-const PlaylistTrackItem = ({ item, index, onItemClick, hideAddedAt}) => {  
-  const duration = msToMinsAndSecs(item.track.duration_ms);
-  const date = new Date(item.added_at);
+const PlaylistTrackItem = ({ item, index, onItemClick, hideAddedAt}) => {
+  const track = item.track;
+  const album = item.track.album;
 
+  const duration = msToMinsAndSecs(track.duration_ms);
+
+  const date = new Date(item.added_at);
   const day = date.getDate();
   const month = date.toLocaleString('en', { month: 'long' });
   const year = date.getFullYear();
 
-  const id = item.track.album.uri.split(':')[2];
-  const url = `/album/${id}`;
+  const albumUrl = `/album/${album.id}`;
 
-  const imgUrl = item.track.album.images[2].url;
-  const albumName = item.track.album.name;
+  const imgUrl = album.images[2].url;
 
   return (
-    <StyledTrackItem onClick={() => onItemClick(item.track.uri)}>
+    <StyledTrackItem onClick={() => onItemClick(track.uri)}>
       <TrackNumber role="cell">
         <p>{index}</p>
       </TrackNumber>
       <TrackInfo role="cell">
         <ImageWrapper>
-          <img src={imgUrl} alt={albumName} />
+          <img src={imgUrl} alt={album.name} />
         </ImageWrapper>
         <TitleWrapper>
-          <MusicTitle>{item.track.name}</MusicTitle>
-          <p>{item.track.artists[0].name}</p>
+          <MusicTitle>{track.name}</MusicTitle>
+          <p>{track.artists[0].name}</p>
         </TitleWrapper>
       </TrackInfo>
       <TrackAlbum role="cell">
         <AlbumWrapper onClick={e => e.stopPropagation()}>
-          <Link to={url}>
-            <p>{item.track.album.name}</p>
+          <Link to={albumUrl}>
+            <p>{album.name}</p>
           </Link>
         </AlbumWrapper>
       </TrackAlbum>
