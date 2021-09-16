@@ -28,12 +28,26 @@ export const TrackNumber = styled.div`
   margin-right: 16px;
 `;
 
-export const TrackTitle = styled.div`
+export const TrackInfo = styled.div`
+  display: flex;
+  align-items: center;
   flex: 1.5;
+  overflow: hidden;
 `;
 
 export const TrackAlbum = styled.div`
   flex: 1;
+  overflow: hidden;
+`;
+
+export const AlbumWrapper = styled.div`
+  padding-right: 20px;
+
+  & p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 `;
 
 export const TrackAddedAt = styled.div`
@@ -47,7 +61,25 @@ export const TrackDuration = styled.div`
   width: 32px;
 `;
 
+export const ImageWrapper = styled.div`
+  min-width: 40px;
+  width: 40px;
+  height: 40px;
+  margin-right: 16px;
+  & img {
+    width: 100%;
+  }
+`; 
+
+export const TitleWrapper = styled.div`
+  overflow: hidden;
+  padding-right: 30px;
+`;
+
 export const MusicTitle = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 1em;
   color: white;
 `;

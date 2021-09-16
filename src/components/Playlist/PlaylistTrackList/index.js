@@ -4,12 +4,15 @@ import ClockIcon from 'assets/Icons/ClockIcon';
 import {
   TopGuide,
   TrackNumber,
-  TrackTitle,
+  TrackInfo,
   TrackAlbum,
   TrackAddedAt,
   TrackDuration,
   StyledTrackItem,
   MusicTitle,
+  TitleWrapper,
+  ImageWrapper,
+  AlbumWrapper
 } from './style';
 import { msToMinsAndSecs } from 'utils/msToMinsAndSecs';
 import { UriContext } from 'context/UriContext';
@@ -26,21 +29,29 @@ const PlaylistTrackItem = ({ item, index, onItemClick }) => {
   const id = item.track.album.uri.split(':')[2];
   const url = `/album/${id}`;
 
+  const imgUrl = item.track.album.images[2].url;
+  const albumName = item.track.album.name;
+
   return (
     <StyledTrackItem onClick={() => onItemClick(item.track.uri)}>
       <TrackNumber role="cell">
         <p>{index}</p>
       </TrackNumber>
-      <TrackTitle role="cell">
-        <MusicTitle>{item.track.name}</MusicTitle>
-        <p>{item.track.artists[0].name}</p>
-      </TrackTitle>
+      <TrackInfo role="cell">
+        <ImageWrapper>
+          <img src={imgUrl} alt={albumName} />
+        </ImageWrapper>
+        <TitleWrapper>
+          <MusicTitle>{item.track.name}</MusicTitle>
+          <p>{item.track.artists[0].name}</p>
+        </TitleWrapper>
+      </TrackInfo>
       <TrackAlbum role="cell">
-        <div onClick={e => e.stopPropagation()}>
+        <AlbumWrapper onClick={e => e.stopPropagation()}>
           <Link to={url}>
             <p>{item.track.album.name}</p>
           </Link>
-        </div>
+        </AlbumWrapper>
       </TrackAlbum>
       <TrackAddedAt role="cell">
         <p>{`${day} ${month} ${year}`}</p>
@@ -62,9 +73,9 @@ const PlaylistTrackList = ({ trackItems }) => {
         <TrackNumber>
           <p>#</p>
         </TrackNumber>
-        <TrackTitle>
+        <TrackInfo>
           <p>TÍTULO</p>
-        </TrackTitle>
+        </TrackInfo>
         <TrackAlbum>
           <p>ALBUM</p>
         </TrackAlbum>
