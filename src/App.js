@@ -1,7 +1,7 @@
 import React from 'react';
 import { GlobalStyle } from 'globalStyles';
 import Login from 'views/Login';
-import Dashboard from 'views/Dashboad';
+import Dashboard from 'views/Dashboard';
 import useToken from './hooks/useToken';
 
 function App() {
