@@ -86,7 +86,7 @@ export const CenterWrapper = styled.div`
 export const SectionWrapper = styled.div`
   padding: 0 32px;
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 600px) {
     padding: 0;
   }
 `;

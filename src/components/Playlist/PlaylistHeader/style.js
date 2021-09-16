@@ -3,6 +3,11 @@ import styled from 'styled-components';
 export const HeadWrapper = styled.div`
   display: flex;
   padding: 32px;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const ImageWrapper = styled.div`
@@ -23,6 +28,11 @@ export const ImageWrapper = styled.div`
     width: 192px;
     min-width: 192px;
   }
+
+  @media screen and (max-width: 600px) {
+    margin-bottom: 30px;
+    margin-right: 0;
+  }
 `;
 
 export const ContentText = styled.div`
@@ -38,6 +48,11 @@ export const ContentText = styled.div`
 export const Title = styled.h1`
   font-size: ${props => props.fontSize};
   font-weight: 900;
+
+  @media screen and (max-width: 600px) {
+    text-align: center;
+    font-size: 1.5em;
+  }
 `;
 
 export const InfoWrapper = styled.div`
@@ -48,6 +63,14 @@ export const Artist = styled.p`
   display: inline;
   font-size: .87em;
   font-weight: 700;
+
+  @media screen and (max-width: 600px) {
+    display: inline;
+    text-align: center;
+    font-size: .87em;
+    color: var(--scd-track);
+    font-weight: 400;
+  }
 `;
 
 export const ArtistImg = styled.div`
