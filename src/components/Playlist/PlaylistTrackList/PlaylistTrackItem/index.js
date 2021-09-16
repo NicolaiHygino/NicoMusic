@@ -1,5 +1,6 @@
 import React from 'react';
 import { msToMinsAndSecs } from 'utils/msToMinsAndSecs';
+import { smallerImg } from 'utils/smallerImg';
 import { Link } from 'react-router-dom';
 import {
   TrackNumber,
@@ -26,8 +27,8 @@ const PlaylistTrackItem = ({ item, index, onItemClick, hideAddedAt}) => {
   const year = date.getFullYear();
 
   const albumUrl = `/album/${album.id}`;
-
-  const imgUrl = album.images[2].url;
+  
+  const imgUrl = smallerImg(album.images)?.url;
 
   return (
     <StyledTrackItem onClick={() => onItemClick(track.uri)}>
