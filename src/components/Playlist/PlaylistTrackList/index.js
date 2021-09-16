@@ -17,8 +17,9 @@ import {
 import { msToMinsAndSecs } from 'utils/msToMinsAndSecs';
 import { UriContext } from 'context/UriContext';
 import { Link } from 'react-router-dom';
+import { useMediaQuery } from 'hooks/useMediaQuery';
 
-const PlaylistTrackItem = ({ item, index, onItemClick }) => {
+const PlaylistTrackItem = ({ item, index, onItemClick, hideAddedAt}) => {  
   const duration = msToMinsAndSecs(item.track.duration_ms);
   const date = new Date(item.added_at);
 
@@ -53,9 +54,11 @@ const PlaylistTrackItem = ({ item, index, onItemClick }) => {
           </Link>
         </AlbumWrapper>
       </TrackAlbum>
-      <TrackAddedAt role="cell">
-        <p>{`${day} ${month} ${year}`}</p>
-      </TrackAddedAt>
+      {hideAddedAt && 
+        <TrackAddedAt role="cell">
+          <p>{`${day} ${month} ${year}`}</p>
+        </TrackAddedAt>
+      }
       <TrackDuration role="cell">
         <p>{duration}</p>
       </TrackDuration>
@@ -66,6 +69,7 @@ const PlaylistTrackItem = ({ item, index, onItemClick }) => {
 const PlaylistTrackList = ({ trackItems }) => {
   const { setTrackUri } = useContext(UriContext);
   const handleItemClick = newUri => setTrackUri(newUri);
+  const hideAddedAt = useMediaQuery('(min-width: 950px)');
 
   return (
     <SectionWrapper>
@@ -79,9 +83,11 @@ const PlaylistTrackList = ({ trackItems }) => {
         <TrackAlbum>
           <p>ALBUM</p>
         </TrackAlbum>
-        <TrackAddedAt>
-          <p>ADDED ON</p>
-        </TrackAddedAt>
+        {hideAddedAt &&
+          <TrackAddedAt>
+            <p>ADDED AT</p>
+          </TrackAddedAt>
+        }
         <TrackDuration>
           <ClockIcon />
         </TrackDuration>
@@ -93,6 +99,7 @@ const PlaylistTrackList = ({ trackItems }) => {
           key={item.track.id}
           item={item}
           index={i}
+          hideAddedAt={hideAddedAt}
         />
       ))}
     </SectionWrapper>
