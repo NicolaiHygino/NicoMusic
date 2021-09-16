@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 export const DashboardDiv = styled.div`
   display: flex;
   height: calc(100vh - 90px);
+
+  @media screen and (max-width: 600px) {
+    height: calc(100vh - 110px);
+  }
 `;
 
 export const StyledSidebar = styled.nav`
