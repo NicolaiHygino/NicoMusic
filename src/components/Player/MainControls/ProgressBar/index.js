@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyledProgressBar, Duration } from './style';
-import { msToMinsAndSecs } from 'utils/msToMinsAndSecs';
+import { msToMinsAndSecs } from 'utils/msConverter';
 import RangeInput from 'components/Player/RangeInput';
 
 const useInterval = (callback, delay) => {

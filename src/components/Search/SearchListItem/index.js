@@ -6,7 +6,7 @@ import {
   SecondaryText,
   Wrapper, 
 } from "./style";
-import { msToMinsAndSecs } from "utils/msToMinsAndSecs";
+import { msToMinsAndSecs } from "utils/msConverter";
 import { useMediaQuery } from "hooks/useMediaQuery";
 
 const SearchListItem = ({ track, onItemClick }) => {

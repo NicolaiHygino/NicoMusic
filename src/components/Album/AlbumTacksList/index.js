@@ -9,7 +9,7 @@ import {
   StyledTrackItem,
   MusicTitle,
 } from './style';
-import { msToMinsAndSecs } from 'utils/msToMinsAndSecs';
+import { msToMinsAndSecs } from 'utils/msConverter';
 import { UriContext } from 'context/UriContext';
 
 const AlbumTrackItem = ({ track, index, onItemClick }) => {

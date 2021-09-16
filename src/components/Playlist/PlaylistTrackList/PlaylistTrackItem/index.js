@@ -1,5 +1,5 @@
 import React from 'react';
-import { msToMinsAndSecs } from 'utils/msToMinsAndSecs';
+import { msToMinsAndSecs } from 'utils/msConverter';
 import { smallerImg } from 'utils/smallerImg';
 import { Link } from 'react-router-dom';
 import {
