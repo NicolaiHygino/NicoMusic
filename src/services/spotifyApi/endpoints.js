@@ -43,7 +43,7 @@ export const getPlaylist = async (token, playlistId) => {
 export const getUserPlaylists = async (token) => {
   const url = 'https://api.spotify.com/v1/me/playlists';
 
-  const data = await axios.get(url, null, headers(token));
+  const data = await axios.get(url, headers(token));
   return data;
 };
 
