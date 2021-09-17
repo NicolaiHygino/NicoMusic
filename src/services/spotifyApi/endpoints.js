@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { objectToURLParam } from 'services/spotifyApi/objectToUrlParam';
 
-const headers = token => ({
+const headers = (token) => ({
   headers: {
     Authorization: `Bearer ${token}`,
-  }
+  },
 });
 
 export const spotifySearch = async (searchTerm, token) => {
@@ -13,17 +13,17 @@ export const spotifySearch = async (searchTerm, token) => {
     type: 'track',
   });
 
-  const url = `https://api.spotify.com/v1/search?${params}` 
-  
+  const url = `https://api.spotify.com/v1/search?${params}`;
+
   const res = await axios.get(url, headers(token));
   return res;
 };
 
 export const getRecentlyTracks = async (token, limit) => {
   const params = objectToURLParam({ limit });
-  
+
   const url = `https://api.spotify.com/v1/me/player/recently-played?${params}`;
-  
+
   const res = await axios.get(url, headers(token));
   return res;
 };
@@ -32,23 +32,44 @@ export const getAlbum = async (token, albumId) => {
   const url = `https://api.spotify.com/v1/albums/${albumId}`;
   const res = await axios.get(url, headers(token));
   return res;
-}
+};
 
 export const getPlaylist = async (token, playlistId) => {
-  const url = `https://api.spotify.com/v1/playlists/${playlistId}`
+  const url = `https://api.spotify.com/v1/playlists/${playlistId}`;
   const res = await axios.get(url, headers(token));
   return res;
 };
 
-export const getUserPlaylists = async (token) => {
-  const url = 'https://api.spotify.com/v1/me/playlists?limit=50';
+export const getUserPlaylists = async (token, limit = 50) => {
+  const params = objectToURLParam({ limit })
+  const url = `https://api.spotify.com/v1/me/playlists?${params}`;
 
   const data = await axios.get(url, headers(token));
   return data;
 };
 
 export const getUserProfile = async (token) => {
-  const url = 'https://api.spotify.com/v1/me'
+  const url = 'https://api.spotify.com/v1/me';
+
+  const data = await axios.get(url, headers(token));
+  return data;
+};
+
+export const getRecommendations = async (
+  token,
+  limit = 20,
+  seedTracks = '',
+  seedArtists = '',
+  seedGenres = '',
+) => {
+  const params = objectToURLParam({
+    limit,
+    seed_tracks: seedTracks,
+    seed_artitsts: seedArtists,
+    seed_genres: seedGenres,
+  });
+
+  const url = `https://api.spotify.com/v1/recommendations?${params}`;
 
   const data = await axios.get(url, headers(token));
   return data;
@@ -56,38 +77,40 @@ export const getUserProfile = async (token) => {
 
 /**
  * Receive an user's receltly played tracks and filter the
- * context 
+ * context
  * @param {Object[]} items - Array with recently played tracks objects
  * @returns {Object[]} - Array of filtered objects with id and type
  */
-const contextFilter = items => {
+const contextFilter = (items) => {
   let contextList = [];
   items
-    .filter(item => item?.context)
-    .forEach(item => {
-      const id = item.context.uri.split(':')[2];
-      const type = item.context.type;
-      if (contextList.every(item => item.id !== id)) {
-        contextList = [ ...contextList, {id, type}]
+    // .filter((item) => item?.context)
+    .forEach((item) => {
+      const id = item?.context 
+        ? item.context.uri.split(':')[2]
+        : item.track.album.id
+      const type = item?.context
+        ? item.context.type
+        : 'album';
+      if (contextList.every((item) => item.id !== id)) {
+        contextList = [...contextList, { id, type }];
       }
     });
   return contextList;
 };
 
 /**
- * Fetch user's recently played tracks and filter the contexts 
+ * Fetch user's recently played tracks and filter the contexts
  * that they had been played
- * @param {String} token - Spotify acesss token 
+ * @param {String} token - Spotify acesss token
  * @returns {Object[]} - Recently played contexts
  */
 export const getRecentPlayedContexts = async (token) => {
   const recentlyTracks = await getRecentlyTracks(token, 50);
-  
-  const recentlyContextIds = contextFilter(
-    recentlyTracks.data.items
-  );
+
+  const recentlyContextIds = contextFilter(recentlyTracks.data.items);
   const recentlyContextData = await Promise.all(
-    recentlyContextIds.map(async item => {
+    recentlyContextIds.map(async (item) => {
       let res;
       switch (item.type) {
         case 'playlist':
@@ -101,30 +124,29 @@ export const getRecentPlayedContexts = async (token) => {
     })
   );
   return recentlyContextData;
-}
+};
 
 export const transferUserPlayback = (token, deviceId) => {
   const data = {
     device_ids: [deviceId],
-    play: false
-  }
+    play: false,
+  };
 
   const url = 'https://api.spotify.com/v1/me/player';
 
-  axios.put(url, data, headers(token))
-    .catch(console.log)
+  axios.put(url, data, headers(token)).catch(console.log);
 };
 
 export const playResume = (token, contextUri) => {
   const url = 'https://api.spotify.com/v1/me/player/play';
-  
-  const data = contextUri.split(':')[1] === 'track' 
-    ? { uris: [contextUri] }
-    : { context_uri: contextUri }
-  
-  axios.put(url, data, headers(token))
-    .catch(err => console.log(err));
-}
+
+  const data =
+    contextUri.split(':')[1] === 'track'
+      ? { uris: [contextUri] }
+      : { context_uri: contextUri };
+
+  axios.put(url, data, headers(token)).catch((err) => console.log(err));
+};
 
 export const seekToPosition = (token, positionMs, deviceId) => {
   const params = objectToURLParam({
