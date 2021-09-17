@@ -103,7 +103,7 @@ const contextFilter = (items) => {
  * @param {String} token - Spotify acesss token
  * @returns {Object[]} - An array of Album or Playlist objects
  */
-export const getRecentPlayedContexts = async (token) => {
+export const getRecentlyPlayedContexts = async (token) => {
   const recentlyTracks = await getRecentlyTracks(token, 50);
 
   const recentlyContextIds = contextFilter(recentlyTracks.data.items);
