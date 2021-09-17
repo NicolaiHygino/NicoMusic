@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getRecentPlayedContexts } from 'services/spotifyApi/endpoints';
+import { getRecentlyPlayedContexts } from 'services/spotifyApi/endpoints';
 import { Link } from 'react-router-dom';
 import {
   RecentlyContextsItems,
@@ -39,7 +39,7 @@ const RecentlyContextItems = ({ token }) => {
   ] = useState([]);
   
   useEffect(() => {
-    getRecentPlayedContexts(token)
+    getRecentlyPlayedContexts(token)
       .then(res => {
         setRecentlyPlayedContexts(res.slice(0, 6))
       })
