@@ -101,7 +101,7 @@ const contextFilter = (items) => {
  * Fetch user's recently played tracks and filter the contexts
  * that they had been played
  * @param {String} token - Spotify acesss token
- * @returns {Object[]} - Array of Recently played contexts
+ * @returns {Object[]} - An array of Album or Playlist objects
  */
 export const getRecentPlayedContexts = async (token) => {
   const recentlyTracks = await getRecentlyTracks(token, 50);
