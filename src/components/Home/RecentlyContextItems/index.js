@@ -7,6 +7,12 @@ import {
   ImageWrapper,
   TitleWrapper,
 } from './style';
+import { SectionHeaderWrapper, SectionHeader } from 'globalStyles';
+import styled from 'styled-components';
+
+const LargeSectionHeader = styled(SectionHeader)`
+  font-size: 32px;
+`;
 
 const ContextItem = ({ item }) => {  
   const url = item.type;
@@ -40,7 +46,11 @@ const RecentlyContextItems = ({ token }) => {
   }, [token]);
   
   return (<>
-    <h2>Bom Dia</h2>
+    <SectionHeaderWrapper>
+      <LargeSectionHeader>
+        Bom Dia
+      </LargeSectionHeader>
+    </SectionHeaderWrapper>
     <RecentlyContextsItems>
       {recentlyPlayedContexts.map(item =>  
         <ContextItem key={item.id} item={item} />

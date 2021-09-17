@@ -91,14 +91,13 @@ export const SectionWrapper = styled.div`
   }
 `;
 
-export const SectionHeader = styled.div`
+export const SectionHeaderWrapper = styled.div`
   margin-bottom: 16px;
+`;
 
-  & h2 {
-    font-size: 1.5em;
-    font-weight: 700;
-    line-height: 1.75em;
-  }
+export const SectionHeader = styled.h2`
+  font-size: 1.5em;
+  font-weight: 700;
 `;
 
 export const MainButton = styled.button`
