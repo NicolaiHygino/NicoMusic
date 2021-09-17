@@ -83,19 +83,17 @@ export const getRecommendations = async (
  */
 const contextFilter = (items) => {
   let contextList = [];
-  items
-    // .filter((item) => item?.context)
-    .forEach((item) => {
-      const id = item?.context 
-        ? item.context.uri.split(':')[2]
-        : item.track.album.id
-      const type = item?.context
-        ? item.context.type
-        : 'album';
-      if (contextList.every((item) => item.id !== id)) {
-        contextList = [...contextList, { id, type }];
-      }
-    });
+  items.forEach((item) => {
+    const id = item?.context 
+      ? item.context.uri.split(':')[2]
+      : item.track.album.id
+    const type = item?.context
+      ? item.context.type
+      : 'album';
+    if (contextList.every((item) => item.id !== id)) {
+      contextList = [...contextList, { id, type }];
+    }
+  });
   return contextList;
 };
 
@@ -103,7 +101,7 @@ const contextFilter = (items) => {
  * Fetch user's recently played tracks and filter the contexts
  * that they had been played
  * @param {String} token - Spotify acesss token
- * @returns {Object[]} - Recently played contexts
+ * @returns {Object[]} - Array of Recently played contexts
  */
 export const getRecentPlayedContexts = async (token) => {
   const recentlyTracks = await getRecentlyTracks(token, 50);
