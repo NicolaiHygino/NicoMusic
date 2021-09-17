@@ -32,7 +32,7 @@ const TrackItem = ({ item }) => {
   );
 };
 
-const UserPlaylistsSection = ({ token }) => {
+const UserRecentlyPlayedSection = ({ token }) => {
   const [playedRecently, setPlayedRecently] = useState();
 
   useEffect(() => {
@@ -56,4 +56,4 @@ const UserPlaylistsSection = ({ token }) => {
   );
 };
 
-export default UserPlaylistsSection;
+export default UserRecentlyPlayedSection;

@@ -1,12 +1,12 @@
 import React from 'react';
 import RecentlyContextItems from './RecentlyContextItems';
-import UserPlaylistsSection from './UserPlaylistsSection';
+import UserRecentlyPlayedSection from './UserRecentlyPlayedSection';
 
 const Home = ({ token }) => {
   return (
     <>
       <RecentlyContextItems token={token} />
-      <UserPlaylistsSection token={token} />
+      <UserRecentlyPlayedSection token={token} />
     </>
   );
 };
