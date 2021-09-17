@@ -8,7 +8,7 @@ const PrevArrowIcon = () => (
     width="24"
     viewBox="0 0 24 24"
   >
-    <polyline points="16 4 7 12 16 20" fill="none" stroke="#181818"></polyline>
+    <polyline points="16 4 7 12 16 20" fill="none" stroke="currentColor"></polyline>
   </svg>
 );
 
