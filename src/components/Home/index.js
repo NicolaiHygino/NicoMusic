@@ -1,10 +1,7 @@
 import React from 'react';
 import RecentlyContextItems from './RecentlyContextItems';
-import {
-  SectionWrapper,
-  SectionHeaderWrapper,
-  SectionHeader,
-} from 'globalStyles';
+import UserPlaylistsSection from './UserPlaylistsSection';
+import { SectionWrapper } from 'globalStyles';
 
 const Home = ({ token }) => {
   return (
@@ -12,13 +9,8 @@ const Home = ({ token }) => {
       <SectionWrapper>
         <RecentlyContextItems token={token} />
       </SectionWrapper>
-      <SectionWrapper>
-        <SectionHeaderWrapper>
-          <SectionHeader>
-            Artists you like the most!
-          </SectionHeader>
-        </SectionHeaderWrapper>
-      </SectionWrapper>
+
+      <UserPlaylistsSection token={token} />
     </>
   );
 };
