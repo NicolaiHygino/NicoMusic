@@ -34,6 +34,12 @@ const MobilePlayer = ({ token }) => {
         console.log('Device is not ready for playback', device_id);
       })
 
+      player.addListener('player_state_changed', (state) => {
+        if (!state) return;
+        setTrack(state.track_window.current_track);
+        setIsPaused(state.paused);
+      });
+
       player.on('initialization_error', ({ message }) => {
         setErrorMessage(`${message} (unsuported device)`);
       })
