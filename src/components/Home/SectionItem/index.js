@@ -8,7 +8,7 @@ import {
   ItemDesc,
 } from '../style';
 
-const TrackItem = ({ item }) => {
+const SectionItem = ({ item }) => {
   return (
     <ItemWrapper>
       <Link to={`${item.type}/${item.id}`}>
@@ -17,11 +17,11 @@ const TrackItem = ({ item }) => {
         </ImgWrapper>
         <ContentWrapper>
           <ItemTitle>{item.name}</ItemTitle>
-          <ItemDesc>{item?.description || item.artists[0].name}</ItemDesc>
+          <ItemDesc>{item?.description || item?.owner.display_name}</ItemDesc>
         </ContentWrapper>
       </Link>
     </ItemWrapper>
   );
 };
 
-export default TrackItem;
+export default SectionItem;

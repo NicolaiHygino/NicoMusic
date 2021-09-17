@@ -45,6 +45,10 @@ export const GlobalStyle = createGlobalStyle`
   a:hover {
     text-decoration: underline;
   }
+
+  img {
+    display: block;
+  }
   /* || End Resets*/
 
   /* || ScrollBar */
