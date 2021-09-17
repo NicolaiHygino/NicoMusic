@@ -47,6 +47,13 @@ export const getUserPlaylists = async (token) => {
   return data;
 };
 
+export const getUserProfile = async (token) => {
+  const url = 'https://api.spotify.com/v1/me'
+
+  const data = await axios.get(url, headers(token));
+  return data;
+};
+
 /**
  * Receive an user's receltly played tracks and filter the
  * context 
