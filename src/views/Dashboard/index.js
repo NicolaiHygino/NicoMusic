@@ -1,4 +1,5 @@
 import React from 'react';
+import TopBar from 'components/TopBar';
 import MobileBar from 'components/MobileBar';
 import Sidebar from 'components/Sidebar';
 import Home from 'components/Home';
@@ -20,6 +21,7 @@ const Dashboard = ({ token }) => {
       <DashboardDiv>
         {tablet && <Sidebar token={token} />}
         <Content>
+          <TopBar token={token} />
           <UriProvider token={token}>
             <Switch>
               <Route path="/search">
