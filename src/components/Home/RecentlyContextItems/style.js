@@ -55,12 +55,17 @@ export const TitleWrapper = styled.div`
   width: 100%;
 
   & p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
     margin: 0;
     font-size: 1em;
     font-weight: 700;
   }
 
   @media screen and (max-width: 550px) {
-    font-size: .8em;
+    font-size: .9em;
   }
 `;
