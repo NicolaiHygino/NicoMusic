@@ -4,7 +4,22 @@ export const ItemsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 24px;
-  `;
+
+  @media screen and (max-width: 1100px) {
+    grid-gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media screen and (max-width: 900px) {
+    grid-gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
 
 export const ItemWrapper = styled.div`
   background-color: #181818;
