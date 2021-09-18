@@ -9,18 +9,18 @@ import {
 import { ItemsContainer } from '../style';
 
 const getRandomItems = (array, length) => {
-  let randomArray = [];
-  for (let i = 0; i < length; i++) {
+  let randItems = [];
+  while (randItems.length < length) {
     let randNum = Math.floor(Math.random() * array.length);
-    randomArray.push(array[randNum])
+    if (randItems.every(item => item.name !== array[randNum].name)) {
+      randItems.push(array[randNum])
+    }
   }
-  return randomArray;
-}
+  return randItems;
+};
 
 const UserPlaylistSection = ({ token }) => {
   const [playlists, setPlaylists] = useState([]);
-
-  console.log(playlists)
 
   useEffect(() => {
     getUserPlaylists(token, 50)
@@ -29,6 +29,7 @@ const UserPlaylistSection = ({ token }) => {
       })
   }, [token]);
 
+  if (!playlists) return null;
   return (
     <SectionWrapper>
       <SectionHeaderWrapper>
