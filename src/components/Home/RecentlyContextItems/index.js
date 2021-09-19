@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { getRecentlyPlayedContexts } from 'services/spotifyApi/endpoints';
 import { Link } from 'react-router-dom';
 import {
@@ -13,6 +13,7 @@ import {
   SectionWrapper,
 } from 'globalStyles';
 import styled from 'styled-components';
+import { useFetchStorage } from 'hooks/useFetchStorage';
 
 const LargeSectionHeader = styled(SectionHeader)`
   font-size: 32px;
@@ -35,13 +36,12 @@ const ContextItem = ({ item }) => {
 };
 
 const RecentlyContextItems = ({ token }) => {
-  const [recentlyPlayedContexts, setRecentlyPlayedContexts] = useState([]);
-
-  useEffect(() => {
-    getRecentlyPlayedContexts(token).then((res) => {
-      setRecentlyPlayedContexts(res.slice(0, 6));
-    });
-  }, [token]);
+  const recentlyPlayedContexts = useFetchStorage(
+    token,
+    getRecentlyPlayedContexts,
+    'recently-played-contexts',
+    []
+  ).slice(0, 6);
 
   return (
     <SectionWrapper>
