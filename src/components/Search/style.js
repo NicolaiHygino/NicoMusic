@@ -2,20 +2,13 @@ import styled from 'styled-components';
 
 export const Container = styled.section`
   padding: 0 10px;
-  padding-top: 50px;
-
-  @media screen and (max-width: 650px) {
-    padding: 30px 10px 10px 10px;
-  }
-
-  @media screen and (max-width: 550px) {
-    padding: 30px 0 10px 0;
-  }
+  padding-bottom: 30px;
 `;
 
 export const InputField = styled.input`
   position: fixed;
-  top: 20px;
+  top: 10px;
+  left: 328px;
   width: 450px;
   color: black;
   border: 0;
