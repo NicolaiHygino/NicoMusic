@@ -12,8 +12,6 @@ const Login = ({ setToken }) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  
-  console.log(loading)
 
   useEffect(() => {
     const code = new URLSearchParams(
