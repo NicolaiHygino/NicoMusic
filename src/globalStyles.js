@@ -91,8 +91,8 @@ export const SectionWrapper = styled.div`
   padding: 0 32px;
   padding-bottom: 30px;
 
-  @media screen and (max-width: 600px) {
-    padding: 10px;
+  @media screen and (max-width: 900px) {
+    padding: 16px;
   }
 `;
 

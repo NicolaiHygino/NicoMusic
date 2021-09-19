@@ -12,13 +12,15 @@ import {
   UserName,
 } from './style';
 import { getUserProfile } from 'services/spotifyApi/endpoints';
+import { useMediaQuery } from 'hooks/useMediaQuery';
 
 const TopBar = ({ token }) => {
   const [user, setUser] = useState(null);
   const history = useHistory();
   const handleBackClick = () => history.goBack();
   const handleNextClick = () => history.goForward();
-  
+  const isTablet = useMediaQuery('(max-width: 1000px');
+
   useEffect(() => {
     getUserProfile(token).then(res => setUser(res.data));
   }, [token]);
@@ -30,9 +32,9 @@ const TopBar = ({ token }) => {
         <RoundButton onClick={() => handleBackClick()}>
           <PrevArrowIcon />
         </RoundButton>
-        <RoundButton onClick={() => handleNextClick()}>
+        {!isTablet && <RoundButton onClick={() => handleNextClick()}>
           <NextArrowIcon />
-        </RoundButton>
+        </RoundButton>}
       </RoundButtonsWrapper>
       
       <UserProfileWrapper>
@@ -40,9 +42,9 @@ const TopBar = ({ token }) => {
           <ImageWrapper>
             <img src={user.images[0].url} alt={user.name} />
           </ImageWrapper>
-          <UserName>
+          {!isTablet && <UserName>
             {user.display_name}
-          </UserName>
+          </UserName>}
         </UserProfileButton>
       </UserProfileWrapper>
     </StyledTopBar>

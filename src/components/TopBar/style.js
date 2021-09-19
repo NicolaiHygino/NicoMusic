@@ -1,13 +1,15 @@
 import styled from 'styled-components';
+import { SectionWrapper } from 'globalStyles';
 
-export const StyledTopBar = styled.div`
+export const StyledTopBar = styled(SectionWrapper)`
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0;
   height: 60px;
-  padding: 0 32px;
+  padding-top: 0;
+  padding-bottom: 0;
 `;
 
 export const RoundButtonsWrapper = styled.div`
@@ -39,11 +41,14 @@ export const UserProfileButton = styled.button`
   cursor: pointer;
   border-radius: 32px;
   padding: 3px 10px 3px 3px;
-  margin-right: 16px;
   height: 32px;
   line-height: 0;
   color: white;
   stroke-width: 1pt;
+
+  @media screen and (max-width: 1000px) {
+    padding-right: 3px;
+  }
 `;
 
 export const ImageWrapper = styled.div`
@@ -55,6 +60,10 @@ export const ImageWrapper = styled.div`
   & img {
     width: 100%;
     border-radius: 50%;
+  }
+
+  @media screen and (max-width: 1000px) {
+    margin-right: 0;
   }
 `;
 

@@ -7,13 +7,22 @@ export const Container = styled.section`
 
 export const InputField = styled.input`
   position: fixed;
-  top: 10px;
+  top: 12px;
   left: 328px;
   width: 450px;
   color: black;
   border: 0;
   border-radius: 30px;
   padding: .8em 1em;
+
+  @media screen and (max-width: 1000px) {
+    left: 280px;
+  }
+
+  @media screen and (max-width: 900px) {
+    left: 264px;
+    width: 50vw;
+  }
 
   @media screen and (max-width: 650px) {
     top: 0;
