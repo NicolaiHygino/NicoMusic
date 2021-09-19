@@ -19,14 +19,12 @@ const LargeSectionHeader = styled(SectionHeader)`
 `;
 
 const ContextItem = ({ item }) => {
-  const url = item.type;
-  const id = item.uri.split(':')[2];
-
+  const imgUrl = item.images[1]?.url || item.images[0]?.url;
   return (
-    <Link to={`${url}/${id}`}>
+    <Link to={`${item.type}/${item.id}`}>
       <StyledContextItem>
         <ImageWrapper>
-          <img src={item.images[0].url} alt={item.name} />
+          <img src={imgUrl} alt={item.name} />
         </ImageWrapper>
         <TitleWrapper>
           <p>{item.name}</p>

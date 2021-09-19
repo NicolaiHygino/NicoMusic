@@ -13,7 +13,7 @@ const SectionItem = ({ item }) => {
     <ItemWrapper>
       <Link to={`${item.type}/${item.id}`}>
         <ImgWrapper>
-          <img src={item.images[0].url} alt={item.name} />
+          <img src={item.images[0]?.url} alt={item.name} />
         </ImgWrapper>
         <ContentWrapper>
           <ItemTitle>{item.name}</ItemTitle>
