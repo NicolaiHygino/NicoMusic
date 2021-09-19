@@ -27,7 +27,7 @@ const PlaylistTrackItem = ({ item, index, onItemClick, hideAddedAt}) => {
   const year = date.getFullYear();
 
   const albumUrl = `/album/${album.id}`;
-  
+
   const imgUrl = smallerImg(album.images)?.url;
 
   return (
