@@ -14,9 +14,12 @@ import { useMediaQuery } from 'hooks/useMediaQuery';
 import PlaylistTrackItem from './PlaylistTrackItem';
 import PlaylistTrackItemMobile from './PlaylistTrackItemMobile'
 
-const PlaylistTrackList = ({ trackItems }) => {
-  const { setTrackUri } = useContext(UriContext);
-  const handleItemClick = (newUri) => setTrackUri(newUri);
+const PlaylistTrackList = ({ trackItems, uri }) => {
+  const { setContextUri, setOffset } = useContext(UriContext);
+  const handleItemClick = (position) => {
+    setContextUri(uri);
+    setOffset(position);
+  };
   const hideAddedAt = useMediaQuery('(min-width: 950px)');
   const isMobile = useMediaQuery('(max-width: 600px');
 

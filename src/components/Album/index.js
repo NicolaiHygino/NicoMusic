@@ -14,11 +14,10 @@ const Album = ({ token }) => {
   }, [token, id]);
 
   if (!album) return <Loading />;
-
   return (
     <>
       <AlbumHeader album={album} />
-      <AlbumTrackList tracks={album.tracks.items} />
+      <AlbumTrackList tracks={album.tracks.items} uri={album.uri} />
     </>
   );
 };

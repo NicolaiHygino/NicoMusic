@@ -17,7 +17,7 @@ const Playlist = ({ token }) => {
 
   return (<>
     <PlaylistHeader playlist={playlist} />
-    <PlaylistTrackList trackItems={playlist.tracks.items} />
+    <PlaylistTrackList trackItems={playlist.tracks.items} uri={playlist.uri}/>
   </>);
 };
 

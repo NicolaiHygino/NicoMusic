@@ -7,20 +7,17 @@ export const UriContext = createContext({
 });
 
 export const UriProvider = ({ children, token }) => {
-  const [trackUri, setTrackUri] = useState(null);
+  const [contextUri, setContextUri] = useState(null);
+  const [offset, setOffset] = useState(null);
   const value = useMemo(
-    () => ({trackUri, setTrackUri}),
-    [trackUri]
+    () => ({ contextUri, setContextUri, offset, setOffset }),
+    [contextUri, offset]
   );
-  
-  useEffect(() => {
-    if (!trackUri) return
-    playResume(token, trackUri)
-  }, [trackUri, token])
 
-  return (
-    <UriContext.Provider value={value} >
-      { children }
-    </UriContext.Provider>
-  );
+  useEffect(() => {
+    if (!contextUri) return;
+    playResume(token, contextUri, offset);
+  }, [contextUri, offset, token]);
+
+  return <UriContext.Provider value={value}>{children}</UriContext.Provider>;
 };

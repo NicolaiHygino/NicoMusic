@@ -16,7 +16,7 @@ import { useMediaQuery } from 'hooks/useMediaQuery';
 const AlbumTrackItem = ({ track, index, onItemClick, isMobile }) => {
   const duration = msToMinsAndSecs(track.duration_ms);
   return (
-    <StyledTrackItem onClick={() => onItemClick(track.uri)}>
+    <StyledTrackItem onClick={() => onItemClick(index)}>
       {!isMobile && (
         <TrackNumber>
           <p>{index + 1}</p>
@@ -35,9 +35,12 @@ const AlbumTrackItem = ({ track, index, onItemClick, isMobile }) => {
   );
 };
 
-const AlbumTrackList = ({ tracks }) => {
-  const { setTrackUri } = useContext(UriContext);
-  const handleItemClick = (newUri) => setTrackUri(newUri);
+const AlbumTrackList = ({ tracks, uri }) => {
+  const { setContextUri, setOffset } = useContext(UriContext);
+  const handleItemClick = (position) => {
+    setContextUri(uri);
+    setOffset(position);
+  };
 
   const isMobile = useMediaQuery('(max-width: 600px)');
 
