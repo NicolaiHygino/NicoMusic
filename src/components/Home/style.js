@@ -43,6 +43,9 @@ export const ImgWrapper = styled.div`
     display: block;
     border: 0;
     width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 1;
   }
 `;
 
