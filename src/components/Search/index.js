@@ -7,8 +7,8 @@ import { UriContext } from 'context/UriContext';
 const Search = ({ token }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [trackList, setTrackList] = useState([]);
-  const { setTrackUri } = useContext(UriContext);
-  const handleItemClick = newUri => setTrackUri(newUri);
+  const { setContextUri } = useContext(UriContext);
+  const handleItemClick = newUri => setContextUri(newUri);
 
   useEffect(() => {
     if (searchTerm) {
