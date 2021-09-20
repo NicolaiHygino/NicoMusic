@@ -15,12 +15,12 @@ import {
   AlbumWrapper
 } from '../style';
 
-const PlaylistTrackItem = ({ item, index, onItemClick, hideAddedAt}) => {
+const PlaylistTrackItem = ({ item, onItemClick, hideAddedAt}) => {
   const track = item.track;
-  const album = item.track.album;
+  const index = track.nicomusic_index;
+  const album = track.album;
 
   const duration = msToMinsAndSecs(track.duration_ms);
-
   const date = new Date(item.added_at);
   const day = date.getDate();
   const month = date.toLocaleString('en', { month: 'long' });

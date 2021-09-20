@@ -7,17 +7,29 @@ import { getPlaylist } from 'services/spotifyApi/endpoints';
 
 const Playlist = ({ token }) => {
   const [playlist, setPlaylist] = useState(null);
+  const [tracks, setTracks] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
-    getPlaylist(token, id).then(res => setPlaylist(res.data))
+    (async () => {
+      const res = await getPlaylist(token, id);
+      const tracks = res.data.tracks.items;
+
+      tracks.forEach((item, i) => {
+        item.track.nicomusic_index = i
+      });
+
+      setTracks(tracks);
+      setPlaylist(res.data);
+    })();
+    // getPlaylist(token, id).then(res => setPlaylist(res.data))
   }, [token, id]);
 
   if (!playlist) return <Loading />;
 
   return (<>
     <PlaylistHeader playlist={playlist} />
-    <PlaylistTrackList trackItems={playlist.tracks.items} uri={playlist.uri}/>
+    <PlaylistTrackList trackItems={tracks} uri={playlist.uri}/>
   </>);
 };
 

@@ -15,6 +15,7 @@ import PlaylistTrackItem from './PlaylistTrackItem';
 import PlaylistTrackItemMobile from './PlaylistTrackItemMobile'
 
 const PlaylistTrackList = ({ trackItems, uri }) => {
+  console.log(trackItems)
   const { setContextUri, setOffset } = useContext(UriContext);
   const handleItemClick = (position) => {
     setContextUri(uri);
@@ -26,7 +27,7 @@ const PlaylistTrackList = ({ trackItems, uri }) => {
   if (isMobile) {
     return (
       <SectionWrapper>
-        {trackItems.map((item, i) => (
+        {trackItems.map(item => (
         <PlaylistTrackItemMobile
           onItemClick={handleItemClick}
           key={item.track.id}
@@ -59,14 +60,15 @@ const PlaylistTrackList = ({ trackItems, uri }) => {
         </TrackDuration>
       </TopGuide>
 
-      {trackItems.map((item, i) => (
-        <PlaylistTrackItem
-          onItemClick={handleItemClick}
-          key={item.track.id}
-          item={item}
-          index={i}
-          hideAddedAt={hideAddedAt}
-        />
+      {trackItems
+        .filter(item => item.track.type !== 'episode')
+        .map(item => (
+          <PlaylistTrackItem
+            onItemClick={handleItemClick}
+            key={item.id}
+            item={item}
+            hideAddedAt={hideAddedAt}
+          />
       ))}
     </SectionWrapper>
   );

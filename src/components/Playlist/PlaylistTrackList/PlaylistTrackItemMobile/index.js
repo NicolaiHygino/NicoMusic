@@ -8,9 +8,10 @@ import {
 
 const PlaylistTrackItemMobile = ({ item, onItemClick}) => {
   const track = item.track;
+  const index = track.nicomusic_index;
 
   return (
-    <StyledTrackItem onClick={() => onItemClick(track.uri)}>
+    <StyledTrackItem onClick={() => onItemClick(index)}>
       <TrackInfo role="cell">
         <TitleWrapper>
           <MusicTitle>{track.name}</MusicTitle>
