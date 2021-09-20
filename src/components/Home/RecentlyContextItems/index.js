@@ -43,9 +43,9 @@ const RecentlyContextItems = ({ token }) => {
   
   useEffect(() => {
     fetchStorage(
-      token, 
+      'recently-played-contexts',
       getRecentlyPlayedContexts, 
-      'recently-played-contexts'
+      token
     ).then(data => 
       setRecentlyPlayedContexts(data.slice(0, 6))
     );
