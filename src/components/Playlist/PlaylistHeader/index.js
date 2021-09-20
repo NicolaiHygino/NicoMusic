@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMediaQuery } from 'hooks/useMediaQuery';
 import { calcFontSize } from 'utils/calcFontSize';
-import { msToHoursAndMins } from 'utils/msConverter';
+import { msToHoursAndMins, msToMinsAndSecs } from 'utils/msConverter';
 import { numberWithDot } from 'utils/numberWithDot';
 import {
   HeadWrapper,
@@ -20,11 +20,14 @@ const PlaylistHeader = ({ playlist }) => {
   const size = calcFontSize(playlist.name);
   const isMobile = useMediaQuery('(max-width: 600px)');
 
-  const playlistDuration = msToHoursAndMins(
-    playlist.tracks.items
-      .map((item) => item.track.duration_ms)
-      .reduce((previous, current) => previous + current)
-  );
+  const playlistDuration = playlist.tracks.items
+    .map((item) => item.track.duration_ms)
+    .reduce((previous, current) => previous + current);
+
+  const oneHourInMs = 3600000;
+  const cvtdPlaylistDuration = playlistDuration < oneHourInMs
+    ? msToMinsAndSecs(playlistDuration, 'h')
+    : msToHoursAndMins(playlistDuration);
 
   return (
     <HeadWrapper>
@@ -40,7 +43,7 @@ const PlaylistHeader = ({ playlist }) => {
             <Artist>{playlist.owner.display_name}</Artist>
             <StyledSpan>{followers} followers</StyledSpan>
             <StyledSpan>
-              {playlist.tracks.total} musics, {playlistDuration}
+              {playlist.tracks.total} musics, {cvtdPlaylistDuration}
             </StyledSpan>
           </InfoWrapper>
         ) : null}

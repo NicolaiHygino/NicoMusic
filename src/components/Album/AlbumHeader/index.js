@@ -1,6 +1,6 @@
 import React from 'react';
 import { calcFontSize } from 'utils/calcFontSize';
-import { msToHoursAndMins } from 'utils/msConverter';
+import { msToHoursAndMins, msToMinsAndSecs } from 'utils/msConverter';
 import { useMediaQuery } from 'hooks/useMediaQuery';
 import {
   HeadWrapper,
@@ -13,14 +13,18 @@ import {
 } from './style';
 
 const AlbumHeader = ({ album }) => {
+  const releaseYear = album.release_date.split('-')[0];
   const size = calcFontSize(album.name);
   const isMobile = useMediaQuery('(max-width: 600px)')
   
-  const albumDuration = msToHoursAndMins(
-    album.tracks.items
-      .map((item) => item.duration_ms)
-      .reduce((previous, current) => previous + current)
-  );
+  const albumDuration = album.tracks.items
+    .map((item) => item.duration_ms)
+    .reduce((previous, current) => previous + current)
+
+  const oneHourInMs = 3600000;
+  const albumDurationConverted = albumDuration < oneHourInMs
+    ? msToMinsAndSecs(albumDuration, 'h')
+    : msToHoursAndMins(albumDuration);
   
   return (
     <HeadWrapper>
@@ -36,8 +40,10 @@ const AlbumHeader = ({ album }) => {
         {!isMobile ? (
           <InfoWrapper>
             <Artist>{album.artists[0].name}</Artist>
-            <StyledSpan>2021</StyledSpan>
-            <StyledSpan>{album.total_tracks} musics, {albumDuration}</StyledSpan>
+            <StyledSpan>{ releaseYear }</StyledSpan>
+            <StyledSpan>
+              {album.total_tracks} musics, {albumDurationConverted}
+            </StyledSpan>
           </InfoWrapper>
         ) : null }
       </ContentText>
