@@ -12,6 +12,10 @@ export const StyledPlayer = styled.footer`
   border-top: 1px solid #282828;
 `;
 
+export const LoadingPlayer = styled(StyledPlayer)`
+  justify-content: center;
+`;
+
 export const IconButton = styled.button`
   color: #fff;
   background-color: rgba(0,0,0,0);

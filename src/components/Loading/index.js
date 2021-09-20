@@ -16,11 +16,15 @@ export const LoadingSpinner = styled.div`
   }
 `;
 
+const LoadingCenterWrapper = styled(CenterWrapper)`
+  height: 100%;
+`;
+
 const Loading = () => {
   return (
-    <CenterWrapper>
+    <LoadingCenterWrapper>
       <LoadingSpinner />
-    </CenterWrapper>
+    </LoadingCenterWrapper>
   );
 };
 

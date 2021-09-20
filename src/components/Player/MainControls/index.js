@@ -1,12 +1,13 @@
 import React from "react";
 import ProgressBar from "./ProgressBar";
-import ShuffeIcon from "assets/Icons/ShuffleIcon";
+import ActiveShuffleIcon from "assets/Icons/ActiveShuffleIcon";
+import ShuffleIcon from "assets/Icons/ShuffleIcon";
 import PreviousIcon from "assets/Icons/PreviousIcon";
 import PlayIcon from "assets/Icons/PlayIcon";
 import PauseIcon from "assets/Icons/PauseIcon";
 import NextIcon from "assets/Icons/NextIcon";
 import RepeatIcon from "assets/Icons/RepeatIcon";
-import { seekToPosition } from "services/spotifyApi/endpoints";
+import { putShuffle, seekToPosition } from "services/spotifyApi/endpoints";
 import {
   StyledMainControls,
   PlayPauseButton,
@@ -20,6 +21,8 @@ const MainControls = ({
   deviceId,
   track,
   isPaused,
+  isShuffle,
+  onShuffleChange,
   position,
   setPosition,
 }) => {
@@ -27,11 +30,18 @@ const MainControls = ({
     seekToPosition(token, newPosition, deviceId);
   };
 
+  const handleShuffleClick = () => {
+    console.log('clicked')
+    onShuffleChange(!isShuffle);
+    putShuffle(token, !isShuffle);
+  }
   return (
     <StyledMainControls>
       <PlayerButtons>
-        <IconButton>
-          <ShuffeIcon />
+        <IconButton onClick={() => handleShuffleClick()}>
+          {isShuffle
+            ? <ActiveShuffleIcon />
+            : <ShuffleIcon />}
         </IconButton>
         <IconButton onClick={() => player.previousTrack()}>
           <PreviousIcon />

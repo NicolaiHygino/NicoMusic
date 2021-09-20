@@ -150,6 +150,12 @@ export const playResume = (token, contextUri, offset = 0) => {
   axios.put(url, data, headers(token)).catch((err) => console.log(err));
 };
 
+export const putShuffle = async (token, state) => {
+  const params = objectToURLParam({ state });
+  const url = `https://api.spotify.com/v1/me/player/shuffle?${params}`
+  await axios.put(url, null, headers(token));
+}
+
 export const seekToPosition = (token, positionMs, deviceId) => {
   const params = objectToURLParam({
     position_ms: positionMs,
