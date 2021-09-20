@@ -26,12 +26,12 @@ const Recommendations = ({ token }) => {
         'get-recommendations',
         getRecommendations,
         token,
-        20, 
+        50, 
         seedTracks
       );
       const recommendedAlbuns = recoRes.data.tracks
         .map(item => item.album);  
-      setRecommendations(recommendedAlbuns.slice(0, 5));
+      setRecommendations(sortRandomItems(recommendedAlbuns, 5));
     };
     fetchData();
   }, [token])
