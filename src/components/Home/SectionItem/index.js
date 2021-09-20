@@ -9,6 +9,7 @@ import {
 } from '../style';
 
 const SectionItem = ({ item }) => {
+  const type = item.type;
   return (
     <ItemWrapper>
       <Link to={`${item.type}/${item.id}`}>
@@ -17,7 +18,11 @@ const SectionItem = ({ item }) => {
         </ImgWrapper>
         <ContentWrapper>
           <ItemTitle>{item.name}</ItemTitle>
-          <ItemDesc>{item?.description || item?.owner.display_name}</ItemDesc>
+          {type === 'album'
+            ? <ItemDesc>{item.artists[0].name}</ItemDesc>
+            : <ItemDesc>
+                {item?.description || item.owner.display_name }
+              </ItemDesc> }
         </ContentWrapper>
       </Link>
     </ItemWrapper>
