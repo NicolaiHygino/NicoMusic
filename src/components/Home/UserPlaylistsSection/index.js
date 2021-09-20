@@ -15,7 +15,9 @@ const UserPlaylistSection = ({ token }) => {
 
   useEffect(() => {
     fetchStorage('user-playlists-home', getUserPlaylists, token)
-      .then(res => setPlaylists(sortRandomItems(res.data.items, 5)));
+      .then(res => setPlaylists(
+        sortRandomItems(res.data.items, 5))
+      );
   }, [token]);
 
   if (!playlists) return null;

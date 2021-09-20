@@ -29,7 +29,8 @@ const Recommendations = ({ token }) => {
         20, 
         seedTracks
       );
-      const recommendedAlbuns = recoRes.data.tracks.map(item => item.album)  
+      const recommendedAlbuns = recoRes.data.tracks
+        .map(item => item.album);  
       setRecommendations(recommendedAlbuns.slice(0, 5));
     };
     fetchData();
@@ -46,7 +47,7 @@ const Recommendations = ({ token }) => {
         )}
       </ItemsContainer>
     </SectionWrapper>
-    )
+  );
 };
 
 export default Recommendations;
