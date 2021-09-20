@@ -19,7 +19,7 @@ export const spotifySearch = async (searchTerm, token) => {
   return res;
 };
 
-export const getRecentlyTracks = async (token, limit) => {
+export const getRecentlyTracks = async (token, limit = 20) => {
   const params = objectToURLParam({ limit });
 
   const url = `https://api.spotify.com/v1/me/player/recently-played?${params}`;
