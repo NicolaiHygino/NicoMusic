@@ -3,8 +3,6 @@ export const fetchStorage = async (token, cb, key, ...rest) => {
   if (storagePayload) return JSON.parse(storagePayload);
   
   const res = await cb(token, rest);
-  const promise = res;
   sessionStorage.setItem(key, JSON.stringify(res));
-
-  return promise;
+  return res;
 };
