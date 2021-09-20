@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import PrevArrowIcon from 'assets/Icons/PrevArrowIcon';
 import NextArrowIcon from 'assets/Icons/NextArrowIcon';
@@ -13,22 +13,17 @@ import {
 } from './style';
 import { getUserProfile } from 'services/spotifyApi/endpoints';
 import { useMediaQuery } from 'hooks/useMediaQuery';
-import { useFetchStorage } from 'hooks/useFetchStorage';
 
 const TopBar = ({ token }) => {
-  // const [user, setUser] = useState();
+  const [user, setUser] = useState();
   const history = useHistory();
   const handleBackClick = () => history.goBack();
   const handleNextClick = () => history.goForward();
   const isTablet = useMediaQuery('(max-width: 1000px');
-
-  const user = useFetchStorage(
-    token, getUserProfile, 'user-profile'
-  );
-
-  // useEffect(() => {
-  //   getUserProfile(token).then(res => setUser(res.data));
-  // }, [token]);
+ 
+  useEffect(() => {
+    getUserProfile(token).then(res => setUser(res.data));
+  }, [token]);
 
   if (!user) return null;
   return (
