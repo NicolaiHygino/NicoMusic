@@ -2,6 +2,7 @@ import React from 'react';
 import { useMediaQuery } from 'hooks/useMediaQuery';
 import { calcFontSize } from 'utils/calcFontSize';
 import { msToHoursAndMins } from 'utils/msConverter';
+import { numberWithDot } from 'utils/numberWithDot';
 import {
   HeadWrapper,
   ImageWrapper,
@@ -13,6 +14,9 @@ import {
 } from './style';
 
 const PlaylistHeader = ({ playlist }) => {
+  const followers = numberWithDot(
+    playlist.followers.total
+  );
   const size = calcFontSize(playlist.name);
   const isMobile = useMediaQuery('(max-width: 600px)');
 
@@ -34,7 +38,7 @@ const PlaylistHeader = ({ playlist }) => {
         {!isMobile ? (
           <InfoWrapper>
             <Artist>{playlist.owner.display_name}</Artist>
-            <StyledSpan>{playlist.followers.total} followers</StyledSpan>
+            <StyledSpan>{followers} followers</StyledSpan>
             <StyledSpan>
               {playlist.tracks.total} musics, {playlistDuration}
             </StyledSpan>
