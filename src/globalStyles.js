@@ -96,15 +96,6 @@ export const SectionWrapper = styled.div`
   }
 `;
 
-export const SectionHeaderWrapper = styled.div`
-  margin-bottom: 16px;
-`;
-
-export const SectionHeader = styled.h2`
-  font-size: 1.5em;
-  font-weight: 700;
-`;
-
 export const MainButton = styled.button`
   color: #fff;
   font-size: 16px;
