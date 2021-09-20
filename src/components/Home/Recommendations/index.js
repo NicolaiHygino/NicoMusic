@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import SectionItem from '../SectionItem';
+import SectionHeader from '../SectionHeader';
+import HomeItemsContainer from '../HomeItemsContainer';
 import { getRecentlyTracks, getRecommendations } from 'services/spotifyApi/endpoints';
 import { fetchStorage } from 'utils/fetchStorage';
 import { sortRandomItems } from 'utils/sortRandomItems';
-import { SectionWrapper, SectionHeaderWrapper, SectionHeader } from 'globalStyles';
-import { ItemsContainer } from '../style';
+import { SectionWrapper } from 'globalStyles';
 
 const Recommendations = ({ token }) => {
   const [recommendations, setRecommendations] = useState([]);
@@ -38,14 +38,10 @@ const Recommendations = ({ token }) => {
 
   return (
     <SectionWrapper>
-      <SectionHeaderWrapper>
-        <SectionHeader>Albums based on what you were listening to </SectionHeader>
-      </SectionHeaderWrapper>
-      <ItemsContainer>
-        {recommendations.map(album => 
-          <SectionItem key={`secIt${album.id}`} item={album} />
-        )}
-      </ItemsContainer>
+      <SectionHeader>
+        Albums based on what you were listening to 
+      </SectionHeader>
+      <HomeItemsContainer itemsArray={recommendations} />
     </SectionWrapper>
   );
 };

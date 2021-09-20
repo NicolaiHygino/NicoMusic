@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SectionHeader from '../SectionHeader';
 import { getRecentlyPlayedContexts } from 'services/spotifyApi/endpoints';
 import { Link } from 'react-router-dom';
 import { fetchStorage } from 'utils/fetchStorage';
@@ -8,16 +9,7 @@ import {
   ImageWrapper,
   TitleWrapper,
 } from './style';
-import {
-  SectionHeaderWrapper,
-  SectionHeader,
-  SectionWrapper,
-} from 'globalStyles';
-import styled from 'styled-components';
-
-const LargeSectionHeader = styled(SectionHeader)`
-  font-size: 32px;
-`;
+import { SectionWrapper } from 'globalStyles';
 
 const ContextItem = ({ item }) => {
   const imgUrl = item.images[1]?.url || item.images[0]?.url;
@@ -54,9 +46,9 @@ const RecentlyContextItems = ({ token }) => {
   if (!recentlyPlayedContexts) return null;
   return (
     <SectionWrapper>
-      <SectionHeaderWrapper>
-        <LargeSectionHeader>Bom Dia</LargeSectionHeader>
-      </SectionHeaderWrapper>
+      <SectionHeader large>
+        Good Morging
+      </SectionHeader>
       <RecentlyContextsItems>
         {recentlyPlayedContexts.map((item) => (
           <ContextItem key={item.id} item={item} />

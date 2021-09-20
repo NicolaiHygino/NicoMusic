@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import SectionItem from '../SectionItem';
+import SectionHeader from '../SectionHeader';
+import HomeItemsContainer from '../HomeItemsContainer';
 import { getUserPlaylists } from 'services/spotifyApi/endpoints';
-import {
-  SectionWrapper,
-  SectionHeaderWrapper,
-  SectionHeader,
-} from 'globalStyles';
-import { ItemsContainer } from '../style';
 import { fetchStorage } from 'utils/fetchStorage';
 import { sortRandomItems } from 'utils/sortRandomItems';
+import { SectionWrapper } from 'globalStyles';
 
 const UserPlaylistSection = ({ token }) => {
   const [playlists, setPlaylists] = useState([]);
@@ -23,14 +19,10 @@ const UserPlaylistSection = ({ token }) => {
   if (!playlists) return null;
   return (
     <SectionWrapper>
-      <SectionHeaderWrapper>
-        <SectionHeader>Your favorite playlists</SectionHeader>
-      </SectionHeaderWrapper>
-      <ItemsContainer>
-        {playlists.map((playlist) => (
-          <SectionItem key={playlist.id} item={playlist} />
-        ))}
-      </ItemsContainer>
+      <SectionHeader>
+        Your favorite playlists
+      </SectionHeader>
+      <HomeItemsContainer itemsArray={playlists} />
     </SectionWrapper>
   );
 };
