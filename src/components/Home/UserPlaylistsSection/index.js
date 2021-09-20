@@ -8,14 +8,14 @@ import {
 } from 'globalStyles';
 import { ItemsContainer } from '../style';
 import { fetchStorage } from 'utils/fetchStorage';
-import { getRandomItems } from 'utils/getRandomItems';
+import { sortRandomItems } from 'utils/sortRandomItems';
 
 const UserPlaylistSection = ({ token }) => {
   const [playlists, setPlaylists] = useState([]);
 
   useEffect(() => {
     fetchStorage(token, getUserPlaylists, 'user-playlists-home')
-      .then(res => setPlaylists(getRandomItems(res.data.items, 5)));
+      .then(res => setPlaylists(sortRandomItems(res.data.items, 5)));
   }, [token]);
 
   if (!playlists) return null;

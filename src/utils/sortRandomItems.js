@@ -1,4 +1,4 @@
-export const getRandomItems = (array, length) => {
+export const sortRandomItems = (array, length) => {
   let randItems = [];
   while (randItems.length < length) {
     let randNum = Math.floor(Math.random() * array.length);
