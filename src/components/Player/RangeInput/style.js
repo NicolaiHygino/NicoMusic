@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 export const RangeWrapper = styled.div`
-  height: -1px;
-  padding-top: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4px;
   width: 100%;
 
   @media screen and (min-width: 900px) {
