@@ -5,47 +5,49 @@ export const RangeWrapper = styled.div`
   padding-top: 3px;
   width: 100%;
 
-  /* Chrome */
-  &:hover input[type="range"]::-webkit-slider-thumb {
-    border: none;
-    height: 12px;
-    width: 12px;
-    border-radius: 12px;
-    background: white;
-    cursor: pointer;
-  }
-  &:hover input[type="range"]::-webkit-slider-runnable-track {
-    background-image: linear-gradient(
-      90deg,
-      var(--main-red) var(--progressPercent),
-      var(--track-bg) var(--progressPercent)
-    );
-  }
+  @media screen and (min-width: 900px) {
+    /* Chrome */
+    &:hover input[type="range"]::-webkit-slider-thumb {
+      border: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 12px;
+      background: white;
+      cursor: pointer;
+    }
+    &:hover input[type="range"]::-webkit-slider-runnable-track {
+      background-image: linear-gradient(
+        90deg,
+        var(--main-red) var(--progressPercent),
+        var(--track-bg) var(--progressPercent)
+      );
+    }
 
-  /* Firefox */
-  &:hover input[type="range"]::-moz-range-thumb {
-    border: none;
-    height: 12px;
-    width: 12px;
-    border-radius: 12px;
-    background: white;
-    cursor: pointer;
-  }
-  &:hover input[type="range"]::-moz-range-progress {
-    background-color: var(--main-red);
-  }
+    /* Firefox */
+    &:hover input[type="range"]::-moz-range-thumb {
+      border: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 12px;
+      background: white;
+      cursor: pointer;
+    }
+    &:hover input[type="range"]::-moz-range-progress {
+      background-color: var(--main-red);
+    }
 
-  /* IE */
-  &:hover input[type="range"]::-ms-thumb {
-    border: none;
-    height: 12px;
-    width: 12px;
-    border-radius: 12px;
-    background: white;
-    cursor: pointer;
-  }
-  &:hover input[type="range"]::-ms-fill-lower {
-    background: var(--main-red);
+    /* IE */
+    &:hover input[type="range"]::-ms-thumb {
+      border: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 12px;
+      background: white;
+      cursor: pointer;
+    }
+    &:hover input[type="range"]::-ms-fill-lower {
+      background: var(--main-red);
+    }
   }
 `;
 
@@ -81,6 +83,17 @@ export const StyledRangeInput = styled.input`
     -webkit-appearance: none;
   }
 
+  @media screen and (max-width: 900px) {
+    &::-webkit-slider-thumb {
+      border: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 12px;
+      background: white;
+      cursor: pointer;
+    }
+  }
+
   /* Chrome Progress trick */
   &::-webkit-slider-runnable-track {
     background-image: linear-gradient(
@@ -106,6 +119,17 @@ export const StyledRangeInput = styled.input`
     width: 0px;
     height: 0px;
     border: 0;
+  }
+
+  @media screen and (max-width: 900px) {
+    &::-moz-range-thumb {
+      border: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 12px;
+      background: white;
+      cursor: pointer;
+    }
   }
 
   &::-moz-range-progress {
@@ -144,6 +168,17 @@ export const StyledRangeInput = styled.input`
     border: 0;
     margin-top: 0px;
     /*Needed to keep the Edge thumb centred*/
+  }
+
+  @media screen and (max-width: 900px) {
+    &::-ms-thumb {
+      border: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 12px;
+      background: white;
+      cursor: pointer;
+    }
   }
 
   &:focus::-ms-fill-lower {
