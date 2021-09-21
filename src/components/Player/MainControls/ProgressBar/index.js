@@ -36,7 +36,7 @@ const ProgressBar = ({
     isPaused === pauseInterval ? 1000 : null
   );
 
-  const handleMouseUp = () => {
+  const handleEventEnd = () => {
     setPauseInterval(false);
     onPositionChange(position);
   };
@@ -52,7 +52,8 @@ const ProgressBar = ({
         step={1000}
         onChange={(e) => setPosition(parseInt(e.target.value))}
         onMouseDown={() => setPauseInterval(true)}
-        onMouseUp={() => handleMouseUp()}
+        onMouseUp={() => handleEventEnd()}
+        onTouchEnd={() => handleEventEnd()}
       />
       <Duration>{msToMinsAndSecs(duration)}</Duration>
     </StyledProgressBar>
