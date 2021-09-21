@@ -7,7 +7,6 @@ import PlayIcon from "assets/Icons/PlayIcon";
 import PauseIcon from "assets/Icons/PauseIcon";
 import NextIcon from "assets/Icons/NextIcon";
 import RepeatIcon from "assets/Icons/RepeatIcon";
-import { putShuffle, seekToPosition } from "services/spotifyApi/endpoints";
 import {
   StyledMainControls,
   PlayPauseButton,
@@ -16,29 +15,19 @@ import {
 import { IconButton } from "../style";
 
 const MainControls = ({
-  token,
   player,
-  deviceId,
   track,
   isPaused,
   isShuffle,
   onShuffleChange,
   position,
   setPosition,
+  onPositionChange,
 }) => {
-  const handleMusicPositionChange = (newPosition) => {
-    seekToPosition(token, newPosition, deviceId);
-  };
-
-  const handleShuffleClick = () => {
-    console.log('clicked')
-    onShuffleChange(!isShuffle);
-    putShuffle(token, !isShuffle);
-  }
   return (
     <StyledMainControls>
       <PlayerButtons>
-        <IconButton onClick={() => handleShuffleClick()}>
+        <IconButton onClick={() => onShuffleChange(!isShuffle)}>
           {isShuffle
             ? <ActiveShuffleIcon />
             : <ShuffleIcon />}
@@ -59,19 +48,19 @@ const MainControls = ({
 
       {track ? (
         <ProgressBar
-          onMusicPositionChange={handleMusicPositionChange}
           duration={track.duration_ms}
           isPaused={isPaused}
           position={position}
           setPosition={setPosition}
+          onPositionChange={onPositionChange}
         />
       ) : (
         <ProgressBar
-          onMusicPositionChange={handleMusicPositionChange}
           duration={0}
           isPaused={isPaused}
           position={position}
           setPosition={setPosition}
+          onPositionChange={onPositionChange}
         />
       )}
     </StyledMainControls>

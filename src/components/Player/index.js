@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { transferUserPlayback } from 'services/spotifyApi/endpoints';
 import Loading from 'components/Loading';
 import TrackInfo from './TrackInfo';
 import MainControls from './MainControls';
 import RangeInput from './RangeInput';
 import VolumeIcon from 'assets/Icons/VolumeIcon';
+import { transferUserPlayback, putShuffle } from 'services/spotifyApi/endpoints';
 import {
   StyledPlayer,
   VolumeWrapper,
@@ -18,18 +18,24 @@ const Player = ({ token }) => {
   const [ready, setReady] = useState(false);
   const [deviceId, setDeviceId] = useState(null);
   const [track, setTrack] = useState(null);
-  const [isPaused, setIsPaused] = useState(true);
   const [position, setPosition] = useState(0);
-  const [volume, setVolume] = useState(0.1);
+  const [isPaused, setIsPaused] = useState(true);
   const [isShuffle, setIsShuffle] = useState(false);
+  const [volume, setVolume] = useState(0.1);
 
   useEffect(() => {
     if(!player) return
     player.setVolume(volume);
   }, [volume, player]);
 
-  const handleShuffeChange = value =>
+  const handleShuffeChange = value => {
     setIsShuffle(value);
+    putShuffle(token, value);
+  };
+
+  const handlePositionChange = positionMs => {
+    player.seek(positionMs);
+  };
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -53,10 +59,6 @@ const Player = ({ token }) => {
         setReady(true);
       });
       
-      player.addListener('not_ready', ({ device_id }) => {
-        console.log(`Device ID has gone offLine ${device_id}`);
-      });
-      
       player.addListener('player_state_changed', (state) => {
         if (!state) return;
         setIsShuffle(state.shuffle);
@@ -66,7 +68,6 @@ const Player = ({ token }) => {
       });
       
       player.connect();
-      
     };
   }, [token]);
 
@@ -88,9 +89,10 @@ const Player = ({ token }) => {
         track={track}
         isPaused={isPaused}
         isShuffle={isShuffle}
-        onShuffleChange={handleShuffeChange}
         position={position}
         setPosition={setPosition}
+        onShuffleChange={handleShuffeChange}
+        onPositionChange={handlePositionChange}
       />
 
       <VolumeControl>

@@ -23,8 +23,8 @@ const ProgressBar = ({
   duration,
   position,
   setPosition,
-  onMusicPositionChange,
   isPaused,
+  onPositionChange,
 }) => {
   const [pauseInterval, setPauseInterval] = useState(false);
 
@@ -38,7 +38,7 @@ const ProgressBar = ({
 
   const handleMouseUp = () => {
     setPauseInterval(false);
-    onMusicPositionChange(position);
+    onPositionChange(position);
   };
 
   return (
