@@ -5,6 +5,7 @@ import MainControls from './MainControls';
 import RangeInput from './RangeInput';
 import VolumeIcon from 'assets/Icons/VolumeIcon';
 import { transferUserPlayback, putShuffle } from 'services/spotifyApi/endpoints';
+import { useMediaQuery } from 'hooks/useMediaQuery';
 import {
   StyledPlayer,
   VolumeWrapper,
@@ -22,6 +23,8 @@ const Player = ({ token }) => {
   const [isPaused, setIsPaused] = useState(true);
   const [isShuffle, setIsShuffle] = useState(false);
   const [volume, setVolume] = useState(0.1);
+
+  const isTablet = useMediaQuery('(max-width: 900px)');
 
   useEffect(() => {
     if(!player) return
@@ -96,19 +99,21 @@ const Player = ({ token }) => {
       />
 
       <VolumeControl>
-        <VolumeWrapper>
-          <IconButton>
-            <VolumeIcon />
-          </IconButton>
-          <RangeInput
-            min="0"
-            max="1"
-            step="0.01"
-            value={volume}
-            onChange={(e) => setVolume(e.target.value)}
-          />
-        </VolumeWrapper>
-      </VolumeControl>
+        {!isTablet && 
+          <VolumeWrapper>
+            <IconButton>
+              <VolumeIcon />
+            </IconButton>
+            <RangeInput
+              min="0"
+              max="1"
+              step="0.01"
+              value={volume}
+              onChange={(e) => setVolume(e.target.value)}
+            />
+          </VolumeWrapper>
+        }
+      </VolumeControl> 
     </StyledPlayer>
   );
 };
