@@ -2,22 +2,32 @@ import React from 'react';
 import { GlobalStyle } from 'globalStyles';
 import Login from 'views/Login';
 import Dashboard from 'views/Dashboard';
-import useToken from './hooks/useToken';
+import useSpotifyToken from './hooks/useSpotifyToken';
 
 function App() {
-  const [token, setToken] = useToken();
+  const [accessToken, setAccessToken, setRefreshToken, setExpiresIn] = useSpotifyToken();
 
-  if (!token) {
-    return (<>
-      <GlobalStyle />
-      <Login setToken={setToken}/>
-    </>);
+  const setLoginTokens = (accessToken, refreshToken, expiresIn) => {
+    setAccessToken(accessToken);
+    setRefreshToken(refreshToken);
+    setExpiresIn(expiresIn);
   };
 
-  return (<>
-    <GlobalStyle />
-    <Dashboard token={token} />  
-  </>);
+  if (!accessToken) {
+    return (
+      <>
+        <GlobalStyle />
+        <Login setLoginTokens={setLoginTokens} />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <GlobalStyle />
+      <Dashboard token={accessToken} />
+    </>
+  );
 };
 
 export default App;

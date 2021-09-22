@@ -8,21 +8,26 @@ import { CenteredContainer } from './style';
 import { useHistory } from 'react-router-dom';
 import { MainButton } from 'globalStyles';
 
-const Login = ({ setToken }) => {
+const Login = ({ setLoginTokens }) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  
   const history = useHistory();
 
   useEffect(() => {
     const code = new URLSearchParams(
       window.location.search
     ).get('code');
-    
+
     if (code) {    
       setLoading(true)
       getSpotifyTokens(code)
-        .then(res => {
-          setToken(res.data.accessToken);
+        .then(({data}) => {
+          setLoginTokens(
+            data.accessToken,
+            data.refreshToken,
+            data.expiresIn
+          );
           history.push('/');
           setLoading(false);
         })
@@ -35,7 +40,7 @@ const Login = ({ setToken }) => {
           setLoading(false);
         });
     }
-  }, [history, setToken]);
+  }, [history, setLoginTokens]);
 
   const onTryAgainClick = () => {
     setError(false)
