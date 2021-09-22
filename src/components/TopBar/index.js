@@ -4,9 +4,7 @@ import PrevArrowIcon from 'assets/Icons/PrevArrowIcon';
 import NextArrowIcon from 'assets/Icons/NextArrowIcon';
 import {
   StyledTopBar,
-  RoundButtonsWrapper,
   RoundButton,
-  UserProfileWrapper,
   UserProfileButton,
   ImageWrapper,
   UserName,
