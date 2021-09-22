@@ -22,7 +22,7 @@ const Dashboard = ({ token }) => {
       <DashboardDiv>
         {tablet && <Sidebar token={token} />}
         <Content>
-          <TopBar token={token} />
+          {tablet && <TopBar token={token} />}
           <UriProvider token={token}>
             <Switch>
               <Route path="/search">
