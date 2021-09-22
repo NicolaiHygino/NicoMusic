@@ -15,7 +15,6 @@ import PlaylistTrackItem from './PlaylistTrackItem';
 import PlaylistTrackItemMobile from './PlaylistTrackItemMobile'
 
 const PlaylistTrackList = ({ trackItems, uri }) => {
-  console.log(trackItems)
   const { setContextUri, setOffset } = useContext(UriContext);
   const handleItemClick = (position) => {
     setContextUri(uri);
