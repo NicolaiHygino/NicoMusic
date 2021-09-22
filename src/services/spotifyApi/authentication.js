@@ -3,11 +3,11 @@ import { objectToURLParam } from 'services/spotifyApi/objectToUrlParam';
 
 const REDIRECT_URI = process.env.NODE_ENV === 'development' 
   ? 'http://localhost:3000/'
-  : process.env.REACT_APP_REDIRECT_URI
+  : process.env.REACT_APP_REDIRECT_URI;
 
 const SERVER_URL = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:3001/login'
-  : process.env.REACT_APP_SERVER_URL
+  ? 'http://localhost:3001'
+  : process.env.REACT_APP_SERVER_URL;
 
 const params = objectToURLParam({
   client_id: process.env.REACT_APP_CLIENT_ID,
@@ -19,10 +19,13 @@ const params = objectToURLParam({
 export const AUTH_URL = `https://accounts.spotify.com/authorize?${params}`;
 
 export const getSpotifyTokens = async (code) => {
-  try {
-    const result = await axios.post(SERVER_URL, {code});
-    return result;
-  } catch {
-    return Promise.reject();
-  }
+  const url = `${SERVER_URL}/login`;
+  const result = await axios.post(url, {code});
+  return result;
+};
+
+export const refreshSpotifyToken = async (refreshToken) => {
+  const url = `${SERVER_URL}/refresh_token`;
+  const res = await axios.post(url, {refreshToken});
+  return res;
 };
