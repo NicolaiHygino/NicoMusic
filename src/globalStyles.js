@@ -60,6 +60,9 @@ export const GlobalStyle = createGlobalStyle`
     background-color: transparent;
     width: 8px;
   }
+  *::-webkit-scrollbar-corner {
+    display: none;
+  }
   *::-webkit-scrollbar-thumb {
     background-color: rgba(255,255,255, .3);
   }
