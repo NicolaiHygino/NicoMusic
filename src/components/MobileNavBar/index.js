@@ -8,7 +8,7 @@ import LibraryIcon from 'assets/Icons/LibraryIcon';
 import { StyledBar, Button } from './style';
 import { NavLink } from 'react-router-dom';
 
-const MobileBar = () => {
+const MobileNavBar = () => {
   return (
     <StyledBar>
       <NavLink exact to="/" activeClassName="selected">
@@ -36,4 +36,4 @@ const MobileBar = () => {
   );
 };
 
-export default MobileBar;
+export default MobileNavBar;

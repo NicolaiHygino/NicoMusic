@@ -1,6 +1,6 @@
 import React from 'react';
 import TopBar from 'components/TopBar';
-import MobileBar from 'components/MobileBar';
+import MobileNavBar from 'components/MobileNavBar';
 import Library from 'components/Library';
 import Sidebar from 'components/Sidebar';
 import Home from 'components/Home';
@@ -45,7 +45,7 @@ const Dashboard = ({ token }) => {
         </Content>
       </DashboardDiv>
       {tablet && <Player token={token} />}
-      {mobile && <MobileBar />}
+      {mobile && <MobileNavBar />}
       {mobile && <MobilePlayer token={token} />}
     </>
   );
