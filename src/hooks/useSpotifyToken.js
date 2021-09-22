@@ -50,7 +50,7 @@ const useSpotifyToken = () => {
   useEffect(() => {
     if(!refreshToken) return;
     const expiresInMs =  expiresIn * 1000;
-    refId.current = setTimeout(
+    refId.current = setInterval(
       () => {
         refreshSpotifyToken(refreshToken)
           .then(res => {

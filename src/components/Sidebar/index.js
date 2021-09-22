@@ -3,6 +3,7 @@ import UserPlaylists from './UserPlaylists';
 import logo from 'assets/images/white-logo.png';
 import HomeIcon from 'assets/Icons/HomeIcon';
 import SearchIcon from 'assets/Icons/SearchIcon';
+import LibraryIcon from 'assets/Icons/LibraryIcon';
 import { Link } from 'react-router-dom';
 import {
   StyledSidebar,
@@ -38,6 +39,7 @@ const Sidebar = ({ token }) => {
       <Nav>
         <NavItem Icon={HomeIcon} to="/" text="Home" />
         <NavItem Icon={SearchIcon} to="/search" text="Search" />
+        <NavItem Icon={LibraryIcon} to="library" text="Library" />
       </Nav>
       <UserPlaylistsWrapper>
         <UserPlaylists token={token} />

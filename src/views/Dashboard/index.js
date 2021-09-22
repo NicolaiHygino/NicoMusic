@@ -1,6 +1,7 @@
 import React from 'react';
 import TopBar from 'components/TopBar';
 import MobileBar from 'components/MobileBar';
+import Library from 'components/Library';
 import Sidebar from 'components/Sidebar';
 import Home from 'components/Home';
 import Playlist from 'components/Playlist';
@@ -26,6 +27,9 @@ const Dashboard = ({ token }) => {
             <Switch>
               <Route path="/search">
                 <Search token={token} />
+              </Route>
+              <Route path="/library">
+                <Library token={token} />
               </Route>
               <Route path="/album/:id">
                 <Album token={token} />
