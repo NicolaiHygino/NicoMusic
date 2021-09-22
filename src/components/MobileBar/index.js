@@ -25,7 +25,7 @@ const MobileBar = () => {
           Search
         </Button>  
       </NavLink>
-      <NavLink to="/library" activeClassName="selected">
+      <NavLink to="/library/playlists" activeClassName="selected">
         <Button>
           <LibraryIcon />
           <ActiveLibraryIcon />
