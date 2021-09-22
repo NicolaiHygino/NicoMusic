@@ -3,7 +3,6 @@ import { SectionWrapper } from 'globalStyles';
 
 export const StyledTopBar = styled(SectionWrapper)`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0;
@@ -12,11 +11,9 @@ export const StyledTopBar = styled(SectionWrapper)`
   padding-bottom: 0;
 `;
 
-export const RoundButtonsWrapper = styled.div`
-
-`;
-
 export const RoundButton = styled.button`
+  display: inline-flex;
+  align-items: center;
   background-color: rgba(0,0,0,.7);
   border: none;
   cursor: pointer;
@@ -29,22 +26,11 @@ export const RoundButton = styled.button`
   stroke-width: 1pt;
 `;
 
-export const UserProfileWrapper = styled.div`
-
-`;
-
-export const UserProfileButton = styled.button`
-  display: flex;
-  align-items: center;
-  background-color: rgba(0,0,0,.7);
-  border: none;
-  cursor: pointer;
+export const UserProfileButton = styled(RoundButton)`
+  width: auto;
   border-radius: 32px;
   padding: 3px 10px 3px 3px;
-  height: 32px;
-  line-height: 0;
-  color: white;
-  stroke-width: 1pt;
+  margin-left: auto;
 
   @media screen and (max-width: 1000px) {
     padding-right: 3px;

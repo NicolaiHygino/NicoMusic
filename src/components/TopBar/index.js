@@ -28,7 +28,6 @@ const TopBar = ({ token }) => {
   if (!user) return null;
   return (
     <StyledTopBar>
-      <RoundButtonsWrapper>
         <RoundButton onClick={() => handleBackClick()}>
           <PrevArrowIcon />
         </RoundButton>
@@ -37,16 +36,13 @@ const TopBar = ({ token }) => {
             <NextArrowIcon />
           </RoundButton>
         )}
-      </RoundButtonsWrapper>
 
-      <UserProfileWrapper>
         <UserProfileButton>
           <ImageWrapper>
             <img src={user.images[0].url} alt={user.name} />
           </ImageWrapper>
           {!isTablet && <UserName>{user.display_name}</UserName>}
         </UserProfileButton>
-      </UserProfileWrapper>
     </StyledTopBar>
   );
 };
