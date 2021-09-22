@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import SectionHeader from '../SectionHeader';
-import HomeItemsContainer from '../HomeItemsContainer';
+import SectionHeader from 'components/SectionHeader';
+import GridItemsContainer from 'components/GridItemsContainer';
 import { getRecentlyTracks, getRecommendations } from 'services/spotifyApi/endpoints';
 import { fetchStorage } from 'utils/fetchStorage';
 import { sortRandomItems } from 'utils/sortRandomItems';
@@ -41,7 +41,7 @@ const Recommendations = ({ token }) => {
       <SectionHeader>
         Albums based on what you were listening to 
       </SectionHeader>
-      <HomeItemsContainer itemsArray={recommendations} />
+      <GridItemsContainer itemsArray={recommendations} />
     </SectionWrapper>
   );
 };

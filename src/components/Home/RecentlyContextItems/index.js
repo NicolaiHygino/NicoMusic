@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import SectionHeader from '../SectionHeader';
+import SectionHeader from 'components/SectionHeader';
 import { getRecentlyPlayedContexts } from 'services/spotifyApi/endpoints';
 import { Link } from 'react-router-dom';
 import { fetchStorage } from 'utils/fetchStorage';

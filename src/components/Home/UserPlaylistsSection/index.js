@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import SectionHeader from '../SectionHeader';
-import HomeItemsContainer from '../HomeItemsContainer';
+import SectionHeader from 'components/SectionHeader';
+import GridItemsContainer from 'components/GridItemsContainer';
 import { getUserPlaylists } from 'services/spotifyApi/endpoints';
 import { fetchStorage } from 'utils/fetchStorage';
 import { sortRandomItems } from 'utils/sortRandomItems';
@@ -22,7 +22,7 @@ const UserPlaylistSection = ({ token }) => {
       <SectionHeader>
         Your favorite playlists
       </SectionHeader>
-      <HomeItemsContainer itemsArray={playlists} />
+      <GridItemsContainer itemsArray={playlists} />
     </SectionWrapper>
   );
 };
