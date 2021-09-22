@@ -62,10 +62,10 @@ const PlaylistTrackList = ({ trackItems, uri }) => {
 
       {trackItems
         .filter(item => item.track.type !== 'episode')
-        .map(item => (
+        .map((item, i) => (
           <PlaylistTrackItem
             onItemClick={handleItemClick}
-            key={item.id}
+            key={`${i}${item.id}`}
             item={item}
             hideAddedAt={hideAddedAt}
           />
