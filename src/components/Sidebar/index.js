@@ -39,7 +39,7 @@ const Sidebar = ({ token }) => {
       <Nav>
         <NavItem Icon={HomeIcon} to="/" text="Home" />
         <NavItem Icon={SearchIcon} to="/search" text="Search" />
-        <NavItem Icon={LibraryIcon} to="library" text="Library" />
+        <NavItem Icon={LibraryIcon} to="/library/playlists" text="Library" />
       </Nav>
       <UserPlaylistsWrapper>
         <UserPlaylists token={token} />
