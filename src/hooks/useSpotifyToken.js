@@ -1,73 +1,32 @@
 import { useState, useEffect, useRef } from 'react';
 import { refreshSpotifyToken } from 'services/spotifyApi/authentication';
 
-const getFromStorage = (key) => {
-  const fetchedAt = localStorage.getItem('fetchedAt');
-  const timeNow = Date.now();  
-  const diffTime = timeNow - fetchedAt;
-  const oneHoursInMs = 1 * 60 * 60 * 1000;
-
-  if (diffTime < oneHoursInMs) {
-    return localStorage.getItem(key);
-  }
-  return null;
-};
-
 const useSpotifyToken = () => {
-  const [
-    accessToken, 
-    setAccessToken
-  ] = useState(getFromStorage('accessToken'));
-  
-  const [
-    refreshToken, 
-    setRefreshToken
-  ] = useState(getFromStorage('refreshToken'));
-  
-  const [
-    expiresIn,
-    setExpiresIn
-  ] = useState(getFromStorage('expiresIn'));
+  const [accessToken, setAccessToken] = useState(null);
+  const [refreshToken, setRefreshToken] = useState(null);
+  const [expiresIn, setExpiresIn] = useState(null);
 
-  const refId = useRef(0);
-
-  const saveAccessToken = token => {
-    localStorage.setItem('accessToken', token);
-    localStorage.setItem('fetchedAt', Date.now());
-    setAccessToken(token);
-  };
-
-  const saveRefreshToken = token => {
-    localStorage.setItem('refreshToken', token);
-    setRefreshToken(token);
-  };
-
-  const saveExpiresIn = secs => {
-    localStorage.setItem('expiresIn', secs);
-    setExpiresIn(secs);
-  };
+  const idRef = useRef(0);
 
   useEffect(() => {
     if(!refreshToken) return;
-    const expiresInMs =  expiresIn * 1000;
-    refId.current = setInterval(
-      () => {
-        refreshSpotifyToken(refreshToken)
-          .then(res => {
-            saveAccessToken(res.data.accessToken);
-            saveExpiresIn(res.data.expiresIn);
-          })
-      }, 
+    const expiresInMs =  expiresIn * 999;
+    idRef.current = setInterval(() =>
+      refreshSpotifyToken(refreshToken)
+        .then(res => {
+          setAccessToken(res.data.accessToken);
+          setExpiresIn(res.data.expiresIn);
+        }), 
       expiresInMs
     );
 
     return () => {
-      clearInterval(refId.current);
-      refId.current = 0;
+      clearInterval(idRef.current);
+      idRef.current = 0;
     }
   }, [refreshToken, expiresIn]);
 
-  return [accessToken, saveAccessToken, saveRefreshToken, saveExpiresIn];
+  return [accessToken, setAccessToken, setRefreshToken, setExpiresIn];
 };
 
 export default useSpotifyToken;
