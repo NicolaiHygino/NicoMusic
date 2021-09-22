@@ -13,7 +13,7 @@ const params = objectToURLParam({
   client_id: process.env.REACT_APP_CLIENT_ID,
   response_type: 'code',
   redirect_uri: REDIRECT_URI,
-  scope: 'streaming playlist-read-private playlist-read-collaborative user-read-email user-read-private user-read-playback-state user-modify-playback-state user-library-read user-library-modify user-read-recently-played',
+  scope: 'streaming user-follow-read playlist-read-private playlist-read-collaborative user-read-email user-read-private user-read-playback-state user-modify-playback-state user-library-read user-library-modify user-read-recently-played',
 });
 
 export const AUTH_URL = `https://accounts.spotify.com/authorize?${params}`;
