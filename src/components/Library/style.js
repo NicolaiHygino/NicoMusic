@@ -12,6 +12,11 @@ export const LibraryNav = styled.nav`
   @media screen and (max-width: 900px) {
     left: 264px;
   }
+
+  @media screen and (max-width: 650px) {
+    position: static;
+    margin-bottom: 30px;
+  }
 `;
 
 export const NavList = styled.ul`
