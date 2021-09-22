@@ -33,6 +33,10 @@ export const ItemWrapper = styled.div`
   &:hover {
     background-color: hsla(0,0%,100%,0.07);  
   }
+
+  & a {
+    text-decoration: none;
+  }
 `;
 
 export const ImgWrapper = styled.div`
@@ -46,6 +50,10 @@ export const ImgWrapper = styled.div`
     height: auto;
     object-fit: cover;
     aspect-ratio: 1;
+  }
+  &.artist {
+    border-radius: 50%;
+    overflow: hidden;
   }
 `;
 
