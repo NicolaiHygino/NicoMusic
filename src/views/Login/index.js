@@ -9,8 +9,8 @@ import { useHistory } from 'react-router-dom';
 import { MainButton } from 'globalStyles';
 
 const Login = ({ setLoginTokens }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
   
   const history = useHistory();
 
@@ -20,7 +20,7 @@ const Login = ({ setLoginTokens }) => {
     ).get('code');
 
     if (code) {    
-      setLoading(true)
+      setIsLoading(true)
       getSpotifyTokens(code)
         .then(({data}) => {
           setLoginTokens(
@@ -29,15 +29,12 @@ const Login = ({ setLoginTokens }) => {
             data.expiresIn
           );
           history.push('/');
-          setLoading(false);
+          setIsLoading(false);
         })
         .catch(() => {
           setError(true)
-          setLoading(false);
+          setIsLoading(false);
           history.push('/');
-        })
-        .finally(() => {
-          setLoading(false);
         });
     }
   }, [history, setLoginTokens]);
@@ -47,7 +44,7 @@ const Login = ({ setLoginTokens }) => {
     history.push('/');
   }
 
-  if (loading) return <Loading />;
+  if (isLoading) return <Loading fullHeight/>;
 
   if (error) {
     return ( 

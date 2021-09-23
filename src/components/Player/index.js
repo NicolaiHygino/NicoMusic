@@ -3,10 +3,9 @@ import Loading from 'components/Loading';
 import TrackInfo from './TrackInfo';
 import MainControls from './MainControls';
 import RangeInput from './RangeInput';
-import DevicesIcon from 'assets/Icons/DevicesIcon';
 import VolumeIcon from 'assets/Icons/VolumeIcon';
 import { UriContext } from 'context/UriContext';
-import { transferUserPlayback, putShuffle } from 'services/spotifyApi/endpoints';
+import { putShuffle } from 'services/spotifyApi/endpoints';
 import { useMediaQuery } from 'hooks/useMediaQuery';
 import {
   StyledPlayer,
@@ -68,7 +67,7 @@ const Player = ({ token }) => {
       
       player.connect();
     };
-  }, [token]);
+  }, [token, setDeviceId]);
 
   if (!ready) {
     return (
