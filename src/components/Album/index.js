@@ -6,14 +6,20 @@ import { useParams } from 'react-router-dom';
 import { getAlbum } from 'services/spotifyApi/endpoints';
 
 const Album = ({ token }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [album, setAlbum] = useState();
   const { id } = useParams();
 
   useEffect(() => {
-    getAlbum(token, id).then((res) => setAlbum(res.data));
+    setIsLoading(true);
+    getAlbum(token, id)
+      .then((res) => {
+        setAlbum(res.data)
+        setIsLoading(false);
+      });
   }, [token, id]);
 
-  if (!album) return <Loading />;
+  if (isLoading) return <Loading />;
   return (
     <>
       <AlbumHeader album={album} />
