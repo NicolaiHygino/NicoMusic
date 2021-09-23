@@ -22,14 +22,16 @@ const Playlist = ({ token }) => {
       setTracks(tracks);
       setPlaylist(res.data);
     })();
-    // getPlaylist(token, id).then(res => setPlaylist(res.data))
   }, [token, id]);
 
   if (!playlist) return <Loading />;
-
   return (<>
     <PlaylistHeader playlist={playlist} />
-    <PlaylistTrackList trackItems={tracks} uri={playlist.uri}/>
+    <PlaylistTrackList 
+      token={token} 
+      trackItems={tracks} 
+      contextUri={playlist.uri}  
+    />
   </>);
 };
 

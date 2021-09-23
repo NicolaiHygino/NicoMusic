@@ -31,7 +31,7 @@ const PlaylistTrackItem = ({ item, onItemClick, hideAddedAt}) => {
   const imgUrl = smallerImg(album.images)?.url;
 
   return (
-    <StyledTrackItem onClick={() => onItemClick(index)}>
+    <StyledTrackItem onClick={() => onItemClick(index, track.uri)}>
       <TrackNumber role="cell">
         <p>{index + 1}</p>
       </TrackNumber>

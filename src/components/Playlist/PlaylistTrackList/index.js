@@ -1,6 +1,11 @@
 import React, { useContext } from 'react';
 import { SectionWrapper } from 'globalStyles';
 import ClockIcon from 'assets/Icons/ClockIcon';
+import PlaylistTrackItem from './PlaylistTrackItem';
+import PlaylistTrackItemMobile from './PlaylistTrackItemMobile'
+import { playResume } from 'services/spotifyApi/endpoints';
+import { UriContext } from 'context/UriContext';
+import { useMediaQuery } from 'hooks/useMediaQuery';
 import {
   TopGuide,
   TrackNumber,
@@ -9,17 +14,15 @@ import {
   TrackAddedAt,
   TrackDuration,
 } from './style';
-import { UriContext } from 'context/UriContext';
-import { useMediaQuery } from 'hooks/useMediaQuery';
-import PlaylistTrackItem from './PlaylistTrackItem';
-import PlaylistTrackItemMobile from './PlaylistTrackItemMobile'
 
-const PlaylistTrackList = ({ trackItems, uri }) => {
-  const { setContextUri, setOffset } = useContext(UriContext);
-  const handleItemClick = (position) => {
-    setContextUri(uri);
-    setOffset(position);
+const PlaylistTrackList = ({ token, trackItems, contextUri }) => {
+  const { deviceId, setContextUri, setTrackUri } = useContext(UriContext);
+  const handleItemClick = (offset, trackUri) => {
+    setContextUri(contextUri);
+    setTrackUri(trackUri);
+    playResume(token, deviceId, contextUri, offset)
   };
+
   const hideAddedAt = useMediaQuery('(min-width: 950px)');
   const isMobile = useMediaQuery('(max-width: 600px');
 
