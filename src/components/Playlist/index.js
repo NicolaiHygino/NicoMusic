@@ -13,23 +13,25 @@ const Playlist = ({ token }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    (async () => {
-      const res = await getPlaylist(token, id);
-      const tracks = res.data.tracks.items;
+    getPlaylist(token, id).then(res => {
+      const tracks = res.data.tracks.items
+        .filter(item => item.track !== null);
 
       tracks.forEach((item, i) => {
-        item.track.nicomusic_index = i
+        item.track.nicomusic_index = i 
       });
 
       setTracks(tracks);
       setPlaylist(res.data);
       setIsLoading(false);
-    })();
+    });
   }, [token, id]);
 
-  if (isLoading) return <Loading />;
+  if (isLoading) {
+    return <Loading />;
+  }
   return (<>
-    <PlaylistHeader playlist={playlist} />
+    <PlaylistHeader playlist={playlist} tracks={tracks} />
     <PlaylistTrackList 
       token={token} 
       trackItems={tracks} 

@@ -13,15 +13,15 @@ import {
   Title,
 } from './style';
 
-const PlaylistHeader = ({ playlist }) => {
+const PlaylistHeader = ({ playlist, tracks }) => {
   const followers = numberWithDot(
     playlist.followers.total
   );
   const size = calcFontSize(playlist.name);
   const isMobile = useMediaQuery('(max-width: 600px)');
 
-  const playlistDuration = playlist.tracks.items
-    .map((item) => item.track.duration_ms)
+  const playlistDuration = tracks
+    .map(item => item.track.duration_ms)
     .reduce((previous, current) => previous + current);
 
   const oneHourInMs = 3600000;
