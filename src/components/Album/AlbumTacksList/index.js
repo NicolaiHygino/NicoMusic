@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import ClockIcon from 'assets/Icons/ClockIcon';
+import BarsAnim from 'components/BarsAnim';
 import { playResume } from 'services/spotifyApi/endpoints';
 import { SectionWrapper } from 'globalStyles';
 import { msToMinsAndSecs } from 'utils/msConverter';
@@ -14,17 +15,29 @@ import {
   MusicTitle,
 } from './style';
 
-const AlbumTrackItem = ({ track, index, onItemClick, isMobile }) => {
+const AlbumTrackItem = ({
+  track,
+  index,
+  nowPlaying,
+  isMobile,
+  onItemClick,
+}) => {
   const duration = msToMinsAndSecs(track.duration_ms);
+  const styledClass = nowPlaying === track.uri
+    ? 'playing'
+    : '';
   return (
     <StyledTrackItem onClick={() => onItemClick(index, track.uri)}>
       {!isMobile && (
         <TrackNumber>
-          <p>{index + 1}</p>
+          {nowPlaying === track.uri
+            ? <BarsAnim />
+            : <p>{index + 1}</p>
+          }
         </TrackNumber>
       )}
       <TrackTitle>
-        <MusicTitle>{track.name}</MusicTitle>
+        <MusicTitle className={styledClass}>{track.name}</MusicTitle>
         <p>{track.artists[0].name}</p>
       </TrackTitle>
       {!isMobile && (
@@ -37,7 +50,13 @@ const AlbumTrackItem = ({ track, index, onItemClick, isMobile }) => {
 };
 
 const AlbumTrackList = ({ tracks, contextUri, token }) => {
-  const { deviceId, setContextUri, setTrackUri } = useContext(UriContext);
+  const {
+    deviceId,
+    setContextUri,
+    trackUri,
+    setTrackUri
+  } = useContext(UriContext);
+
   const handleItemClick = (offset, trackUri) => {
     setContextUri(contextUri);
     setTrackUri(trackUri);
@@ -67,6 +86,7 @@ const AlbumTrackList = ({ tracks, contextUri, token }) => {
           onItemClick={handleItemClick}
           key={track.id}
           track={track}
+          nowPlaying={trackUri}
           index={i}
           isMobile={isMobile}
         />

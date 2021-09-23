@@ -16,7 +16,7 @@ import {
 } from './style';
 
 const Player = ({ token }) => {
-  const { setDeviceId } = useContext(UriContext);
+  const { setDeviceId, setTrackUri } = useContext(UriContext);
 
   const [player, setPlayer] = useState(null);
   const [ready, setReady] = useState(false);
@@ -60,8 +60,11 @@ const Player = ({ token }) => {
 
       player.addListener('player_state_changed', (state) => {
         if (!state) return;
+        const track = state.track_window.current_track;
+        
         setIsShuffle(state.shuffle);
-        setTrack(state.track_window.current_track);
+        setTrack(track);
+        setTrackUri(track.uri);
         setIsPaused(state.paused);
       });
       

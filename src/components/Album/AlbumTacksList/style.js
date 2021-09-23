@@ -26,6 +26,8 @@ export const StyledTrackItem = styled(TopGuide)`
 export const TrackNumber = styled.div`
   flex: 1em 1em;
   margin-right: 16px;
+  width: 24px;
+  text-align: right;
 `;
 
 export const TrackTitle = styled.div`
@@ -39,4 +41,8 @@ export const TrackDuration = styled.div`
 export const MusicTitle = styled.p`
   font-size: 1em;
   color: white;
+
+  &.playing {
+    color: var(--main-red);
+  }
 `;
