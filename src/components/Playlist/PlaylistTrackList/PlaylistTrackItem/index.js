@@ -1,4 +1,5 @@
 import React from 'react';
+import BarsAnim from 'components/BarsAnim';
 import { msToMinsAndSecs } from 'utils/msConverter';
 import { smallerImg } from 'utils/smallerImg';
 import { Link } from 'react-router-dom';
@@ -15,7 +16,12 @@ import {
   AlbumWrapper
 } from '../style';
 
-const PlaylistTrackItem = ({ item, onItemClick, hideAddedAt}) => {
+const PlaylistTrackItem = ({
+  item,
+  onItemClick,
+  hideAddedAt,
+  nowPlaying
+}) => {
   const track = item.track;
   const index = track.nicomusic_index;
   const album = track.album;
@@ -30,17 +36,24 @@ const PlaylistTrackItem = ({ item, onItemClick, hideAddedAt}) => {
 
   const imgUrl = smallerImg(album.images)?.url;
 
+  const playingClass = nowPlaying === track.uri
+    ? 'playing'
+    : '';
+
   return (
     <StyledTrackItem onClick={() => onItemClick(index, track.uri)}>
       <TrackNumber role="cell">
-        <p>{index + 1}</p>
+        {nowPlaying === track.uri 
+          ? <BarsAnim />
+          : <p>{index + 1}</p>
+        }
       </TrackNumber>
       <TrackInfo role="cell">
         <ImageWrapper>
           <img src={imgUrl} alt={album.name} />
         </ImageWrapper>
         <TitleWrapper>
-          <MusicTitle>{track.name}</MusicTitle>
+          <MusicTitle className={playingClass}>{track.name}</MusicTitle>
           <p>{track.artists[0].name}</p>
         </TitleWrapper>
       </TrackInfo>

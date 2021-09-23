@@ -26,6 +26,8 @@ export const TrackNumber = styled.div`
   width: 1em;
   flex: 1em 1em 1em;
   margin-right: 16px;
+  width: 24;
+  text-align: right;
 `;
 
 export const TrackInfo = styled.div`
@@ -82,4 +84,8 @@ export const MusicTitle = styled.p`
   white-space: nowrap;
   font-size: 1em;
   color: white;
+
+  &.playing {
+    color: var(--main-red);
+  }
 `;

@@ -16,7 +16,13 @@ import {
 } from './style';
 
 const PlaylistTrackList = ({ token, trackItems, contextUri }) => {
-  const { deviceId, setContextUri, setTrackUri } = useContext(UriContext);
+  const {
+    deviceId,
+    setContextUri,
+    trackUri,
+    setTrackUri
+  } = useContext(UriContext);
+
   const handleItemClick = (offset, trackUri) => {
     setContextUri(contextUri);
     setTrackUri(trackUri);
@@ -68,6 +74,7 @@ const PlaylistTrackList = ({ token, trackItems, contextUri }) => {
           <PlaylistTrackItem
             onItemClick={handleItemClick}
             key={`${i}${item.id}`}
+            nowPlaying={trackUri}
             item={item}
             hideAddedAt={hideAddedAt}
           />

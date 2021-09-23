@@ -23,7 +23,7 @@ const AlbumTrackItem = ({
   onItemClick,
 }) => {
   const duration = msToMinsAndSecs(track.duration_ms);
-  const styledClass = nowPlaying === track.uri
+  const playingClass = nowPlaying === track.uri
     ? 'playing'
     : '';
   return (
@@ -37,7 +37,7 @@ const AlbumTrackItem = ({
         </TrackNumber>
       )}
       <TrackTitle>
-        <MusicTitle className={styledClass}>{track.name}</MusicTitle>
+        <MusicTitle className={playingClass}>{track.name}</MusicTitle>
         <p>{track.artists[0].name}</p>
       </TrackTitle>
       {!isMobile && (
