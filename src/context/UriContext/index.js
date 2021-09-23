@@ -1,25 +1,19 @@
-import React, { useState, useEffect, createContext } from 'react';
-import { playResume } from 'services/spotifyApi/endpoints';
+import React, { useState, createContext } from 'react';
 
 export const UriContext = createContext();
 
-export const UriProvider = ({ children, token }) => {
+export const UriProvider = ({ children }) => {
   const [contextUri, setContextUri] = useState(null);
+  const [trackUri, setTrackUri] = useState(null);
   const [deviceId, setDeviceId] = useState(null);
-  const [offset, setOffset] = useState(null);
-  const value = { 
+  const value = {
     contextUri,
     setContextUri,
-    offset,
-    setOffset,
+    trackUri,
+    setTrackUri,
     deviceId,
     setDeviceId,
   }
-
-  useEffect(() => {
-    if (!contextUri) return;
-    playResume(token, deviceId, contextUri, offset);
-  }, [contextUri, deviceId, offset, token]);
 
   return <UriContext.Provider value={value}>{children}</UriContext.Provider>;
 };
