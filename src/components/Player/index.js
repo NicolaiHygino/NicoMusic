@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Loading from 'components/Loading';
 import TrackInfo from './TrackInfo';
 import MainControls from './MainControls';
 import RangeInput from './RangeInput';
+import DevicesIcon from 'assets/Icons/DevicesIcon';
 import VolumeIcon from 'assets/Icons/VolumeIcon';
+import { UriContext } from 'context/UriContext';
 import { transferUserPlayback, putShuffle } from 'services/spotifyApi/endpoints';
 import { useMediaQuery } from 'hooks/useMediaQuery';
 import {
@@ -15,9 +17,10 @@ import {
 } from './style';
 
 const Player = ({ token }) => {
+  const { deviceId, setDeviceId } = useContext(UriContext);
+
   const [player, setPlayer] = useState(null);
   const [ready, setReady] = useState(false);
-  const [deviceId, setDeviceId] = useState(null);
   const [track, setTrack] = useState(null);
   const [position, setPosition] = useState(0);
   const [isPaused, setIsPaused] = useState(true);
@@ -55,13 +58,12 @@ const Player = ({ token }) => {
 
       setPlayer(player);
 
-      player.addListener('ready', ({ device_id }) => {
-        transferUserPlayback(token, device_id);
+      player.addListener('ready', ({ device_id}) => {
         setDeviceId(device_id);
         player.getVolume().then((vol) => setVolume(vol));
         setReady(true);
       });
-      
+
       player.addListener('player_state_changed', (state) => {
         if (!state) return;
         setIsShuffle(state.shuffle);
@@ -88,7 +90,6 @@ const Player = ({ token }) => {
       <MainControls
         token={token}
         player={player}
-        deviceId={deviceId}
         track={track}
         isPaused={isPaused}
         isShuffle={isShuffle}
