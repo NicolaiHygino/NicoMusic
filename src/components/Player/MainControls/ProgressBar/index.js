@@ -20,13 +20,12 @@ const useInterval = (callback, delay) => {
 };
 
 const ProgressBar = ({
-  duration,
-  position,
-  setPosition,
+  player,
   isPaused,
-  onPositionChange,
 }) => {
   const [pauseInterval, setPauseInterval] = useState(false);
+  const [position, setPosition] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   useInterval(
     () => {
@@ -35,11 +34,21 @@ const ProgressBar = ({
     },
     isPaused === pauseInterval ? 1000 : null
   );
-
+  
   const handleEventEnd = () => {
     setPauseInterval(false);
-    onPositionChange(position);
+    player.seek(position);
   };
+
+  useEffect(() => {
+    player.addListener('player_state_changed', state => {
+      const position = state?.position || 0;
+      const duration = state?.duration || 0;
+      setDuration(duration);
+      setPosition(position);
+    });
+    return () => player.removeListener('player_state_changed');
+  }, [player]);
 
   return (
     <StyledProgressBar>

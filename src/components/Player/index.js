@@ -17,15 +17,14 @@ import {
 } from './style';
 
 const Player = ({ token }) => {
-  const { deviceId, setDeviceId } = useContext(UriContext);
+  const { setDeviceId } = useContext(UriContext);
 
   const [player, setPlayer] = useState(null);
   const [ready, setReady] = useState(false);
   const [track, setTrack] = useState(null);
-  const [position, setPosition] = useState(0);
   const [isPaused, setIsPaused] = useState(true);
   const [isShuffle, setIsShuffle] = useState(false);
-  const [volume, setVolume] = useState(0.1);
+  const [volume, setVolume] = useState(0.5);
 
   const isTablet = useMediaQuery('(max-width: 900px)');
 
@@ -39,10 +38,6 @@ const Player = ({ token }) => {
     putShuffle(token, value);
   };
 
-  const handlePositionChange = positionMs => {
-    player.seek(positionMs);
-  };
-
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://sdk.scdn.co/spotify-player.js';
@@ -51,14 +46,14 @@ const Player = ({ token }) => {
 
     window.onSpotifyWebPlaybackSDKReady = () => {
       const player = new window.Spotify.Player({
-        name: 'New Nico Music',
+        name: 'Nico Music',
         getOAuthToken: (cb) => cb(token),
         volume: 0.5,
       });
 
       setPlayer(player);
 
-      player.addListener('ready', ({ device_id}) => {
+      player.addListener('ready', ({ device_id }) => {
         setDeviceId(device_id);
         player.getVolume().then((vol) => setVolume(vol));
         setReady(true);
@@ -67,7 +62,6 @@ const Player = ({ token }) => {
       player.addListener('player_state_changed', (state) => {
         if (!state) return;
         setIsShuffle(state.shuffle);
-        setPosition(state.position);
         setTrack(state.track_window.current_track);
         setIsPaused(state.paused);
       });
@@ -88,15 +82,10 @@ const Player = ({ token }) => {
       <TrackInfo track={track} />
 
       <MainControls
-        token={token}
         player={player}
-        track={track}
         isPaused={isPaused}
         isShuffle={isShuffle}
-        position={position}
-        setPosition={setPosition}
         onShuffleChange={handleShuffeChange}
-        onPositionChange={handlePositionChange}
       />
 
       <VolumeControl>

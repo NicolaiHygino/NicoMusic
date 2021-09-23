@@ -16,21 +16,15 @@ import { IconButton } from "../style";
 
 const MainControls = ({
   player,
-  track,
   isPaused,
   isShuffle,
   onShuffleChange,
-  position,
-  setPosition,
-  onPositionChange,
 }) => {
   return (
     <StyledMainControls>
       <PlayerButtons>
         <IconButton onClick={() => onShuffleChange(!isShuffle)}>
-          {isShuffle
-            ? <ActiveShuffleIcon />
-            : <ShuffleIcon />}
+          {isShuffle ? <ActiveShuffleIcon /> : <ShuffleIcon />}
         </IconButton>
         <IconButton onClick={() => player.previousTrack()}>
           <PreviousIcon />
@@ -46,23 +40,7 @@ const MainControls = ({
         </IconButton>
       </PlayerButtons>
 
-      {track ? (
-        <ProgressBar
-          duration={track.duration_ms}
-          isPaused={isPaused}
-          position={position}
-          setPosition={setPosition}
-          onPositionChange={onPositionChange}
-        />
-      ) : (
-        <ProgressBar
-          duration={0}
-          isPaused={isPaused}
-          position={position}
-          setPosition={setPosition}
-          onPositionChange={onPositionChange}
-        />
-      )}
+      <ProgressBar player={player} isPaused={isPaused} />
     </StyledMainControls>
   );
 };
