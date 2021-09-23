@@ -3,6 +3,7 @@ import { GlobalStyle } from 'globalStyles';
 import Login from 'views/Login';
 import Dashboard from 'views/Dashboard';
 import useSpotifyToken from './hooks/useSpotifyToken';
+import { UriProvider } from 'context/UriContext';
 
 function App() {
   const [accessToken, setAccessToken, setRefreshToken, setExpiresIn] = useSpotifyToken();
@@ -25,7 +26,9 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Dashboard token={accessToken} />
+      <UriProvider token={accessToken}>
+        <Dashboard token={accessToken} />
+      </UriProvider>
     </>
   );
 };
