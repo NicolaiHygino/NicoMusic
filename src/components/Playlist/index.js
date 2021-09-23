@@ -6,11 +6,13 @@ import { useParams } from 'react-router-dom';
 import { getPlaylist } from 'services/spotifyApi/endpoints';
 
 const Playlist = ({ token }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [playlist, setPlaylist] = useState(null);
   const [tracks, setTracks] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
+    setIsLoading(true);
     (async () => {
       const res = await getPlaylist(token, id);
       const tracks = res.data.tracks.items;
@@ -21,10 +23,11 @@ const Playlist = ({ token }) => {
 
       setTracks(tracks);
       setPlaylist(res.data);
+      setIsLoading(false);
     })();
   }, [token, id]);
 
-  if (!playlist) return <Loading />;
+  if (isLoading) return <Loading />;
   return (<>
     <PlaylistHeader playlist={playlist} />
     <PlaylistTrackList 
