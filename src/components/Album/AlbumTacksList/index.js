@@ -1,6 +1,10 @@
 import React, { useContext } from 'react';
-import { SectionWrapper } from 'globalStyles';
 import ClockIcon from 'assets/Icons/ClockIcon';
+import { playResume } from 'services/spotifyApi/endpoints';
+import { SectionWrapper } from 'globalStyles';
+import { msToMinsAndSecs } from 'utils/msConverter';
+import { UriContext } from 'context/UriContext';
+import { useMediaQuery } from 'hooks/useMediaQuery';
 import {
   TopGuide,
   TrackNumber,
@@ -9,14 +13,11 @@ import {
   StyledTrackItem,
   MusicTitle,
 } from './style';
-import { msToMinsAndSecs } from 'utils/msConverter';
-import { UriContext } from 'context/UriContext';
-import { useMediaQuery } from 'hooks/useMediaQuery';
 
 const AlbumTrackItem = ({ track, index, onItemClick, isMobile }) => {
   const duration = msToMinsAndSecs(track.duration_ms);
   return (
-    <StyledTrackItem onClick={() => onItemClick(index)}>
+    <StyledTrackItem onClick={() => onItemClick(index, track.uri)}>
       {!isMobile && (
         <TrackNumber>
           <p>{index + 1}</p>
@@ -35,11 +36,12 @@ const AlbumTrackItem = ({ track, index, onItemClick, isMobile }) => {
   );
 };
 
-const AlbumTrackList = ({ tracks, uri }) => {
-  const { setContextUri, setOffset } = useContext(UriContext);
-  const handleItemClick = (position) => {
-    setContextUri(uri);
-    setOffset(position);
+const AlbumTrackList = ({ tracks, contextUri, token }) => {
+  const { deviceId, setContextUri, setTrackUri } = useContext(UriContext);
+  const handleItemClick = (offset, trackUri) => {
+    setContextUri(contextUri);
+    setTrackUri(trackUri);
+    playResume(token, deviceId, contextUri, offset);
   };
 
   const isMobile = useMediaQuery('(max-width: 600px)');

@@ -17,7 +17,11 @@ const Album = ({ token }) => {
   return (
     <>
       <AlbumHeader album={album} />
-      <AlbumTrackList tracks={album.tracks.items} uri={album.uri} />
+      <AlbumTrackList 
+        token={token}
+        tracks={album.tracks.items}
+        contextUri={album.uri}
+      />
     </>
   );
 };
