@@ -143,7 +143,7 @@ export const getRecentlyPlayedContexts = async (token) => {
 export const transferUserPlayback = (token, deviceId) => {
   const data = {
     device_ids: [deviceId],
-    play: false,
+    // play: false,
   };
 
   const url = 'https://api.spotify.com/v1/me/player';
@@ -151,18 +151,20 @@ export const transferUserPlayback = (token, deviceId) => {
   axios.put(url, data, headers(token)).catch(console.log);
 };
 
-export const playResume = (token, contextUri, offset = 0) => {
-  const url = 'https://api.spotify.com/v1/me/player/play';
+export const playResume = (token, deviceId, contextUri, offset = 0) => {
+  const params = objectToURLParam({ device_id: deviceId });
 
   const data = contextUri.split(':')[1] === 'track'
     ? { uris: [contextUri] }
     : { 
-        context_uri: contextUri,
-        offset: {
-          position: offset,
-        }
-      };
-
+      context_uri: contextUri,
+      offset: {
+        position: offset,
+      }
+    };
+  
+  const url = `https://api.spotify.com/v1/me/player/play?${params}`;
+  
   axios.put(url, data, headers(token)).catch((err) => console.log(err));
 };
 
