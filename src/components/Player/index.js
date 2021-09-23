@@ -64,7 +64,7 @@ const Player = ({ token }) => {
         
         setIsShuffle(state.shuffle);
         setTrack(track);
-        setTrackUri(track.uri);
+        setTrackUri(track.linked_from?.uri || track.uri);
         setIsPaused(state.paused);
       });
       
