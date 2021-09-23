@@ -70,7 +70,7 @@ const Player = ({ token }) => {
       
       player.connect();
     };
-  }, [token, setDeviceId]);
+  }, [token, setDeviceId, setTrackUri]);
 
   if (!ready) {
     return (

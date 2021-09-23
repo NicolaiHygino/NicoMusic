@@ -3,7 +3,7 @@ import Loading from 'components/Loading';
 import PlaylistHeader from './PlaylistHeader';
 import PlaylistTrackList from './PlaylistTrackList';
 import { useParams } from 'react-router-dom';
-import { getPlaylist, playResume } from 'services/spotifyApi/endpoints';
+import { getPlaylist } from 'services/spotifyApi/endpoints';
 
 const Playlist = ({ token }) => {
   const [isLoading, setIsLoading] = useState(true);
