@@ -74,7 +74,7 @@ const Player = ({ token }) => {
       
       player.connect();
     };
-  }, [token, setDeviceId, setTrackUri]);
+  }, [token, setDeviceId, setTrackUri, setIsPaused]);
 
   if (!ready) {
     return (

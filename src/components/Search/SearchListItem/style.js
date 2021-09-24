@@ -36,6 +36,10 @@ export const Title = styled.p`
   font-size: 1em;
   line-height: 1em;
   margin: .4em 0;
+
+  &.playing {
+    color: var(--main-red)
+  }
 `;
 
 export const SecondaryText = styled(Title)`

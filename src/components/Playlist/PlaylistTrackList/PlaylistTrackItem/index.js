@@ -37,9 +37,7 @@ const PlaylistTrackItem = ({
 
   const imgUrl = smallerImg(album.images)?.url;
 
-  const playingClass = nowPlaying === track.uri
-    ? 'playing'
-    : '';
+  const playingClass = nowPlaying === track.uri ? 'playing' : '';
 
   return (
     <StyledTrackItem onClick={() => onItemClick(index, track.uri)}>

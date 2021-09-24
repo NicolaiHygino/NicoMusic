@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import SearchListItem from './SearchListItem';
+import { playResume } from 'services/spotifyApi/endpoints';
 import { spotifySearch } from 'services/spotifyApi/endpoints';
 import { Container, InputField, SearchList } from './style';
 import { UriContext } from 'context/UriContext';
@@ -7,8 +8,12 @@ import { UriContext } from 'context/UriContext';
 const Search = ({ token }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [trackList, setTrackList] = useState([]);
-  const { setContextUri } = useContext(UriContext);
-  const handleItemClick = newUri => setContextUri(newUri);
+  const { deviceId, trackUri, setTrackUri } = useContext(UriContext);
+ 
+  const handleItemClick = trackUri => {
+    setTrackUri(trackUri)
+    playResume(token, deviceId, trackUri);
+  };
 
   useEffect(() => {
     if (searchTerm) {
@@ -35,6 +40,7 @@ const Search = ({ token }) => {
           <SearchListItem 
             key={track.id} 
             track={track} 
+            nowPlaying={trackUri}
             onItemClick={handleItemClick} 
           />
         )}

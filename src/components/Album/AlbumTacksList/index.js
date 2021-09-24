@@ -24,9 +24,7 @@ const AlbumTrackItem = ({
   onItemClick,
 }) => {
   const duration = msToMinsAndSecs(track.duration_ms);
-  const playingClass = nowPlaying === track.uri
-    ? 'playing'
-    : '';
+  const playingClass = nowPlaying === track.uri ? 'playing' : '';
   return (
     <StyledTrackItem onClick={() => onItemClick(index, track.uri)}>
       {!isMobile && (

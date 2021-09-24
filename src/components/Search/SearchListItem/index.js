@@ -9,9 +9,10 @@ import {
 import { msToMinsAndSecs } from "utils/msConverter";
 import { useMediaQuery } from "hooks/useMediaQuery";
 
-const SearchListItem = ({ track, onItemClick }) => {
+const SearchListItem = ({ track, nowPlaying, onItemClick }) => {
   const isMobile = useMediaQuery('(max-width: 550px)');
   const duration = isMobile ? null : msToMinsAndSecs(track.duration_ms) ;
+  const classPlaying = nowPlaying === track.uri ? 'playing' : '';
 
   return (
     <ListItem role="button" onClick={() => onItemClick(track.uri)}>
@@ -19,7 +20,7 @@ const SearchListItem = ({ track, onItemClick }) => {
         <img src={track.album.images[2].url} alt="" />
       </ImgWrapper>
       <TitleWrapper>
-        <Title>{track.name}</Title>
+        <Title className={classPlaying}>{track.name}</Title>
         <SecondaryText>{track.artists[0].name}</SecondaryText>
       </TitleWrapper>
       <Wrapper>
