@@ -29,17 +29,27 @@ const Bar = styled.div`
   background: var(--main-red);
   bottom: 0;
   right: 0;
-  height: 3px;
+  height: 1px;
   width: 3px;
   animation: ${sound} ${props => props.duration} linear infinite alternate;
 `;
 
-const BarsAnim = () => {
+const BarsAnim = ({ isPaused }) => {
+  if (isPaused) {
+    console.log(isPaused);
+    return (
+      <BarWrapper>
+        <Bar duration="0ms" />
+        <Bar duration="0ms" />
+        <Bar duration="0ms" />
+      </BarWrapper>
+    );
+  }
   return (
     <BarWrapper>
       <Bar duration="460ms" />
       <Bar duration="620ms" />
-      <Bar duration="530ms"/>
+      <Bar duration="530ms" />
     </BarWrapper>
   );
 };

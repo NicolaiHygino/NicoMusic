@@ -18,9 +18,10 @@ import {
 
 const PlaylistTrackItem = ({
   item,
-  onItemClick,
+  isPaused,
+  nowPlaying,
   hideAddedAt,
-  nowPlaying
+  onItemClick,
 }) => {
   const track = item.track;
   const index = track.nicomusic_index;
@@ -44,7 +45,7 @@ const PlaylistTrackItem = ({
     <StyledTrackItem onClick={() => onItemClick(index, track.uri)}>
       <TrackNumber role="cell">
         {nowPlaying === track.uri 
-          ? <BarsAnim />
+          ? <BarsAnim isPaused={isPaused}/>
           : <p>{index + 1}</p>
         }
       </TrackNumber>

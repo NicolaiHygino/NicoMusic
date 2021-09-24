@@ -4,6 +4,7 @@ export const UriContext = createContext();
 
 export const UriProvider = ({ children }) => {
   const [contextUri, setContextUri] = useState(null);
+  const [isPaused, setIsPaused] = useState(false);
   const [trackUri, setTrackUri] = useState(null);
   const [deviceId, setDeviceId] = useState(null);
   const value = {
@@ -11,6 +12,8 @@ export const UriProvider = ({ children }) => {
     setContextUri,
     trackUri,
     setTrackUri,
+    isPaused,
+    setIsPaused,
     deviceId,
     setDeviceId,
   }

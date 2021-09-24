@@ -16,12 +16,16 @@ import {
 } from './style';
 
 const Player = ({ token }) => {
-  const { setDeviceId, setTrackUri } = useContext(UriContext);
+  const {
+    setDeviceId,
+    isPaused,
+    setIsPaused,
+    setTrackUri
+  } = useContext(UriContext);
 
   const [player, setPlayer] = useState(null);
   const [ready, setReady] = useState(false);
   const [track, setTrack] = useState(null);
-  const [isPaused, setIsPaused] = useState(true);
   const [isShuffle, setIsShuffle] = useState(false);
   const [volume, setVolume] = useState(0.5);
 

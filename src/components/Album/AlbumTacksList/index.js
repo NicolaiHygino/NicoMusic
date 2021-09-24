@@ -19,6 +19,7 @@ const AlbumTrackItem = ({
   track,
   index,
   nowPlaying,
+  isPaused,
   isMobile,
   onItemClick,
 }) => {
@@ -31,7 +32,7 @@ const AlbumTrackItem = ({
       {!isMobile && (
         <TrackNumber>
           {nowPlaying === track.uri
-            ? <BarsAnim />
+            ? <BarsAnim isPaused={isPaused} />
             : <p>{index + 1}</p>
           }
         </TrackNumber>
@@ -53,6 +54,7 @@ const AlbumTrackList = ({ tracks, contextUri, token }) => {
   const {
     deviceId,
     setContextUri,
+    isPaused,
     trackUri,
     setTrackUri
   } = useContext(UriContext);
@@ -87,6 +89,7 @@ const AlbumTrackList = ({ tracks, contextUri, token }) => {
           key={track.id}
           track={track}
           nowPlaying={trackUri}
+          isPaused={isPaused}
           index={i}
           isMobile={isMobile}
         />

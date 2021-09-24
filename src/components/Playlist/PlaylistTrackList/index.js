@@ -19,6 +19,7 @@ const PlaylistTrackList = ({ token, trackItems, contextUri }) => {
   const {
     deviceId,
     setContextUri,
+    isPaused,
     trackUri,
     setTrackUri
   } = useContext(UriContext);
@@ -75,6 +76,7 @@ const PlaylistTrackList = ({ token, trackItems, contextUri }) => {
             onItemClick={handleItemClick}
             key={`${i}${item.id}`}
             nowPlaying={trackUri}
+            isPaused={isPaused}
             item={item}
             hideAddedAt={hideAddedAt}
           />
