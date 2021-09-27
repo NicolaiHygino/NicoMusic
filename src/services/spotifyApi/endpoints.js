@@ -171,8 +171,8 @@ export const transferUserPlayback = (token, deviceId) => {
 export const playResume = (token, deviceId, contextUri, offset = 0) => {
   const params = objectToURLParam({ device_id: deviceId });
 
-  const data = contextUri.split(':')[1] === 'track'
-    ? { uris: [contextUri] }
+  const data = Array.isArray(contextUri)
+    ? { uris: contextUri }
     : { 
       context_uri: contextUri,
       offset: {
@@ -182,7 +182,7 @@ export const playResume = (token, deviceId, contextUri, offset = 0) => {
   
   const url = `https://api.spotify.com/v1/me/player/play?${params}`;
   
-  axios.put(url, data, headers(token)).catch((err) => console.log(err));
+  axios.put(url, data, headers(token));
 };
 
 export const putShuffle = async (token, state) => {
