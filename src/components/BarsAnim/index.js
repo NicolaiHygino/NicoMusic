@@ -7,7 +7,7 @@ const BarWrapper = styled.div`
   justify-content: right;
   position: relative;
   height: 16px;
-  width: 16px;
+  width: 12px;
   padding: 0;
   margin: 0;
 `;
