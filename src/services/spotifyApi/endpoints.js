@@ -46,6 +46,13 @@ export const getArtist = async (token, artistId) => {
   return res;
 };
 
+export const getArtistTopTracks = async (token, artistId) => {
+  const params = objectToURLParam({ market: 'from_token' });
+  const url = `https://api.spotify.com/v1/artists/${artistId}/top-tracks?${params}`;
+  const res = await axios.get(url, headers(token));
+  return res;
+};
+
 export const getUserPlaylists = async (token, limit = 50) => {
   const params = objectToURLParam({ limit })
   const url = `https://api.spotify.com/v1/me/playlists?${params}`;
