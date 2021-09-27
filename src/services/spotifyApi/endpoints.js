@@ -102,7 +102,7 @@ const contextFilter = (items) => {
   items.forEach((item) => {
     const id = item?.context 
       ? item.context.uri.split(':')[2]
-      : item.track.album.id
+      : item.track.album.id;
     const type = item?.context
       ? item.context.type
       : 'album';
@@ -130,9 +130,13 @@ export const getRecentlyPlayedContexts = async (token) => {
         case 'playlist':
           res = await getPlaylist(token, item.id);
           break;
-        default:
+        case 'album':
           res = await getAlbum(token, item.id);
           break;
+        case 'artist':
+          return;
+        default:
+          throw new Error(`${item.type} type does not exists.`);
       }
       return res.data;
     })
