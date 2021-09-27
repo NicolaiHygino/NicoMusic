@@ -4,10 +4,12 @@ import {
   ImageWrapper,
   TitleWrapper
 } from './style'
-
+import { Link } from 'react-router-dom';
 
 const TrackInfo = ({ track }) => {
-  if (!track) return <MusicInfo></MusicInfo>
+  if (!track) return <MusicInfo></MusicInfo>;
+  const artistId = track.artists[0].uri.split(':')[2];
+  
   return (
     <MusicInfo>
       <ImageWrapper>
@@ -15,7 +17,9 @@ const TrackInfo = ({ track }) => {
       </ImageWrapper>
       <TitleWrapper>
         <p>{track.name}</p>
-        <span>{track.artists[0].name}</span>
+        <Link to={`/artist/${artistId}`}>
+          <span>{track.artists[0].name}</span>
+        </Link>
       </TitleWrapper>
     </MusicInfo>
   );
