@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Loading from 'components/Loading';
+import TopTrackList from './TopTracksList';
 import { useParams } from 'react-router-dom';
 import { getArtist, getArtistTopTracks } from 'services/spotifyApi/endpoints';
 import { numberWithDot } from 'utils/numberWithDot';
@@ -22,12 +23,11 @@ const Artist = ({ token }) => {
     
     getArtist(token, id).then(res => {
       setArtist(res.data);
-      setIsLoading(false);
-      console.log(res.data);
     });
-
+    
     getArtistTopTracks(token, id).then(res => {
-      console.log(res.data);
+      setTopTracks(res.data);
+      setIsLoading(false);
     });
 
   }, [id, token]);
@@ -45,8 +45,10 @@ const Artist = ({ token }) => {
           </Followers>
         </SectionWrapper>
       </Banner>
+      
       <SectionWrapper>
         <h2>Popular</h2>
+        <TopTrackList token={token} tracks={topTracks.tracks} />
       </SectionWrapper>
     </>
   );
