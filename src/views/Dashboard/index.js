@@ -4,6 +4,7 @@ import MobileNavBar from 'components/MobileNavBar';
 import Library from 'components/Library';
 import Sidebar from 'components/Sidebar';
 import Home from 'components/Home';
+import Artist from 'components/Artist';
 import Playlist from 'components/Playlist';
 import Album from 'components/Album';
 import Search from 'components/Search';
@@ -28,6 +29,9 @@ const Dashboard = ({ token }) => {
             </Route>
             <Route path="/library">
               <Library token={token} />
+            </Route>
+            <Route path="/artist/:id">
+              <Artist token={token} />
             </Route>
             <Route path="/album/:id">
               <Album token={token} />
