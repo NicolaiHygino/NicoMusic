@@ -46,6 +46,15 @@ export const getArtist = async (token, artistId) => {
   return res;
 };
 
+export const getArtistAlbums = async (token, artistId, group = '') => {
+  const params = objectToURLParam({ 
+    include_groups: group,
+    market: 'from_token',
+  });
+  const url = `https://api.spotify.com/v1/artists/${artistId}/albums?${params}`;
+  return await axios.get(url, headers(token));
+};
+
 export const getArtistTopTracks = async (token, artistId) => {
   const params = objectToURLParam({ market: 'from_token' });
   const url = `https://api.spotify.com/v1/artists/${artistId}/top-tracks?${params}`;
@@ -160,7 +169,6 @@ export const getRecentlyPlayedContexts = async (token) => {
 export const transferUserPlayback = (token, deviceId) => {
   const data = {
     device_ids: [deviceId],
-    // play: false,
   };
 
   const url = 'https://api.spotify.com/v1/me/player';
