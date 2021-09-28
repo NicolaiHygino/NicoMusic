@@ -6,7 +6,6 @@ export const StyledMobilePlayer = styled.footer`
   position: fixed;
   bottom: 60px;
   padding: 0 5px;
-  position: fixed;
   height: 50px;
   width: 100%;
   background-color: var(--bg-hover);
