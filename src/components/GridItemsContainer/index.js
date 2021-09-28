@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
+  Slider,
   ItemsContainer,
+  ItemsContainerSlide,
   ItemWrapper,
   ImgWrapper,
   ContentWrapper,
@@ -39,7 +41,18 @@ const GridItem = ({ item }) => {
   );
 };
 
-const GridItemsContainer = ({ itemsArray }) => {
+const GridItemsContainer = ({ itemsArray, slider }) => {
+  if (slider) {
+    return (
+      <Slider>
+        <ItemsContainerSlide>
+          {itemsArray.map(item => 
+            <GridItem key={`secIt${item.id}`} item={item} />
+          )}
+        </ItemsContainerSlide>
+      </Slider>
+    );
+  }
   return (
     <ItemsContainer>
       {itemsArray.map(item => 

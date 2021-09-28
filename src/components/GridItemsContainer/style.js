@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const Slider = styled.div`
+  overflow-x: scroll;
+`;
+
 export const ItemsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -16,8 +20,20 @@ export const ItemsContainer = styled.div`
   }
 
   @media screen and (max-width: 600px) {
-    grid-gap: 10px;
+    grid-gap: 20px;
     grid-template-columns: repeat(2, 1fr);
+  }
+`;
+
+export const ItemsContainerSlide = styled(ItemsContainer)`
+  @media screen and (max-width: 600px) {
+    grid-gap: 20px;
+    grid-template-columns: repeat(5, 130px);
+  }
+  
+  @media screen and (max-width: 350px) {
+    grid-gap: 20px;
+    grid-template-columns: repeat(5, 100px);
   }
 `;
 
@@ -30,12 +46,23 @@ export const ItemWrapper = styled.div`
   overflow: hidden;
   cursor: pointer;
 
+  
   &:hover {
     background-color: hsla(0,0%,100%,0.07);  
   }
-
+  
   & a {
     text-decoration: none;
+  }
+  
+  @media screen and (max-width: 600px) {
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent;
+    
+    &:hover {
+      background-color: transparent;
+    }
   }
 `;
 

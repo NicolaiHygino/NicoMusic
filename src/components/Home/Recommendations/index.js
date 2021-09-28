@@ -41,7 +41,7 @@ const Recommendations = ({ token }) => {
       <SectionHeader>
         Albums based on what you were listening to 
       </SectionHeader>
-      <GridItemsContainer itemsArray={recommendations} />
+      <GridItemsContainer slider itemsArray={recommendations} />
     </SectionWrapper>
   );
 };

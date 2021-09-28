@@ -66,6 +66,22 @@ export const GlobalStyle = createGlobalStyle`
   *::-webkit-scrollbar-thumb {
     background-color: rgba(255,255,255, .3);
   }
+
+  @media screen and (max-width: 900px) {
+    * {
+      scrollbar-width: none;
+      scrollbar-color: none;
+    }
+    *::-webkit-scrollbar {
+      display: none;
+    }
+    *::-webkit-scrollbar-corner {
+      display: none;
+    }
+    *::-webkit-scrollbar-thumb {
+      display: none;
+    }
+  }
   /* || End ScrollBar */
 
   /* || Menu Icon Logic */

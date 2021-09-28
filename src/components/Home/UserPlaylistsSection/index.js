@@ -22,7 +22,7 @@ const UserPlaylistSection = ({ token }) => {
       <SectionHeader>
         Your favorite playlists
       </SectionHeader>
-      <GridItemsContainer itemsArray={playlists} />
+      <GridItemsContainer slider itemsArray={playlists} />
     </SectionWrapper>
   );
 };
