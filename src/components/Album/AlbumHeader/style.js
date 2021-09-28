@@ -56,7 +56,8 @@ export const Title = styled.h1`
 `;
 
 export const InfoWrapper = styled.div`
-
+  display: flex;
+  align-items: center;
 `;
 
 export const Artist = styled.p`

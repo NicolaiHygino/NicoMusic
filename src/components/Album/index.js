@@ -3,26 +3,33 @@ import AlbumHeader from './AlbumHeader';
 import AlbumTrackList from './AlbumTacksList';
 import Loading from 'components/Loading';
 import { useParams } from 'react-router-dom';
-import { getAlbum } from 'services/spotifyApi/endpoints';
+import { getAlbum, getArtist } from 'services/spotifyApi/endpoints';
 
 const Album = ({ token }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [album, setAlbum] = useState();
+  const [artist, setArtist] = useState();
   const { id } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
-    getAlbum(token, id)
-      .then((res) => {
-        setAlbum(res.data)
-        setIsLoading(false);
-      });
+    const fetchAlbum = async () => {
+      const album = await getAlbum(token, id);
+      const artistId = album.data.artists[0].id;
+
+      const artist = await getArtist(token, artistId);
+      
+      setAlbum(album.data);
+      setArtist(artist.data);
+      setIsLoading(false);
+    };
+    fetchAlbum();
   }, [token, id]);
 
   if (isLoading) return <Loading />;
   return (
     <>
-      <AlbumHeader album={album} />
+      <AlbumHeader album={album} artist={artist} />
       <AlbumTrackList 
         token={token}
         tracks={album.tracks.items}
