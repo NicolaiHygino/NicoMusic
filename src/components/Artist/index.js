@@ -53,7 +53,7 @@ const Artist = ({ token }) => {
 
       const albums = await getMultipleAlbums(token, albumIds);
       const filteredAlbums = artistAlbumFilter(albums).slice(0, 5);
-      
+
       const singles = await getMultipleAlbums(token, singleIds);
       const filteredSingles = artistAlbumFilter(singles).slice(0, 5);
 

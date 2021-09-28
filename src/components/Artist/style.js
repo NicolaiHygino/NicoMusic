@@ -6,14 +6,9 @@ export const Banner = styled.div`
   height: 40vh;
   margin-top: -60px;
   min-height: 340px;
-  /* background-image: url(${props => props.background}); */
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
-`;
-
-export const Verified = styled.span`
-
 `;
 
 export const ArtistName = styled.h1`
