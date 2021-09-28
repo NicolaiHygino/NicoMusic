@@ -14,44 +14,36 @@ export const spotifySearch = async (searchTerm, token) => {
   });
 
   const url = `https://api.spotify.com/v1/search?${params}`;
-
-  const res = await axios.get(url, headers(token));
-  return res;
+  return await axios.get(url, headers(token));
 };
 
 export const getRecentlyTracks = async (token, limit = 20) => {
   const params = objectToURLParam({ limit });
-
   const url = `https://api.spotify.com/v1/me/player/recently-played?${params}`;
-
-  const res = await axios.get(url, headers(token));
-  return res;
+  return await axios.get(url, headers(token));
 };
 
 export const getAlbum = async (token, albumId) => {
   const url = `https://api.spotify.com/v1/albums/${albumId}`;
-  const res = await axios.get(url, headers(token));
-  return res;
+  return await axios.get(url, headers(token));
 };
 
 export const getMultipleAlbums = async (token, albumIds) => {
   const params = objectToURLParam({ 
     ids: albumIds,
-  })
+  });
   const url = `https://api.spotify.com/v1/albums?${params}`;
   return await axios.get(url, headers(token));
 };
 
 export const getPlaylist = async (token, playlistId) => {
   const url = `https://api.spotify.com/v1/playlists/${playlistId}`;
-  const res = await axios.get(url, headers(token));
-  return res;
+  return await axios.get(url, headers(token));
 };
 
 export const getArtist = async (token, artistId) => {
   const url = `https://api.spotify.com/v1/artists/${artistId}`;
-  const res = await axios.get(url, headers(token));
-  return res;
+  return await axios.get(url, headers(token));
 };
 
 export const getArtistAlbums = async (token, artistId, group = '', limit = 20) => {
@@ -67,39 +59,30 @@ export const getArtistAlbums = async (token, artistId, group = '', limit = 20) =
 export const getArtistTopTracks = async (token, artistId) => {
   const params = objectToURLParam({ market: 'from_token' });
   const url = `https://api.spotify.com/v1/artists/${artistId}/top-tracks?${params}`;
-  const res = await axios.get(url, headers(token));
-  return res;
+  return await axios.get(url, headers(token));
 };
 
 export const getUserPlaylists = async (token, limit = 50) => {
   const params = objectToURLParam({ limit })
   const url = `https://api.spotify.com/v1/me/playlists?${params}`;
-
-  const res = await axios.get(url, headers(token));
-  return res;
+  return await axios.get(url, headers(token));
 };
 
 export const getUserAlbums = async (token, limit = 50) => {
   const params = objectToURLParam({ limit });
   const url = `https://api.spotify.com/v1/me/albums?${params}`;
-
-  const res = await axios.get(url, headers(token));
-  return res;
+  return await axios.get(url, headers(token));
 }
 
 export const getUserArtistis = async (token, limit = 50) => {
   const params = objectToURLParam({ limit, type: 'artist' });
   const url = `https://api.spotify.com/v1/me/following?${params}`;
-
-  const res = await axios.get(url, headers(token));
-  return res;
+  return await axios.get(url, headers(token));
 }
 
 export const getUserProfile = async (token) => {
   const url = 'https://api.spotify.com/v1/me';
-
-  const res = await axios.get(url, headers(token));
-  return res;
+  return await axios.get(url, headers(token));
 };
 
 export const getRecommendations = async (
@@ -115,11 +98,8 @@ export const getRecommendations = async (
     seed_artitsts: seedArtists,
     seed_genres: seedGenres,
   });
-
   const url = `https://api.spotify.com/v1/recommendations?${params}`;
-
-  const data = await axios.get(url, headers(token));
-  return data;
+  return await axios.get(url, headers(token));
 };
 
 /**
@@ -175,17 +155,13 @@ export const getRecentlyPlayedContexts = async (token) => {
   return recentlyContextData;
 };
 
-export const transferUserPlayback = (token, deviceId) => {
-  const data = {
-    device_ids: [deviceId],
-  };
-
+export const transferUserPlayback = async (token, deviceId) => {
+  const data = { device_ids: [deviceId] };
   const url = 'https://api.spotify.com/v1/me/player';
-
-  axios.put(url, data, headers(token)).catch(console.log);
+  return await axios.put(url, data, headers(token));
 };
 
-export const playResume = (token, deviceId, contextUri, offset = 0) => {
+export const playResume = async (token, deviceId, contextUri, offset = 0) => {
   const params = objectToURLParam({ device_id: deviceId });
 
   const data = Array.isArray(contextUri)
@@ -198,23 +174,21 @@ export const playResume = (token, deviceId, contextUri, offset = 0) => {
     };
   
   const url = `https://api.spotify.com/v1/me/player/play?${params}`;
-  
-  axios.put(url, data, headers(token));
+  return await axios.put(url, data, headers(token));
 };
 
 export const putShuffle = async (token, state) => {
   const params = objectToURLParam({ state });
   const url = `https://api.spotify.com/v1/me/player/shuffle?${params}`
-  await axios.put(url, null, headers(token));
-}
+  return await axios.put(url, null, headers(token));
+};
 
-export const seekToPosition = (token, positionMs, deviceId) => {
+export const seekToPosition = async (token, positionMs, deviceId) => {
   const params = objectToURLParam({
     position_ms: positionMs,
     device_ids: deviceId,
   });
 
   const url = `https://api.spotify.com/v1/me/player/seek?${params}`;
-
-  axios.put(url, null, headers(token));
+  return await axios.put(url, null, headers(token));
 };
