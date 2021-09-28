@@ -6,7 +6,8 @@ export const DashboardDiv = styled.div`
   height: calc(100vh - 90px);
 
   @media screen and (max-width: 600px) {
-    height: calc(100vh - 110px);
+    height: 100%;
+    padding-bottom: 110px;
   }
 `;
 

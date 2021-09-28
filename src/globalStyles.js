@@ -70,15 +70,9 @@ export const GlobalStyle = createGlobalStyle`
   @media screen and (max-width: 900px) {
     * {
       scrollbar-width: none;
-      scrollbar-color: none;
+      -ms-overflow-style: none;
     }
     *::-webkit-scrollbar {
-      display: none;
-    }
-    *::-webkit-scrollbar-corner {
-      display: none;
-    }
-    *::-webkit-scrollbar-thumb {
       display: none;
     }
   }

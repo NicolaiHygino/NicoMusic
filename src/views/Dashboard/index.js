@@ -46,8 +46,8 @@ const Dashboard = ({ token }) => {
         </Content>
       </DashboardDiv>
       {tablet && <Player token={token} />}
-      {mobile && <MobileNavBar />}
       {mobile && <MobilePlayer token={token} />}
+      {mobile && <MobileNavBar />}
     </>
   );
 };
