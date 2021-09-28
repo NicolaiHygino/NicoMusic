@@ -34,6 +34,14 @@ export const getAlbum = async (token, albumId) => {
   return res;
 };
 
+export const getMultipleAlbums = async (token, albumIds) => {
+  const params = objectToURLParam({ 
+    ids: albumIds,
+  })
+  const url = `https://api.spotify.com/v1/albums?${params}`;
+  return await axios.get(url, headers(token));
+};
+
 export const getPlaylist = async (token, playlistId) => {
   const url = `https://api.spotify.com/v1/playlists/${playlistId}`;
   const res = await axios.get(url, headers(token));
@@ -46,10 +54,11 @@ export const getArtist = async (token, artistId) => {
   return res;
 };
 
-export const getArtistAlbums = async (token, artistId, group = '') => {
+export const getArtistAlbums = async (token, artistId, group = '', limit = 20) => {
   const params = objectToURLParam({ 
     include_groups: group,
     market: 'from_token',
+    limit: limit,
   });
   const url = `https://api.spotify.com/v1/artists/${artistId}/albums?${params}`;
   return await axios.get(url, headers(token));
