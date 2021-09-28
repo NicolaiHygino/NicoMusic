@@ -6,7 +6,7 @@ export const Banner = styled.div`
   height: 40vh;
   margin-top: -60px;
   min-height: 340px;
-  background-image: url(${props => props.background});
+  /* background-image: url(${props => props.background}); */
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
@@ -24,4 +24,8 @@ export const ArtistName = styled.h1`
 export const Followers = styled.p`
   font-size: 1em;
   margin-top: 4px;
+`;
+
+export const Row = styled.section`
+  margin-bottom: 40px;
 `;
