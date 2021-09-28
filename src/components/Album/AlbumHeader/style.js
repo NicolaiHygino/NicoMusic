@@ -58,6 +58,7 @@ export const Title = styled.h1`
 export const InfoWrapper = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 `;
 
 export const Artist = styled.p`
@@ -77,7 +78,7 @@ export const Artist = styled.p`
 export const ArtistImg = styled.div`
   height: 24px;
   margin-right: 5px;
-  
+
   & img {
     width: 24px;
     border-radius: 50%;
