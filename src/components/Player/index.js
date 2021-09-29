@@ -73,6 +73,11 @@ const Player = ({ token }) => {
       });
       
       player.connect();
+
+      return () => {
+        player.removeListener('player_state_changed')
+        player.removeListener('ready');
+      }
     };
   }, [token, setDeviceId, setTrackUri, setIsPaused]);
 
