@@ -12,7 +12,7 @@ const Search = ({ token }) => {
  
   const handleItemClick = trackUri => {
     setTrackUri(trackUri)
-    playResume(token, deviceId, trackUri);
+    playResume(token, deviceId, [trackUri]);
   };
 
   useEffect(() => {
