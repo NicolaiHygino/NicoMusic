@@ -1,12 +1,30 @@
 import { useState, useEffect, useRef } from 'react';
 import { refreshSpotifyToken } from 'services/spotifyApi/authentication';
 
+const getFromStorage = (key) => {
+  const fetchedAt = localStorage.getItem('fetchedAt');
+  const timeNow = Date.now();  
+  const diffTime = timeNow - fetchedAt;
+  const oneHoursInMs = 1 * 60 * 60 * 1000;
+
+  if (diffTime < oneHoursInMs) {
+    return localStorage.getItem(key);
+  }
+  return null;
+};
+
 const useSpotifyToken = () => {
-  const [accessToken, setAccessToken] = useState(null);
+  const [accessToken, setAccessToken] = useState(getFromStorage('accessToken'));
   const [refreshToken, setRefreshToken] = useState(null);
   const [expiresIn, setExpiresIn] = useState(null);
 
   const idRef = useRef(0);
+
+  const saveAccessToken = token => {
+    localStorage.setItem('accessToken', token);
+    localStorage.setItem('fetchedAt', Date.now());
+    setAccessToken(token);
+  };
 
   useEffect(() => {
     if(!refreshToken) return;
@@ -26,7 +44,7 @@ const useSpotifyToken = () => {
     }
   }, [refreshToken, expiresIn]);
 
-  return [accessToken, setAccessToken, setRefreshToken, setExpiresIn];
+  return [accessToken, saveAccessToken, setRefreshToken, setExpiresIn];
 };
 
 export default useSpotifyToken;
