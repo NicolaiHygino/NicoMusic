@@ -1,24 +1,54 @@
 import styled from 'styled-components';
 
-export const StyledMobilePlayer = styled.footer`
+export const StyledPlayer = styled.footer`
   display: flex;
+  flex-direction: column;
+  overflow: scroll;
   align-items: center;
+  padding: 0 16px;
   position: fixed;
-  bottom: 60px;
-  padding: 0 5px;
-  height: 50px;
+  z-index: 1;
+  top: 0;
+  height: 100%;
   width: 100%;
-  background-color: var(--bg-hover);
+  background-color: #181818;
   border-top: 1px solid #282828;
+
+  &.hidePlayer {
+    display: none;
+  }
+`;
+
+export const LoadingPlayer = styled(StyledPlayer)`
+  justify-content: center;
 `;
 
 export const IconButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #fff;
-  background-color: rgba(0,0,0,0);
+  background-color: transparent;
   border: 0;
-  width: 32px;
-  height: 32px;
-  line-height: 0;
-  margin: 0 4px;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
   cursor: pointer;
+`;
+
+export const TopBar = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 60px;
+
+  & svg {
+    transform: rotate(90deg);
+  }
+`;
+
+export const TopBarIcon = styled(IconButton)`
+  width: 24px;
+  height: 24px;
 `;

@@ -1,14 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import MobileTrackInfo from './MobileTrackInfo';
-import MobileMainControls from './MobileMainControls';
-import { transferUserPlayback } from 'services/spotifyApi/endpoints';
-import { StyledMobilePlayer } from './style';
+import React, { useState, useEffect, useContext } from 'react';
+import Loading from 'components/Loading';
+import TrackInfo from './TrackInfo';
+import MainControls from './MainControls';
+import HiddenPlayer from './HiddenPlayer';
+import NextArrowIcon from 'assets/Icons/NextArrowIcon';
+import { UriContext } from 'context/UriContext';
+import { putShuffle } from 'services/spotifyApi/endpoints';
+import {
+  StyledPlayer,
+  LoadingPlayer,
+  TopBarIcon,
+  TopBar,
+} from './style';
 
-const MobilePlayer = ({ token }) => {
+const Player = ({ token }) => {
+  const {
+    setDeviceId,
+    isPaused,
+    setIsPaused,
+    setTrackUri
+  } = useContext(UriContext);
+
   const [player, setPlayer] = useState(null);
+  const [hidePlayer, setHidePlayer] = useState(true);
+  const [ready, setReady] = useState(false);
   const [track, setTrack] = useState(null);
-  const [isPaused, setIsPaused] = useState(true);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [isShuffle, setIsShuffle] = useState(false);
+  const [volume, setVolume] = useState(0.5);
+
+  useEffect(() => {
+    if(!player) return
+    player.setVolume(volume);
+  }, [volume, player]);
+
+  const handleShuffeChange = value => {
+    setIsShuffle(value);
+    putShuffle(token, value);
+  };
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -18,48 +46,74 @@ const MobilePlayer = ({ token }) => {
 
     window.onSpotifyWebPlaybackSDKReady = () => {
       const player = new window.Spotify.Player({
-        name: 'New Nico Music',
+        name: 'Nico Music',
         getOAuthToken: (cb) => cb(token),
-        volume: 1,
-      });
-     
-      setPlayer(player);
-      
-      // Ready
-      player.addListener('ready', ({ device_id }) => {
-        transferUserPlayback(token, device_id);
+        volume: 0.5,
       });
 
-      player.addListener('not_ready', ({device_id}) => {
-        console.log('Device is not ready for playback', device_id);
-      })
+      setPlayer(player);
+
+      player.addListener('ready', ({ device_id }) => {
+        setDeviceId(device_id);
+        player.getVolume().then((vol) => setVolume(vol));
+        setReady(true);
+      });
 
       player.addListener('player_state_changed', (state) => {
         if (!state) return;
-        setTrack(state.track_window.current_track);
+        const track = state.track_window.current_track;
+        
+        setIsShuffle(state.shuffle);
+        setTrack(track);
+        setTrackUri(track.linked_from?.uri || track.uri);
         setIsPaused(state.paused);
       });
-
-      player.on('initialization_error', ({ message }) => {
-        setErrorMessage(`${message} (unsuported device)`);
-      })
       
-      player.connect()
-    };
-  }, [token]);
+      player.connect();
 
-  if (errorMessage) return (
-    <StyledMobilePlayer>
-      {errorMessage}
-    </StyledMobilePlayer>
-  );
+      return () => {
+        player.removeListener('player_state_changed')
+        player.removeListener('ready');
+      }
+    };
+  }, [token, setDeviceId, setTrackUri, setIsPaused]);
+
+  if (!ready) {
+    return (
+      <LoadingPlayer>
+        <Loading />        
+      </LoadingPlayer>
+    );
+  }
 
   return (
-    <StyledMobilePlayer>
-      <MobileTrackInfo errorMessage={errorMessage} track={track} />
-      <MobileMainControls player={player} isPaused={isPaused} />
-    </StyledMobilePlayer>
+    <>
+      <HiddenPlayer
+        player={player} 
+        track={track} 
+        hidePlayer={hidePlayer}
+        className={!hidePlayer && 'hidePlayer'}
+        setHidePlayer={setHidePlayer}
+      />
+
+      <StyledPlayer className={hidePlayer && 'hidePlayer'}>
+        <TopBar>
+          <TopBarIcon onClick={() => setHidePlayer(!hidePlayer)}>
+            <NextArrowIcon />
+          </TopBarIcon>
+        </TopBar>
+
+        <TrackInfo track={track} />
+
+        <MainControls
+          player={player}
+          isPaused={isPaused}
+          isShuffle={isShuffle}
+          onShuffleChange={handleShuffeChange}
+        />
+      </StyledPlayer>
+    </>
   );
 };
 
-export default MobilePlayer;
+export default Player;
