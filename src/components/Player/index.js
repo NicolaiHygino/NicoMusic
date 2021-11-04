@@ -41,7 +41,7 @@ const Player = () => {
 
   const handleShuffeChange = value => {
     setIsShuffle(value);
-    putShuffle(token, value);
+    putShuffle(value);
   };
 
   useEffect(() => {
