@@ -5,6 +5,7 @@ import MainControls from './MainControls';
 import HiddenPlayer from './HiddenPlayer';
 import NextArrowIcon from 'assets/Icons/NextArrowIcon';
 import { UriContext } from 'context/UriContext';
+import { useAuth } from 'context/Auth';
 import { putShuffle } from 'services/spotifyApi/endpoints';
 import {
   StyledPlayer,
@@ -13,7 +14,9 @@ import {
   TopBar,
 } from './style';
 
-const Player = ({ token }) => {
+const Player = () => {
+  const { token } = useAuth();
+
   const {
     setDeviceId,
     isPaused,
@@ -35,7 +38,7 @@ const Player = ({ token }) => {
 
   const handleShuffeChange = value => {
     setIsShuffle(value);
-    putShuffle(token, value);
+    putShuffle(value);
   };
 
   useEffect(() => {
@@ -47,7 +50,7 @@ const Player = ({ token }) => {
     window.onSpotifyWebPlaybackSDKReady = () => {
       const player = new window.Spotify.Player({
         name: 'Nico Music',
-        getOAuthToken: (cb) => cb(token),
+        getOAuthToken: cb => cb(token),
         volume: 0.5,
       });
 

@@ -10,7 +10,7 @@ import {
   NavItem
 } from './style';
 
-const Library = ({ token }) => {
+const Library = () => {
   let { path, url } = useRouteMatch();
 
   return (
@@ -37,13 +37,13 @@ const Library = ({ token }) => {
 
       <Switch>
         <Route path={`${path}/playlists`}>
-          <LibPlaylists token={token} />
+          <LibPlaylists/>
         </Route>
         <Route path={`${path}/artists`}>
-          <LibArtists token={token} />
+          <LibArtists/>
         </Route>
         <Route path={`${path}/albums`}>
-          <LibAlbums token={token} />
+          <LibAlbums/>
         </Route>
       </Switch>
     </SectionWrapper>

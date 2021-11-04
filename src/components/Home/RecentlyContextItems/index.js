@@ -27,7 +27,7 @@ const ContextItem = ({ item }) => {
   );
 };
 
-const RecentlyContextItems = ({ token }) => {
+const RecentlyContextItems = () => {
   const [
     recentlyPlayedContexts, 
     setRecentlyPlayedContexts
@@ -37,11 +37,10 @@ const RecentlyContextItems = ({ token }) => {
     fetchStorage(
       'recently-played-contexts',
       getRecentlyPlayedContexts, 
-      token
     ).then(data => 
       setRecentlyPlayedContexts(data.slice(0, 6))
     );
-  }, [token]);
+  }, []);
 
   if (!recentlyPlayedContexts) return null;
   return (

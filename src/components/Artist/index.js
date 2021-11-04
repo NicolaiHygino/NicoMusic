@@ -38,12 +38,12 @@ const Artist = ({ token }) => {
   useEffect(() => {
     setIsLoading(true);
     const fetchArtist = async () => {
-      const artist = await getArtist(token, id);
-      const topTracks = await getArtistTopTracks(token, id);
-      const artistAlbums = await getArtistAlbums(token, id, 'album');
-      const artistSingles = await getArtistAlbums(token, id, 'single');
-      const appearsOn = await getArtistAlbums(token, id, 'appears_on', 5);
-      const compilation = await getArtistAlbums(token, id, 'compilation', 5);
+      const artist = await getArtist(id);
+      const topTracks = await getArtistTopTracks(id);
+      const artistAlbums = await getArtistAlbums(id, 'album');
+      const artistSingles = await getArtistAlbums(id, 'single');
+      const appearsOn = await getArtistAlbums(id, 'appears_on', 5);
+      const compilation = await getArtistAlbums(id, 'compilation', 5);
 
       const albumIds = artistAlbums.data.items
         .map(album => album.id).join(',');
@@ -51,10 +51,10 @@ const Artist = ({ token }) => {
       const singleIds = artistSingles.data.items
         .map(album => album.id).join(',');
 
-      const albums = await getMultipleAlbums(token, albumIds);
+      const albums = await getMultipleAlbums(albumIds);
       const filteredAlbums = artistAlbumFilter(albums).slice(0, 5);
 
-      const singles = await getMultipleAlbums(token, singleIds);
+      const singles = await getMultipleAlbums(singleIds);
       const filteredSingles = artistAlbumFilter(singles).slice(0, 5);
 
       setArtist(artist.data);
@@ -66,7 +66,7 @@ const Artist = ({ token }) => {
       setIsLoading(false);
     }
     fetchArtist();
-  }, [id, token]);
+  }, [id]);
 
   if (isLoading) return <Loading />;
   return (
@@ -85,7 +85,7 @@ const Artist = ({ token }) => {
       <SectionWrapper>
         <Row>
           <SectionHeader>Popular</SectionHeader>
-          <TopTrackList token={token} tracks={topTracks.tracks} />
+          <TopTrackList tracks={topTracks.tracks} />
         </Row>
         {albums.length > 0 &&
           <Row>

@@ -5,20 +5,17 @@ import { fetchStorage } from 'utils/fetchStorage';
 import { getUserArtistis } from 'services/spotifyApi/endpoints';
 import SectionHeader from 'components/SectionHeader';
 
-const LibArtists = ({ token }) => {
+const LibArtists = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [artists, setArtists] = useState([]);
-  
-  console.log(artists);
 
   useEffect(() => {
     setIsLoading(true);
-    fetchStorage('library-artists', getUserArtistis, token)
-      .then(res => {
-        setArtists(res.data.artists)
-        setIsLoading(false);
-      })
-  }, [token]);
+    fetchStorage('library-artists', getUserArtistis).then(res => {
+      setArtists(res.data.artists)
+      setIsLoading(false);
+    })
+  }, []);
   
   if (isLoading) return <Loading />;
   return (

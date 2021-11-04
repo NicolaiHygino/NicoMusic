@@ -3,12 +3,12 @@ import RecentlyContextItems from './RecentlyContextItems';
 import UserPlaylistSection from './UserPlaylistsSection';
 import Recommendations from './Recommendations';
 
-const Home = ({ token }) => {
+const Home = () => {
   return (
     <>
-      <RecentlyContextItems token={token} />
-      <UserPlaylistSection token={token} />
-      <Recommendations token={token} />
+      <RecentlyContextItems/>
+      <UserPlaylistSection/>
+      <Recommendations/>
     </>
   );
 };

@@ -5,26 +5,26 @@ import { spotifySearch } from 'services/spotifyApi/endpoints';
 import { Container, InputField, SearchList } from './style';
 import { UriContext } from 'context/UriContext';
 
-const Search = ({ token }) => {
+const Search = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [trackList, setTrackList] = useState([]);
   const { deviceId, trackUri, setTrackUri } = useContext(UriContext);
  
   const handleItemClick = trackUri => {
     setTrackUri(trackUri)
-    playResume(token, deviceId, [trackUri]);
+    playResume(deviceId, [trackUri]);
   };
 
   useEffect(() => {
     if (searchTerm) {
-      spotifySearch(searchTerm, token)
+      spotifySearch(searchTerm)
         .then(res => {
           setTrackList(res.data.tracks.items);
         });
     } else {
       setTrackList([]);
     }
-  }, [searchTerm, token]);
+  }, [searchTerm]);
 
   return (
     <Container>

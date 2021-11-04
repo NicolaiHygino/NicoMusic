@@ -7,6 +7,7 @@ export const UriProvider = ({ children }) => {
   const [isPaused, setIsPaused] = useState(true);
   const [trackUri, setTrackUri] = useState(null);
   const [deviceId, setDeviceId] = useState(null);
+  
   const value = {
     contextUri,
     setContextUri,

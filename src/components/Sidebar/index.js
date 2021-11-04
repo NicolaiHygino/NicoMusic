@@ -28,7 +28,7 @@ const NavItem = ({Icon, to, text}) => (
   </StyledNavItem>
 );
 
-const Sidebar = ({ token }) => {
+const Sidebar = () => {
   return (
     <StyledSidebar>
       <LogoWrapper>
@@ -42,7 +42,7 @@ const Sidebar = ({ token }) => {
         <NavItem Icon={LibraryIcon} to="/library/playlists" text="Library" />
       </Nav>
       <UserPlaylistsWrapper>
-        <UserPlaylists token={token} />
+        <UserPlaylists />
       </UserPlaylistsWrapper>
     </StyledSidebar>
   );

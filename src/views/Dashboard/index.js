@@ -14,39 +14,27 @@ import { Switch, Route } from 'react-router-dom';
 import { DashboardDiv, Content } from './style';
 import { useMediaQuery } from 'hooks/useMediaQuery';
 
-const Dashboard = ({ token }) => {
+const Dashboard = () => {
   const tablet = useMediaQuery('(min-width: 650px)');
   const mobile = useMediaQuery('(max-width: 650px)');
   return (
     <>
       <DashboardDiv>
-        {tablet && <Sidebar token={token} />}
+        {tablet && <Sidebar />}
         <Content>
-          {tablet && <TopBar token={token} />}
+          {tablet && <TopBar />}
           <Switch>
-            <Route path="/search">
-              <Search token={token} />
-            </Route>
-            <Route path="/library">
-              <Library token={token} />
-            </Route>
-            <Route path="/artist/:id">
-              <Artist token={token} />
-            </Route>
-            <Route path="/album/:id">
-              <Album token={token} />
-            </Route>
-            <Route path="/playlist/:id">
-              <Playlist token={token} />
-            </Route>
-            <Route path="/">
-              <Home token={token} />
-            </Route>
+            <Route path="/search"><Search /></Route>
+            <Route path="/library"><Library /></Route>
+            <Route path="/artist/:id"><Artist /></Route>
+            <Route path="/album/:id"><Album /></Route>
+            <Route path="/playlist/:id"><Playlist /></Route>
+            <Route path="/"><Home /></Route>
           </Switch>
         </Content>
       </DashboardDiv>
-      {tablet && <Player token={token} />}
-      {mobile && <MobilePlayer token={token} />}
+      {tablet && <Player />}
+      {mobile && <MobilePlayer />}
       {mobile && <MobileNavBar />}
     </>
   );

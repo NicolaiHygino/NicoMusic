@@ -5,19 +5,19 @@ import { fetchStorage } from 'utils/fetchStorage';
 import { getUserAlbums } from 'services/spotifyApi/endpoints';
 import SectionHeader from 'components/SectionHeader';
 
-const LibAlbum = ({ token }) => {
+const LibAlbum = () => {
   const [albums, setAlbums] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     setIsLoading(true);
-    fetchStorage('library-albums', getUserAlbums, token)
+    fetchStorage('library-albums', getUserAlbums)
       .then(res => {
         const items = res.data.items.map(item => item.album);
         setAlbums(items);
         setIsLoading(false);
       })
-  }, [token]);
+  }, []);
 
   if (isLoading) return <Loading />;
   return (

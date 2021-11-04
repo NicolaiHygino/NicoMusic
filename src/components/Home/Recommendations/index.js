@@ -6,7 +6,7 @@ import { fetchStorage } from 'utils/fetchStorage';
 import { sortRandomItems } from 'utils/sortRandomItems';
 import { SectionWrapper } from 'globalStyles';
 
-const Recommendations = ({ token }) => {
+const Recommendations = () => {
   const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
@@ -14,7 +14,6 @@ const Recommendations = ({ token }) => {
       const res = await fetchStorage(
         'recently-played-tracks',
         getRecentlyTracks,
-        token
       );
       const items = res.data.items.map(item => item.track);
       
@@ -25,7 +24,6 @@ const Recommendations = ({ token }) => {
       const recoRes = await fetchStorage(
         'get-recommendations',
         getRecommendations,
-        token,
         50, 
         seedTracks
       );
@@ -34,7 +32,7 @@ const Recommendations = ({ token }) => {
       setRecommendations(sortRandomItems(recommendedAlbuns, 5));
     };
     fetchData();
-  }, [token])
+  }, [])
 
   return (
     <SectionWrapper>

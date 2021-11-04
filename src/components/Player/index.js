@@ -5,6 +5,7 @@ import MainControls from './MainControls';
 import RangeInput from './RangeInput';
 import VolumeIcon from 'assets/Icons/VolumeIcon';
 import { UriContext } from 'context/UriContext';
+import { useAuth } from 'context/Auth';
 import { putShuffle } from 'services/spotifyApi/endpoints';
 import { useMediaQuery } from 'hooks/useMediaQuery';
 import {
@@ -15,7 +16,9 @@ import {
   LoadingPlayer
 } from './style';
 
-const Player = ({ token }) => {
+const Player = () => {
+  const { token } = useAuth();
+  
   const {
     setDeviceId,
     isPaused,

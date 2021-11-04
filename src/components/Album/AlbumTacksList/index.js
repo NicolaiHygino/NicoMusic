@@ -48,7 +48,7 @@ const AlbumTrackItem = ({
   );
 };
 
-const AlbumTrackList = ({ tracks, contextUri, token }) => {
+const AlbumTrackList = ({ tracks, contextUri }) => {
   const {
     deviceId,
     setContextUri,
@@ -60,7 +60,7 @@ const AlbumTrackList = ({ tracks, contextUri, token }) => {
   const handleItemClick = (offset, trackUri) => {
     setContextUri(contextUri);
     setTrackUri(trackUri);
-    playResume(token, deviceId, contextUri, offset);
+    playResume(deviceId, contextUri, offset);
   };
 
   const isMobile = useMediaQuery('(max-width: 600px)');

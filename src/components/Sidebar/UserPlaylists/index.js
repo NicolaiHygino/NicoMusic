@@ -27,26 +27,20 @@ const StyledUl = styled.ul`
     height: 32px;
     padding: 0 10px;
   }
-
 `;
 
 const PlaylistItem = ({ name, id }) =>
   <Link to={`/playlist/${id}`}>
-    <li>
-      <p>{name}</p>
-    </li>
+    <li><p>{name}</p></li>
   </Link>
 
-const UserPlaylists = ({ token }) => {
+const UserPlaylists = () => {
   const [playlists, setPlaylists] = useState([]);
 
   useEffect(() => {
-    if (!token) return
-    getUserPlaylists(token)
-      .then(res => setPlaylists(res.data.items));
-  }, [token]);
-  
-  if (!playlists) return null;
+    getUserPlaylists().then(res => setPlaylists(res.data.items));
+  }, []);
+
   return (
     <StyledUl>
       {playlists.map(playlist => 

@@ -51,7 +51,7 @@ const TopTrackItem = ({
   );
 };
 
-const TopTrackList = ({ token, tracks }) => {
+const TopTrackList = ({ tracks }) => {
   const {
     deviceId,
     setContextUri,
@@ -63,7 +63,7 @@ const TopTrackList = ({ token, tracks }) => {
   const handleItemClick = (trackUri) => {
     setContextUri(trackUri);
     setTrackUri(trackUri);
-    playResume(token, deviceId, [trackUri]);
+    playResume(deviceId, [trackUri]);
   };
 
   const isMobile = useMediaQuery('(max-width: 600px)');

@@ -5,7 +5,7 @@ import PlaylistTrackList from './PlaylistTrackList';
 import { useParams } from 'react-router-dom';
 import { getPlaylist } from 'services/spotifyApi/endpoints';
 
-const Playlist = ({ token }) => {
+const Playlist = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [playlist, setPlaylist] = useState(null);
   const [tracks, setTracks] = useState(null);
@@ -13,7 +13,7 @@ const Playlist = ({ token }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    getPlaylist(token, id).then(res => {
+    getPlaylist(id).then(res => {
       const tracks = res.data.tracks.items
         .filter(item => item.track !== null);
 
@@ -25,15 +25,14 @@ const Playlist = ({ token }) => {
       setPlaylist(res.data);
       setIsLoading(false);
     });
-  }, [token, id]);
+  }, [id]);
 
   if (isLoading) {
     return <Loading />;
   }
   return (<>
     <PlaylistHeader playlist={playlist} tracks={tracks} />
-    <PlaylistTrackList 
-      token={token} 
+    <PlaylistTrackList
       trackItems={tracks} 
       contextUri={playlist.uri}  
     />

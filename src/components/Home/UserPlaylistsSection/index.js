@@ -6,15 +6,15 @@ import { fetchStorage } from 'utils/fetchStorage';
 import { sortRandomItems } from 'utils/sortRandomItems';
 import { SectionWrapper } from 'globalStyles';
 
-const UserPlaylistSection = ({ token }) => {
+const UserPlaylistSection = () => {
   const [playlists, setPlaylists] = useState([]);
 
   useEffect(() => {
-    fetchStorage('user-playlists-home', getUserPlaylists, token)
+    fetchStorage('user-playlists-home', getUserPlaylists)
       .then(res => setPlaylists(
         sortRandomItems(res.data.items, 5))
       );
-  }, [token]);
+  }, []);
 
   if (!playlists) return null;
   return (

@@ -15,7 +15,7 @@ import {
   TrackDuration,
 } from './style';
 
-const PlaylistTrackList = ({ token, trackItems, contextUri }) => {
+const PlaylistTrackList = ({trackItems, contextUri }) => {
   const {
     deviceId,
     setContextUri,
@@ -27,7 +27,7 @@ const PlaylistTrackList = ({ token, trackItems, contextUri }) => {
   const handleItemClick = (offset, trackUri) => {
     setContextUri(contextUri);
     setTrackUri(trackUri);
-    playResume(token, deviceId, contextUri, offset)
+    playResume(deviceId, contextUri, offset)
   };
 
   const hideAddedAt = useMediaQuery('(min-width: 950px)');
